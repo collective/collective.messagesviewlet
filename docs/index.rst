@@ -1,0 +1,5 @@
+====================
+collective.messagesviewlet
+====================
+
+User documentation
