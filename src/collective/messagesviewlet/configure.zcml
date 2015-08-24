@@ -20,11 +20,4 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
-  <genericsetup:importStep
-      name="collective.messagesviewlet-postInstall"
-      title="collective.messagesviewlet post_install import step"
-      description="Post install import step from collective.messagesviewlet"
-      handler=".setuphandlers.post_install">
-  </genericsetup:importStep>
-
 </configure>

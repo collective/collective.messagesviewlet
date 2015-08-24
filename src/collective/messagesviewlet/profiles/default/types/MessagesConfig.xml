@@ -1,30 +1,32 @@
 <?xml version="1.0"?>
-<object name="Message" meta_type="Dexterity FTI" i18n:domain="collective.messagesviewlet"
+<object name="MessagesConfig" meta_type="Dexterity FTI" i18n:domain="collective.messagesviewlet"
    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-  <property name="title" i18n:translate="">Message</property>
+  <property name="title" i18n:translate="">MessagesConfig</property>
   <property name="description"
-    i18n:translate="Message to be displayed in a viewlet."></property>
+    i18n:translate="Folder containing viewlet messages."></property>
   <property name="icon_expr"></property>
-  <property name="factory">Message</property>
-  <property name="add_view_expr">string:${folder_url}/++add++Message</property>
+  <property name="factory">MessagesConfig</property>
+  <property name="add_view_expr">string:${folder_url}/++add++MessagesConfig</property>
   <property name="link_target"></property>
-  <property name="immediate_view">view</property>
+  <property name="immediate_view">folder_contents</property>
   <property name="global_allow">False</property>
   <property name="filter_content_types">True</property>
   <property name="allowed_content_types">
+    <element value="Message" />
   </property>
   <property name="allow_discussion">False</property>
-  <property name="default_view">view</property>
+  <property name="default_view">folder_contents</property>
   <property name="view_methods">
-    <element value="view"/>
+    <element value="folder_contents"/>
   </property>
   <property name="default_view_fallback">False</property>
   <property name="add_permission">cmf.AddPortalContent</property>
-  <property name="klass">plone.dexterity.content.Item</property>
+  <property name="klass">plone.dexterity.content.Container</property>
   <property name="behaviors">
-    <element value="plone.app.content.interfaces.INameFromTitle"/>
+    <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
+    <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
   </property>
-  <property name="schema">collective.messagesviewlet.interfaces.IMessage</property>
+  <property name="schema"></property>
   <property name="model_source"></property>
   <property name="model_file"></property>
   <alias from="(Default)" to="(dynamic view)"/>
