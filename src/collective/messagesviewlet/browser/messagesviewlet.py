@@ -1,23 +1,26 @@
 # -*- coding: utf-8 -*-
 
-from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from collective.messagesviewlet.message import IMessage
+from DateTime import DateTime
 
 from plone import api
 from plone.app.layout.viewlets import ViewletBase
+
+from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 
 class MessagesViewlet(ViewletBase):
     """This viewlet displays all messages from this product."""
     render = ViewPageTemplateFile('./messagesviewlet.pt')
 
-    def available(self):
-        return len(self.getAllMessages()) > 0
-
     def getAllMessages(self):
         catalog = api.portal.get_tool(name='portal_catalog')
-        brains = catalog.unrestrictedSearchResults(object_provides=IMessage.__identifier__)
-        messages = [brain.getObject() for brain in brains]
+        now = DateTime()
+        brains = catalog.searchResults(portal_type=['Message'],
+                                       start={'query': now, 'range': 'max'},
+                                       end={'query': now, 'range': 'min'},
+                                       sort_on='getObjPositionInParent')
+        messages = []
+        for brain in brains:
+            messages.append(brain.getObject())
 
         return messages

@@ -48,7 +48,7 @@ msgstr "Configuration des messages"
 
 #: ../message.py:65
 msgid "Specify end date message appearance"
-msgstr "Spécifier une date de fin d'apparitin du message"
+msgstr "Spécifier une date de fin d'apparition du message"
 
 #: ../message.py:59
 msgid "Specify start date message appearance"
