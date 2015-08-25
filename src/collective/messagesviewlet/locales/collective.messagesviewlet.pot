@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-08-25 09:38+0000\n"
+"POT-Creation-Date: 2015-08-25 13:28+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,27 +17,35 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.messagesviewlet\n"
 
-#: ../message.py:27
+#: ../message.py:38
+msgid "Alert message"
+msgstr ""
+
+#: ../message.py:45
+msgid "Alert type"
+msgstr ""
+
+#: ../message.py:61
 msgid "End date"
 msgstr ""
 
-#: ../message.py:40
+#: ../message.py:21
 msgid "Full site"
 msgstr ""
 
-#: ../message.py:40
+#: ../message.py:22
 msgid "Homepage"
 msgstr ""
 
-#: ../message.py:34
+#: ../message.py:13
 msgid "Important"
 msgstr ""
 
-#: ../message.py:34
+#: ../message.py:11
 msgid "Info"
 msgstr ""
 
-#: ../message.py:38
+#: ../message.py:49
 msgid "Location"
 msgstr ""
 
@@ -45,7 +53,7 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: ../message.py:32
+#: ../message.py:42
 msgid "Message type"
 msgstr ""
 
@@ -53,19 +61,27 @@ msgstr ""
 msgid "MessagesConfig"
 msgstr ""
 
-#: ../message.py:22
+#: ../message.py:63
+msgid "Specify end date message appearance"
+msgstr ""
+
+#: ../message.py:57
+msgid "Specify start date message appearance"
+msgstr ""
+
+#: ../message.py:55
 msgid "Start date"
 msgstr ""
 
-#: ../message.py:17
+#: ../message.py:36
 msgid "Text"
 msgstr ""
 
-#: ../message.py:12
+#: ../message.py:31
 msgid "Title"
 msgstr ""
 
-#: ../message.py:34
+#: ../message.py:12
 msgid "Warning"
 msgstr ""
 
