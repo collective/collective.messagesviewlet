@@ -16,6 +16,15 @@ def msg_types(context):
 alsoProvides(msg_types, schema.interfaces.IContextSourceBinder)
 
 
+def location(context):
+    terms = []
+    terms.append(SimpleTerm("fullsite", title=_("Full site")))
+    terms.append(SimpleTerm("homepage", title=_("Homepage")))
+    return SimpleVocabulary(terms)
+
+alsoProvides(location, schema.interfaces.IContextSourceBinder)
+
+
 class IMessage(Interface):
 
     title = schema.TextLine(
@@ -47,5 +56,5 @@ class IMessage(Interface):
     location = schema.Choice(
         title=_(u"Location"),
         required=True,
-        values=[_(u'Full Site'), _(u'Homepage')]
+        source=location,
     )
