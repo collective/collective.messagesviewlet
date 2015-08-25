@@ -21,13 +21,15 @@
   </property>
   <property name="default_view_fallback">False</property>
   <property name="add_permission">cmf.AddPortalContent</property>
-  <property name="klass">plone.dexterity.content.Container</property>
+  <property name="klass">collective.messagesviewlet.messagesconfig.MessagesConfig</property>
   <property name="behaviors">
     <element value="plone.app.dexterity.behaviors.metadata.IBasic"/>
     <element value="plone.app.dexterity.behaviors.exclfromnav.IExcludeFromNavigation"/>
   </property>
   <property name="schema"></property>
-  <property name="model_source"></property>
+  <property name="model_source">&lt;model xmlns="http://namespaces.plone.org/supermodel/schema"&gt;
+      &lt;schema /&gt;
+  &lt;/model&gt;</property>
   <property name="model_file"></property>
   <alias from="(Default)" to="(dynamic view)"/>
   <alias from="edit" to="@@edit"/>
