@@ -4,26 +4,49 @@
     display: none;
 }
 
+dl.messagesviewlet-info,
+dl.messagesviewlet-warning,
+dl.messagesviewlet-important{
+    border: 1px solid #996;
+    clear: both;
+    font-size: 80%;
+    margin: 1em 0;  
+}
 dl.messagesviewlet-info {
-    margin: 1em 0;
-    font-size: 80%;
-    border: 1px solid #996;
-    background-color: #bef4cf;
-    clear:both;
+    background-color: #ffffe3;
 }
-
 dl.messagesviewlet-warning {
-    margin: 1em 0;
-    font-size: 80%;
-    border: 1px solid #996;
     background-color: #fd7;
-    clear:both;
+}
+dl.messagesviewlet-important {
+    background-color: #fdc;
 }
 
-dl.messagesviewlet-important {
-    margin: 1em 0;
-    font-size: 80%;
-    border: 1px solid #996;
-    background-color: #fdc;
-    clear:both;
+dl.messagesviewlet-info dt,
+dl.messagesviewlet-warning dt,
+dl.messagesviewlet-important dt{
+    width: 65px;
+    color: White;
+    float: left;
+    font-weight: bold;
+    line-height: 1.25em;
+    margin: 0 0.5em 0 0;
+    padding: 0.5em 0.75em;
+}
+dl.messagesviewlet-info dt{
+    background-color: #996;
+}
+dl.messagesviewlet-warning dt{
+    background-color: #d80;
+}
+dl.messagesviewlet-important dt{
+    background-color: #d00;
+}
+
+dl.messagesviewlet-info dd,
+dl.messagesviewlet-warning dd,
+dl.messagesviewlet-important dd{
+    line-height: 1.25em;
+    margin: 0 0 0 85px;
+    padding: 0.5em;
 }
