@@ -1,8 +1,9 @@
 <div id="messagesviewlet"
-	 tal:condition= "view/available"
+	 tal:define="messages view/getAllMessages"
+	 tal:condition= "messages"
 	 i18n:domain="collective.messagesviewlet">
 
-    	 <tal:message repeat="message view/getAllMessages">
+    	 <tal:message repeat="message messages">
 		     <div tal:attributes = "class python:'messagesviewlet-' + message.msg_type">
 			     <span tal:replace="structure python: message.text.output"></span><br/>
 		     </div> 
