@@ -10,9 +10,9 @@ from plone.indexer import indexer
 
 def msg_types(context):
     terms = []
-    terms.append(SimpleTerm("info", title=_("Info")))
-    terms.append(SimpleTerm("warning", title=_("Warning")))
-    terms.append(SimpleTerm("important", title=_("Important")))
+    terms.append(SimpleTerm("info", title=_("info")))
+    terms.append(SimpleTerm("warning", title=_("warning")))
+    terms.append(SimpleTerm("important", title=_("important")))
     return SimpleVocabulary(terms)
 
 alsoProvides(msg_types, schema.interfaces.IContextSourceBinder)
@@ -37,14 +37,14 @@ class IMessage(Interface):
     text = RichText(
         title=_(u"Text"),
         required=True,
-        description=_(u"Alert message"),
+        description=_(u"Message text"),
     )
 
     msg_type = schema.Choice(
         title=_(u"Message type"),
         required=True,
         source=msg_types,
-        description=_(u"Alert type"),
+        description=_(u"Message type"),
     )
 
     location = schema.Choice(
