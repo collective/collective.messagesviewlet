@@ -22,7 +22,7 @@ msgid "End date"
 msgstr ""
 
 #: ../message.py:40
-msgid "Full Site"
+msgid "Full site"
 msgstr ""
 
 #: ../message.py:40
