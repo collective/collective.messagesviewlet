@@ -1,6 +1,3 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
@@ -12,20 +9,20 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Language-Code: fr\n"
+"Language-Name: French\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.messagesviewlet\n"
 
 #: ../profiles/default/types/Message.xml
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 #: ../profiles/default/types/MessagesConfig.xml
 msgid "MessagesConfig"
-msgstr ""
+msgstr "Configuration des messages"
 
 #: ../message.py:11
 msgid "Title"
-msgstr ""
+msgstr "Intitulé"
 
