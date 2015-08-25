@@ -5,19 +5,22 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="collective.messagesviewlet">
 
-  <includeDependencies package="." />
+    <includeDependencies package="." />
 
-  <i18n:registerTranslations directory="locales" />
+    <i18n:registerTranslations directory="locales" />
 
-  <include package=".browser" />
+    <include package=".browser" />
 
 
-  <genericsetup:registerProfile
-      name="default"
-      title="collective.messagesviewlet"
-      directory="profiles/default"
-      description="Installs the collective.messagesviewlet add-on."
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+    <genericsetup:registerProfile
+        name="default"
+        title="collective.messagesviewlet"
+        directory="profiles/default"
+        description="Installs the collective.messagesviewlet add-on."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <adapter name="start" factory=".message.start_index" />
+    <adapter name="end" factory=".message.end_index" />
 
 </configure>
