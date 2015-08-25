@@ -22,7 +22,7 @@
         layer="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer"
         name="message-viewlet"
         manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        class="collective.messagesviewlet.browser.viewlets.messagesviewlet.MessagesViewlet"
+        class="collective.messagesviewlet.browser.messagesviewlet.MessagesViewlet"
         permission="zope2.View"
         />
 

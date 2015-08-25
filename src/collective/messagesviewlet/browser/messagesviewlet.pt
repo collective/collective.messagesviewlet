@@ -1,11 +1,11 @@
-<div id="message-view"
+<div id="messagesviewlet"
 	 tal:condition= "view/available"
 	 i18n:domain="collective.messagesviewlet">
 
-	 <div>
     	 <tal:message repeat="message view/getAllMessages">
-		 <span tal:replace="structure python: message.text.output"></span><br/>
+		     <div tal:attributes = "class python:'messagesviewlet-' + message.msg_type">
+			     <span tal:replace="structure python: message.text.output"></span><br/>
+		     </div> 
          </tal:message>
-	 </div>
 
 </div>
