@@ -32,19 +32,9 @@ class IMessage(Interface):
         required=True,
     )
 
-    message = RichText(
+    text = RichText(
         title=_("Text"),
         required=True,
-    )
-
-    start = schema.Datetime(
-        title=_(u"Start date"),
-        required=False,
-    )
-
-    end = schema.Datetime(
-        title=_(u"End date"),
-        required=False,
     )
 
     msg_type = schema.Choice(
@@ -57,4 +47,14 @@ class IMessage(Interface):
         title=_(u"Location"),
         required=True,
         source=location,
+    )
+
+    start = schema.Datetime(
+        title=_(u"Start date"),
+        required=False,
+    )
+
+    end = schema.Datetime(
+        title=_(u"End date"),
+        required=False,
     )
