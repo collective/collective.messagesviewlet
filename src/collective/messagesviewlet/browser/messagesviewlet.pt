@@ -7,7 +7,6 @@
 		     <dl tal:attributes = "class python:'messagesviewlet-' + message.msg_type">
 		         <dt tal:content="python: message.msg_type"></dt>
 				 <dd> <tal tal:replace="structure python: message.text.output"></tal></dd>
-				 <br/> 
 		     </dl> 
          </tal:message>
 

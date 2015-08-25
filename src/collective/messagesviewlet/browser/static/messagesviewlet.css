@@ -3,3 +3,27 @@
 .portaltype-messagesconfig #contentview-local_roles {
     display: none;
 }
+
+dl.messagesviewlet-info {
+    margin: 1em 0;
+    font-size: 80%;
+    border: 1px solid #996;
+    background-color: #bef4cf;
+    clear:both;
+}
+
+dl.messagesviewlet-warning {
+    margin: 1em 0;
+    font-size: 80%;
+    border: 1px solid #996;
+    background-color: #fd7;
+    clear:both;
+}
+
+dl.messagesviewlet-important {
+    margin: 1em 0;
+    font-size: 80%;
+    border: 1px solid #996;
+    background-color: #fdc;
+    clear:both;
+}
