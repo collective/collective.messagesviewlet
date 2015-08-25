@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-08-25 09:21+0000\n"
+"POT-Creation-Date: 2015-08-25 09:38+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,15 +17,55 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.messagesviewlet\n"
 
+#: ../message.py:27
+msgid "End date"
+msgstr ""
+
+#: ../message.py:40
+msgid "Full Site"
+msgstr ""
+
+#: ../message.py:40
+msgid "Homepage"
+msgstr ""
+
+#: ../message.py:34
+msgid "Important"
+msgstr ""
+
+#: ../message.py:34
+msgid "Info"
+msgstr ""
+
+#: ../message.py:38
+msgid "Location"
+msgstr ""
+
 #: ../profiles/default/types/Message.xml
 msgid "Message"
+msgstr ""
+
+#: ../message.py:32
+msgid "Message type"
 msgstr ""
 
 #: ../profiles/default/types/MessagesConfig.xml
 msgid "MessagesConfig"
 msgstr ""
 
-#: ../message.py:11
+#: ../message.py:22
+msgid "Start date"
+msgstr ""
+
+#: ../message.py:17
+msgid "Text"
+msgstr ""
+
+#: ../message.py:12
 msgid "Title"
+msgstr ""
+
+#: ../message.py:34
+msgid "Warning"
 msgstr ""
 
