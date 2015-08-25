@@ -2,10 +2,10 @@
 	 tal:condition= "view/available"
 	 i18n:domain="collective.messagesviewlet">
 
-	 <p>
+	 <div>
     	 <tal:message repeat="message view/getAllMessages">
-		 <span tal:content="python: message.Title()"></span><br/>
+		 <span tal:replace="structure python: message.text.output"></span><br/>
          </tal:message>
-	 </p>
+	 </div>
 
 </div>

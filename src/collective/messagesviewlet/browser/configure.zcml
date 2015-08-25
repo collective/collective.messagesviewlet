@@ -17,4 +17,13 @@
       directory="static"
       />
 
+    <browser:viewlet
+        for="*"
+        layer="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer"
+        name="message-viewlet"
+        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+        class="collective.messagesviewlet.browser.viewlets.messagesviewlet.MessagesViewlet"
+        permission="zope2.View"
+        />
+
 </configure>
