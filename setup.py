@@ -43,10 +43,12 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'collective.behavior.talcondition',
         'plone.api',
+        'plone.app.dexterity',
+        'plone.app.lockingbehavior',
         'setuptools',
         'z3c.jbot',
-        'plone.app.dexterity',
     ],
     extras_require={
         'test': [
