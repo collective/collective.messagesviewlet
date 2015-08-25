@@ -24,7 +24,7 @@
   <property name="behaviors">
     <element value="plone.app.content.interfaces.INameFromTitle"/>
   </property>
-  <property name="schema">collective.messagesviewlet.interfaces.IMessage</property>
+  <property name="schema">collective.messagesviewlet.message.IMessage</property>
   <property name="model_source"></property>
   <property name="model_file"></property>
   <alias from="(Default)" to="(dynamic view)"/>
