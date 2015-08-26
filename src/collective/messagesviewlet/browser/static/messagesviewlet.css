@@ -50,3 +50,51 @@ dl.messagesviewlet-important dd{
     margin: 0 0 0 110px;
     padding: 0.5em;
 }
+
+/*Colorization of the workflow states in the folder and in the menu.*/
+.state-inactive {
+ color: red !important;
+}
+
+#plone-contentmenu-workflow .state-inactive {
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    background-color: red;
+    padding: 0 0.5em;
+    color: white !important;
+    border: 2px solid red;
+}
+
+.state-activated_for_anonymous {
+ color: DarkOrange !important;
+}
+#plone-contentmenu-workflow .state-activated_for_anonymous {
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    background-color: DarkOrange;
+    padding: 0 0.5em;
+    color: white !important;
+    border: 2px solid DarkOrange;
+}
+
+.state-activated_for_members {
+ color: blue !important;
+}
+
+#plone-contentmenu-workflow .state-activated_for_members {
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    background-color: blue;
+    padding: 0 0.5em;
+    color: white !important;
+    border: 2px solid blue;
+}
+
+.state-activated_for_local_roles {
+ color: blueviolet !important;
+}
+
+#plone-contentmenu-workflow .state-activated_for_local_roles {
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    background-color: blueviolet;
+    padding: 0 0.5em;
+    color: white !important;
+    border: 2px solid blueviolet;
+}
