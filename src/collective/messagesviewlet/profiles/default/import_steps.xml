@@ -2,7 +2,7 @@
 <import-steps>
 
  <import-step 
-    id="imiodmsmail-post-install" 
+    id="collective-messagesviewlet-post-install" 
     handler="collective.messagesviewlet.setuphandlers.post_install"
     title="manual coded post-install for collective.messagesviewlet"
     version="2015-08-24">
