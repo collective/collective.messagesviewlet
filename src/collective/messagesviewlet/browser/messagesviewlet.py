@@ -9,10 +9,16 @@ from plone.app.layout.viewlets import ViewletBase
 from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
+from collective.behavior.talcondition.utils import evaluateExpressionFor
+
 
 class MessagesViewlet(ViewletBase):
     """This viewlet displays all messages from this product."""
     render = ViewPageTemplateFile('./messagesviewlet.pt')
+
+    def __init__(self, context, request, view, manager=None):
+        super(MessagesViewlet, self).__init__(context, request, view, manager=manager)
+        self.portal = api.portal.get()
 
     def getAllMessages(self):
         catalog = api.portal.get_tool(name='portal_catalog')
@@ -25,8 +31,12 @@ class MessagesViewlet(ViewletBase):
         for brain in brains:
             if brain.location == 'homepage':
                 if not IPloneSiteRoot.providedBy(self.context) and \
-                        not isDefaultPage(aq_parent(self.context), self.context):
+                        not isDefaultPage(self.portal, self.context):
                     continue
+            obj = brain.getObject()
+            obj.context = self.context
+            if not evaluateExpressionFor(obj):
+                continue
             messages.append(brain.getObject())
 
         return messages
