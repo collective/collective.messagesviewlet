@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-08-26 13:07+0000\n"
+"POT-Creation-Date: 2015-08-26 14:59+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,11 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.messagesviewlet\n"
 
-#: ../message.py:63
+#: ../message.py:57
+msgid "Can be marked as read"
+msgstr ""
+
+#: ../message.py:68
 msgid "End date"
 msgstr ""
 
@@ -27,6 +31,10 @@ msgstr ""
 
 #: ../message.py:24
 msgid "Homepage"
+msgstr ""
+
+#: ../message.py:58
+msgid "If checked, the authenticated user can hide the message"
 msgstr ""
 
 #: ../message.py:51
@@ -53,15 +61,15 @@ msgstr ""
 msgid "MessagesConfig"
 msgstr ""
 
-#: ../message.py:65
+#: ../message.py:70
 msgid "Specify end date message appearance"
 msgstr ""
 
-#: ../message.py:59
+#: ../message.py:64
 msgid "Specify start date message appearance"
 msgstr ""
 
-#: ../message.py:57
+#: ../message.py:62
 msgid "Start date"
 msgstr ""
 
