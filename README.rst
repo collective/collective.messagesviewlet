@@ -6,25 +6,33 @@
 collective.messagesviewlet
 ==============================================================================
 
-Tell me what your product does
+Add-on displaying manager defined messages in a viewlet
 
 Features
 --------
 
-- Can be bullet points
+Messages are defined in control panel.
 
+Multiple messages can be displayed together in the viewlet. 
 
-Examples
---------
+A message contains the following attributes:
 
-This add-on can be seen in action at the following sites:
-- Is there a page on the internet where everybody can see the features?
+* text : displayed text
+* message type : info, warning, important
+* location : full site or homepage only
+* start date : optional displaying start date
+* end date : optional displaying end date
 
+The collective.behavior.talcondition is enabled, providing 2 attributes. 
+* tal condition : optional tal expression evaluated on viewlet context
+* bypassing roles : optional roles bypassing the tal condition
 
-Documentation
--------------
+A workflow is provided with the following states:
 
-Full documentation for end users can be found in the "docs" folder, and is also available online at http://docs.plone.org/foo/bar
+* inactive : not displayed
+* activated for anonymous : displayed for anonymous users
+* activated for members : displayed only for authenticated users
+* activated for localroles : displayed only for authenticated users having local reader role
 
 
 Translations
@@ -32,7 +40,7 @@ Translations
 
 This product has been translated into
 
-- Klingon (thanks, K'Plai)
+- French
 
 
 Installation
@@ -56,14 +64,12 @@ Contribute
 
 - Issue Tracker: https://github.com/collective/collective.messagesviewlet/issues
 - Source Code: https://github.com/collective/collective.messagesviewlet
-- Documentation: https://docs.plone.org/foo/bar
 
 
 Support
 -------
 
 If you are having issues, please let us know.
-We have a mailing list located at: project@example.com
 
 
 License

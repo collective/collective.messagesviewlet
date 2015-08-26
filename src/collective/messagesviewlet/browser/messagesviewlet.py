@@ -30,10 +30,13 @@ class MessagesViewlet(ViewletBase):
         messages = []
         for brain in brains:
             if brain.location == 'homepage':
+                # Test if context is PloneSite or its default page
                 if not IPloneSiteRoot.providedBy(self.context) and \
                         not isDefaultPage(self.portal, self.context):
                     continue
             obj = brain.getObject()
+            # By default, expression is evaluated with context = (obj or obj.context).
+            # We define obj.context to viewlet context to evaluate expression on viewlet context display.
             obj.context = self.context
             if not evaluateExpressionFor(obj):
                 continue
