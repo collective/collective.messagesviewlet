@@ -7,7 +7,7 @@ from plone.dexterity.interfaces import IDexterityFTI
 from plone import api
 
 from collective.messagesviewlet.testing import COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING  # noqa
-from collective.messagesviewlet.interfaces import IMessage
+from collective.messagesviewlet.message import IMessage
 
 import unittest2 as unittest
 
@@ -38,7 +38,8 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertTrue(IMessage.providedBy(obj))
 
     def test_adding(self):
-        self.portal.invokeFactory('Message', 'Message')
+        folder = getattr(self.portal, "messages-config", None)
+        folder.invokeFactory('Message', 'Message')
         self.assertTrue(
-            IMessage.providedBy(self.portal['Message'])
+            IMessage.providedBy(folder['Message'])
         )

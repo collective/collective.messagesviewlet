@@ -25,6 +25,8 @@ class MessagesViewlet(ViewletBase):
         brains = catalog.searchResults(portal_type=['Message'],
                                        start={'query': now, 'range': 'max'},
                                        end={'query': now, 'range': 'min'},
+                                       review_state=('activated_for_anonymous', 'activated_for_local_roles',
+                                                     'activated_for_members'),
                                        sort_on='getObjPositionInParent')
         messages = []
         for brain in brains:
@@ -39,6 +41,6 @@ class MessagesViewlet(ViewletBase):
             obj.context = self.context
             if not evaluateExpressionFor(obj):
                 continue
-            messages.append(brain.obj)
+            messages.append(obj)
 
         return messages
