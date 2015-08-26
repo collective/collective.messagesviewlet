@@ -11,6 +11,10 @@
 
     <include package=".browser" />
 
+    <permission
+    id="collective.messagesviewlet.addMessage"
+    title="collective.messagesviewlet: Add Message"
+    />
 
     <genericsetup:registerProfile
         name="default"

@@ -19,7 +19,7 @@
     <element value="view"/>
   </property>
   <property name="default_view_fallback">False</property>
-  <property name="add_permission">cmf.AddPortalContent</property>
+  <property name="add_permission">collective.messagesviewlet.addMessage</property>
   <property name="klass">plone.dexterity.content.Item</property>
   <property name="behaviors">
     <element value="plone.app.content.interfaces.INameFromTitle"/>
