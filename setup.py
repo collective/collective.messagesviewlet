@@ -47,7 +47,6 @@ setup(
         'plone.api',
         'plone.app.dexterity',
         'plone.app.lockingbehavior',
-        'plone.app.workflowmanager',
         'setuptools',
         'z3c.jbot',
     ],
