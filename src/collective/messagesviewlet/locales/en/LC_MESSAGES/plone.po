@@ -16,33 +16,33 @@ msgstr ""
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "activate_for_anonymous"
-msgstr "Activer pour les utilisateurs anonymes"
+msgstr "Activate for anonymous"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "activate_for_local_roles"
-msgstr "Activer suivant les rôles locaux"
+msgstr "Activate for local roles"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "activate_for_members"
-msgstr "Activer pour les utilisateurs connectés"
+msgstr "Activate for members"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "activated_for_anonymous"
-msgstr "Activé pour les utilisateurs anonymes"
+msgstr "Activated for anonymous"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "activated_for_local_roles"
-msgstr "Activé pour les rôles locaux"
+msgstr "Activated for local roles"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "activated_for_members"
-msgstr "Activé pour les utilisateurs connectés"
+msgstr "Activated for members"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "disactivate"
-msgstr "Désactiver"
+msgstr "Disactivate"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "inactive"
-msgstr "Inactif"
+msgstr "Inactive"
 
