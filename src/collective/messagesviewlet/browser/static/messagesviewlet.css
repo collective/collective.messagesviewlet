@@ -6,7 +6,7 @@
 
 dl.messagesviewlet-info,
 dl.messagesviewlet-warning,
-dl.messagesviewlet-important{
+dl.messagesviewlet-significant{
     border: 1px solid #996;
     clear: both;
     font-size: 80%;
@@ -15,16 +15,16 @@ dl.messagesviewlet-important{
 dl.messagesviewlet-info {
     background-color: #ffffe3;
 }
-dl.messagesviewlet-warning {
+dl.messagesviewlet-significant {
     background-color: #fd7;
 }
-dl.messagesviewlet-important {
+dl.messagesviewlet-warning {
     background-color: #fdc;
 }
 
 dl.messagesviewlet-info dt,
 dl.messagesviewlet-warning dt,
-dl.messagesviewlet-important dt{
+dl.messagesviewlet-significant dt{
     width: 85px;
     color: White;
     float: left;
@@ -36,16 +36,16 @@ dl.messagesviewlet-important dt{
 dl.messagesviewlet-info dt{
     background-color: #996;
 }
-dl.messagesviewlet-warning dt{
+dl.messagesviewlet-significant dt{
     background-color: #d80;
 }
-dl.messagesviewlet-important dt{
+dl.messagesviewlet-warning dt{
     background-color: #d00;
 }
 
 dl.messagesviewlet-info dd,
 dl.messagesviewlet-warning dd,
-dl.messagesviewlet-important dd{
+dl.messagesviewlet-significant dd{
     line-height: 1.25em;
     margin: 0 0 0 110px;
     padding: 0.5em;

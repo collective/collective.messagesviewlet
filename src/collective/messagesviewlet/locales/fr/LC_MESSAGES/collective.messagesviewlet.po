@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-08-26 12:32+0000\n"
+"POT-Creation-Date: 2015-08-26 13:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -70,15 +70,14 @@ msgstr "Texte"
 msgid "Title"
 msgstr "Intitulé"
 
-#: ../message.py:15
-msgid "important"
-msgstr "Important"
-
 #: ../message.py:13
 msgid "info"
 msgstr "Information"
 
 #: ../message.py:14
-msgid "warning"
+msgid "significant"
 msgstr "Avertissement"
 
+#: ../message.py:15
+msgid "warning"
+msgstr "Attention"

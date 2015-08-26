@@ -11,8 +11,8 @@ from plone.indexer import indexer
 def msg_types(context):
     terms = []
     terms.append(SimpleTerm("info", title=_("info")))
+    terms.append(SimpleTerm("significant", title=_("significant")))
     terms.append(SimpleTerm("warning", title=_("warning")))
-    terms.append(SimpleTerm("important", title=_("important")))
     return SimpleVocabulary(terms)
 
 alsoProvides(msg_types, schema.interfaces.IContextSourceBinder)
