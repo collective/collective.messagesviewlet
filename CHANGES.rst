@@ -6,4 +6,4 @@ Changelog
 ----------------
 
 - Initial release.
-  [sgeulette]
+  [sgeulette, anuyens, DieKatze, boulch]
