@@ -16,7 +16,7 @@ msgstr ""
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "activate_for_anonymous"
-msgstr "Activer pour les utilisateurs anonymes"
+msgstr "Activer pour les anonymes"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "activate_for_local_roles"
@@ -28,7 +28,7 @@ msgstr "Activer pour les utilisateurs connectés"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "activated_for_anonymous"
-msgstr "Activé pour les utilisateurs anonymes"
+msgstr "Activé pour les anonymes"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "activated_for_local_roles"
