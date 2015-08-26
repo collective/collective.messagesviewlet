@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from Acquisition import aq_parent
 from DateTime import DateTime
 
 from plone import api
@@ -40,6 +39,6 @@ class MessagesViewlet(ViewletBase):
             obj.context = self.context
             if not evaluateExpressionFor(obj):
                 continue
-            messages.append(brain.getObject())
+            messages.append(brain.obj)
 
         return messages
