@@ -10,7 +10,11 @@ Add-on displaying manager defined messages in a viewlet
 
 Features
 --------
-![Alt The three message types](docs/messageviewletinaction.png)
+.. image:: docs/messageviewletinaction.png 
+    :alt: The three message types.
+    :width: 500
+    :height: 500
+    :align: center
 
 Messages are defined in control panel.
 
@@ -28,7 +32,11 @@ The collective.behavior.talcondition is enabled, providing 2 attributes.
 * tal condition : optional tal expression evaluated on viewlet context
 * bypassing roles : optional roles bypassing the tal condition
 
-![Alt The management interface](docs/messageviewletinconfiguration.png)
+.. image:: docs/messageviewletinconfiguration.png 
+    :alt: The management interface.
+    :width: 500
+    :height: 800
+    :align: center
 
 A workflow is provided with the following states:
 
