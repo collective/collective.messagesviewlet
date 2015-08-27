@@ -158,3 +158,18 @@ class MessageIntegrationTest(unittest.TestCase):
         message.reindexObject()
         self.assertEqual(len(viewlet.getAllMessages()), 0)
 
+    def test_viewlet_rendering(self):
+        """
+        Test if viewlet rendering is ok (text and css class)
+        """
+        viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
+        viewlet.update()
+        wftool = self.portal.portal_workflow
+        # activate one message.
+        wftool.doActionFor(self.messages[0], 'activate_for_anonymous')
+        #viewlet.render()
+        viewlet_rendering = viewlet.context()
+        self.assertIn(self.messages[0].text.output, viewlet_rendering)
+        self.assertIn('messagesviewlet-info', viewlet_rendering)
+        self.assertNotIn(self.messages[1].text.output, viewlet_rendering)
+        self.assertNotIn(self.messages[2].text.output, viewlet_rendering)
