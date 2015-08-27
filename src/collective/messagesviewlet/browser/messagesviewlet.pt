@@ -25,7 +25,10 @@
                 <tal tal:replace="structure python: message.text.output"></tal>
             </dd>
 			<span class="greencheck-button" tal:condition="message/can_hide">
-				<img src="++resource++collective.messagesviewlet/greencheck.jpg" alt="I've seen it"/>
+				<img src="++resource++collective.messagesviewlet/greencheck.jpg" 
+                     i18n:attributes='alt green_check_alt;
+                                      title green_check_title'
+                />
 			</span>
         </dl>
     </tal:message>
