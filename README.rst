@@ -12,8 +12,8 @@ Features
 --------
 .. image:: docs/messageviewletinaction.png 
     :alt: The three message types.
-    :width: 500
-    :height: 500
+    :width: 1003
+    :height: 420
     :align: center
 
 Messages are defined in control panel.
@@ -34,8 +34,8 @@ The collective.behavior.talcondition is enabled, providing 2 attributes.
 
 .. image:: docs/messageviewletinconfiguration.png 
     :alt: The management interface.
-    :width: 500
-    :height: 800
+    :width: 1000
+    :height: 901
     :align: center
 
 A workflow is provided with the following states:
