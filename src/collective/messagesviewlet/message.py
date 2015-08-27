@@ -5,6 +5,7 @@ from zope.interface import Interface, alsoProvides
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
 from collective.messagesviewlet import _
 from plone.app.textfield import RichText
+from plone.autoform import directives as form
 from plone.indexer import indexer
 
 
@@ -25,6 +26,10 @@ def location(context):
     return SimpleVocabulary(terms)
 
 alsoProvides(location, schema.interfaces.IContextSourceBinder)
+
+
+def generate_uid():
+    return unicode(DateTime().millis())
 
 
 class IMessage(Interface):
@@ -69,6 +74,13 @@ class IMessage(Interface):
         required=False,
         description=_(u"Specify end date message appearance"),
     )
+
+    hidden_uid = schema.TextLine(
+        title=u"Generated uid",
+        defaultFactory=generate_uid,
+    )
+
+    form.mode(hidden_uid='hidden')
 
 
 @indexer(IMessage)

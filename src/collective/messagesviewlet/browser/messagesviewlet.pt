@@ -8,17 +8,17 @@
 
     <tal:message repeat="message messages">
         <dl tal:attributes="class python:'messagesviewlet-' + message.msg_type;
-		                    id message/UID">
+		                    id message/hidden_uid">
             <dt i18n:translate="" tal:content="python: message.msg_type"></dt>
             <dd>
                 <tal tal:replace="structure python: message.text.output"></tal>
             </dd>
-			<span class="greencheck-button" tal:condition="message/can_hide">
-				<img src="++resource++collective.messagesviewlet/greencheck.jpg" 
-                     i18n:attributes='alt green_check_alt;
-                                      title green_check_title'
-                />
-			</span>
+			<img tal:condition="message/can_hide"
+				 class="greencheck-button"
+				 src="++resource++collective.messagesviewlet/greencheck.jpg" 
+				 i18n:attributes='alt green_check_alt;
+								  title green_check_title'
+			/>
         </dl>
     </tal:message>
 
