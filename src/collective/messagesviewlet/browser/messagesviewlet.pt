@@ -1,18 +1,18 @@
 <div id="messagesviewlet"
-	 tal:define="messages view/getAllMessages"
-	 tal:condition= "messages"
-	 i18n:domain="collective.messagesviewlet">
+     tal:define="messages view/getAllMessages"
+     tal:condition= "messages"
+     i18n:domain="collective.messagesviewlet">
 
-    	 <tal:message repeat="message messages">
-		     <dl tal:attributes = "class python:'messagesviewlet-' + message.msg_type">
-		         <dt i18n:translate="" tal:content="python: message.msg_type"></dt>
-				 <dd> 
-					<tal tal:replace="structure python: message.text.output"></tal>
-					<span class="greencheck-button" tal:condition="message/can_hide" tal:attributes="id message/UID">
-						<img src="++resource++collective.messagesviewlet/greencheck.jpg" alt="I've seen it"/>
-					</span>
-				</dd>
-		     </dl> 
-         </tal:message>
+    <tal:message repeat="message messages">
+        <dl tal:attributes = "class python:'messagesviewlet-' + message.msg_type">
+            <dt i18n:translate="" tal:content="python: message.msg_type"></dt>
+            <dd>
+                <tal tal:replace="structure python: message.text.output"></tal>
+                <span class="greencheck-button" tal:condition="message/can_hide" tal:attributes="id message/UID">
+                    <img src="++resource++collective.messagesviewlet/greencheck.jpg" alt="I've seen it"/>
+                </span>
+           </dd>
+        </dl>
+    </tal:message>
 
 </div>
