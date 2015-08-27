@@ -53,7 +53,7 @@ class IMessage(Interface):
         source=location,
     )
 
-    hide = schema.Bool(
+    can_hide = schema.Bool(
         title=_(u"Can be marked as read"),
         description=_(u"If checked, the authenticated user can hide the message"),
     )
