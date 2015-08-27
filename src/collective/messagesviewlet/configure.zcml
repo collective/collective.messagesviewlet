@@ -16,6 +16,15 @@
     title="collective.messagesviewlet: Add Message"
     />
 
+    <adapter name="start" factory=".message.start_index" />
+    <adapter name="end" factory=".message.end_index" />
+
+    <subscriber
+        for="collective.messagesviewlet.message.IMessage
+             Products.CMFCore.interfaces.IActionSucceededEvent"
+        handler=".subscribers.change_hidden_uid"
+        />
+
     <genericsetup:registerProfile
         name="default"
         title="collective.messagesviewlet"
@@ -23,8 +32,5 @@
         description="Installs the collective.messagesviewlet add-on."
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
-
-    <adapter name="start" factory=".message.start_index" />
-    <adapter name="end" factory=".message.end_index" />
 
 </configure>
