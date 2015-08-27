@@ -41,6 +41,11 @@ class MessagesViewlet(ViewletBase):
             obj.context = self.context
             if not evaluateExpressionFor(obj):
                 continue
+            # check in the cookie if message is marked as read
+            if obj.can_hide:
+                m_uids = self.request.get('messagesviewlet', '')
+                if brain.UID in m_uids.split('|'):
+                    continue
             messages.append(obj)
 
         return messages
