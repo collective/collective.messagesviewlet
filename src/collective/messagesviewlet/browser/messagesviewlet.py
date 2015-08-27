@@ -44,7 +44,7 @@ class MessagesViewlet(ViewletBase):
             # check in the cookie if message is marked as read
             if obj.can_hide:
                 m_uids = self.request.get('messagesviewlet', '')
-                if brain.UID in m_uids.split('|'):
+                if obj.hidden_uid in m_uids.split('|'):
                     continue
             messages.append(obj)
 
