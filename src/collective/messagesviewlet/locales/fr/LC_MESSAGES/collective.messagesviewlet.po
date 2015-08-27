@@ -79,11 +79,11 @@ msgid "Title"
 msgstr "Intitulé"
 
 #: ../browser/messagesviewlet.pt:28
-msgid "green_check_alt"
+msgid "close_alt"
 msgstr "Coche verte"
 
 #: ../browser/messagesviewlet.pt:28
-msgid "green_check_title"
+msgid "close_title"
 msgstr "Cacher ce message"
 
 #: ../message.py:13

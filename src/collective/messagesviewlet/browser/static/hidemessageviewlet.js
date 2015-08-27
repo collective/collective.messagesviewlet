@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$(".greencheck-button").click(function(){
+	$(".close-button").click(function(){
 		var m_uids = Cookies.get('messagesviewlet');
 		var m_uid = $(this).parent().attr('id');
 		if(typeof m_uids === "undefined") {m_uids = m_uid}

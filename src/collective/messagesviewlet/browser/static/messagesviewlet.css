@@ -47,8 +47,13 @@ dl.messagesviewlet-info dd,
 dl.messagesviewlet-warning dd,
 dl.messagesviewlet-significant dd{
     line-height: 1.25em;
-    margin: 0 0 0 110px;
+    margin: 0 25px 0 110px;
     padding: 0.5em;
+}
+
+.close-button {
+    float: right;
+    margin-top: -28px;
 }
 
 /*Colorization of the workflow states in the folder and in the menu.*/

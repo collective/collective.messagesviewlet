@@ -14,10 +14,10 @@
                 <tal tal:replace="structure python: message.text.output"></tal>
             </dd>
 			<img tal:condition="message/can_hide"
-				 class="greencheck-button"
-				 src="++resource++collective.messagesviewlet/greencheck.jpg" 
-				 i18n:attributes='alt green_check_alt;
-								  title green_check_title'
+				 class="close-button"
+				 src="pb_close.png" 
+				 i18n:attributes='alt close_alt;
+								  title close_title'
 			/>
         </dl>
     </tal:message>
