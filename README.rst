@@ -8,13 +8,14 @@ collective.messagesviewlet
 
 Add-on displaying manager defined messages in a viewlet
 
-Features
---------
 .. image:: docs/messageviewletinaction.png 
     :alt: The three message types.
     :width: 1003
     :height: 420
     :align: center
+
+Features
+--------
 
 Messages are defined in control panel.
 
