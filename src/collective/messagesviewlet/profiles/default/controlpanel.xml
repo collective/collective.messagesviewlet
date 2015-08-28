@@ -11,7 +11,7 @@
         category="Products"
         condition_expr=""
         url_expr="string:${portal_url}/messages-config"
-        icon_expr=""
+        icon_expr="string:$portal_url/++resource++collective.messagesviewlet/message-icon.png"
         visible="True"
         i18n:attributes="title">
         <permission>Content rules: Manage rules</permission>
