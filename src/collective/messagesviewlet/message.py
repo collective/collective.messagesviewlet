@@ -3,10 +3,13 @@ from DateTime import DateTime
 from zope import schema
 from zope.interface import Interface, alsoProvides
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from collective.messagesviewlet import _
+
 from plone.app.textfield import RichText
 from plone.autoform import directives as form
+from plone.formwidget.datetime.z3cform.widget import DatetimeFieldWidget
 from plone.indexer import indexer
+
+from collective.messagesviewlet import _
 
 
 def msg_types(context):
@@ -62,12 +65,14 @@ class IMessage(Interface):
         required=False,
         description=_(u"Specify start date message appearance"),
     )
+    form.widget('start', DatetimeFieldWidget)
 
     end = schema.Datetime(
         title=_(u"End date"),
         required=False,
         description=_(u"Specify end date message appearance"),
     )
+    form.widget('end', DatetimeFieldWidget)
 
     required_roles = schema.Set(
         title=_(u'Required roles'),
