@@ -52,12 +52,6 @@ class IMessage(Interface):
         description=_(u"Message type"),
     )
 
-    location = schema.Choice(
-        title=_(u"Location"),
-        required=True,
-        source=location,
-    )
-
     can_hide = schema.Bool(
         title=_(u"Can be marked as read"),
         description=_(u"If checked, the authenticated user can hide the message"),
@@ -75,11 +69,23 @@ class IMessage(Interface):
         description=_(u"Specify end date message appearance"),
     )
 
+    required_roles = schema.Set(
+        title=_(u'Required roles'),
+        description=_(u'Choose the roles for which the message will be displayed'),
+        required=False,
+        value_type=schema.Choice(vocabulary='plone.app.vocabularies.Roles'),
+    )
+
+    location = schema.Choice(
+        title=_(u"Location"),
+        required=True,
+        source=location,
+    )
+
     hidden_uid = schema.TextLine(
         title=u"Generated uid",
         defaultFactory=generate_uid,
     )
-
     form.mode(hidden_uid='hidden')
 
 

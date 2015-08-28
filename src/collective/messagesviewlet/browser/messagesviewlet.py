@@ -21,6 +21,10 @@ class MessagesViewlet(ViewletBase):
 
     def getAllMessages(self):
         catalog = api.portal.get_tool(name='portal_catalog')
+        if api.user.is_anonymous():
+            mb_roles = set(['Anonymous'])
+        else:
+            mb_roles = set(api.user.get_roles(obj=self.context))
         now = DateTime()
         brains = catalog.searchResults(portal_type=['Message'],
                                        start={'query': now, 'range': 'max'},
@@ -36,16 +40,20 @@ class MessagesViewlet(ViewletBase):
                         not isDefaultPage(self.portal, self.context):
                     continue
             obj = brain.getObject()
-            # By default, expression is evaluated with context = (obj or obj.context).
-            # We define obj.context to viewlet context to evaluate expression on viewlet context display.
-            obj.context = self.context
-            if not evaluateExpressionFor(obj):
-                continue
             # check in the cookie if message is marked as read
             if obj.can_hide:
                 m_uids = self.request.get('messagesviewlet', '')
                 if obj.hidden_uid in m_uids.split('|'):
                     continue
+            # check if member has a required role on the context
+            if obj.required_roles:
+                if mb_roles.intersection(obj.required_roles) == set():
+                    continue
+            # By default, expression is evaluated with context = (obj or obj.context).
+            # We define obj.context to viewlet context to evaluate expression on viewlet context display.
+            obj.context = self.context
+            if not evaluateExpressionFor(obj):
+                continue
             messages.append(obj)
 
         return messages
