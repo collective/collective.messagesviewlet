@@ -1,3 +1,9 @@
+Input RichText
+  [Arguments]  ${input}
+  Select frame  id=form.widgets.text_ifr
+  Input text  id=content  ${input}
+  Unselect Frame
+  
 # ============================================================================
 # DEXTERITY ROBOT TESTS
 # ============================================================================
@@ -34,21 +40,22 @@ Test Teardown  Close all browsers
 
 *** Test Cases ***************************************************************
 
-Scenario: As a site administrator I can add a Message
+Scenario: I can add a Message and hide/show it
   Given a logged-in site administrator
-    and an add message form
-   When I type 'My Message' into the title field
-    and I submit the form
-   Then a message with the title 'My Message' has been created
-
-Scenario: As a site administrator I can view a Message
-  Given a logged-in site administrator
-    and a message 'My Message'
-   When I go to the message view
-   Then I can see the message title 'My Message'
+   I create a message 'My Message title' 'Wazaaaaaaaa' 'significant' 'fullsite'
+   Then a message 'My Message title' has been created
 
 
 *** Keywords *****************************************************************
+
+I create a message '${title}' '${text}' '${msg_type}' '${location}'
+  and an add message form
+  When I type '${title}' into the title field
+  and I type '${text}' into the richtext
+  and I select '${msg_type}' into 'form-widgets-msg_type' selectbox
+  and I select '${location}' into 'form-widgets-location' selectbox
+  and I check 'form-widgets-can_hide-0'
+  and I submit the form
 
 # --- Given ------------------------------------------------------------------
 
@@ -56,10 +63,7 @@ a logged-in site administrator
   Enable autologin as  Site Administrator
 
 an add message form
-  Go To  ${PLONE_URL}/++add++Message
-
-a message 'My Message'
-  Create content  type=Message  id=my-message  title=My Message
+  Go To  ${PLONE_URL}/messages-config/++add++Message
 
 
 # --- WHEN -------------------------------------------------------------------
@@ -67,21 +71,25 @@ a message 'My Message'
 I type '${title}' into the title field
   Input Text  name=form.widgets.title  ${title}
 
+I type '${input}' into the richtext
+  Select frame  id=form.widgets.text_ifr
+  Input text  id=content  ${input}
+  Unselect Frame
+
+I select '${select}' into '${id}' selectbox
+  Select from list by value  id=${id}  ${select}
+  
+I check '${id}'
+  Select checkbox  id=${id}
+  
 I submit the form
   Click Button  Save
-
-I go to the message view
-  Go To  ${PLONE_URL}/my-message
-  Wait until page contains  Site Map
 
 
 # --- THEN -------------------------------------------------------------------
 
-a message with the title '${title}' has been created
+a message '${title}' has been created
   Wait until page contains  Site Map
   Page should contain  ${title}
   Page should contain  Item created
 
-I can see the message title '${title}'
-  Wait until page contains  Site Map
-  Page should contain  ${title}
