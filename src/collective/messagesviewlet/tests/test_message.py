@@ -189,7 +189,6 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertNotIn(self.messages[2].text.output, viewlet_rendering)
 
     def test_hidden_uid_when_workflow_changes(self):
-        viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
         wftool = self.portal.portal_workflow
         # saves the hidden uid before it changes because of the workflow
         # modifications
