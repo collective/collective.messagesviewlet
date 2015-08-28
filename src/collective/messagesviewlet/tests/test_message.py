@@ -142,15 +142,23 @@ class MessageIntegrationTest(unittest.TestCase):
         # reindex object for catalog...
         message.reindexObject()
         self.assertEqual(len(viewlet.getAllMessages()), 2)
-        # test if printing messages are 1 and 2 without message 0
+        # test if printed messages are 1 and 2 without message 0
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2])))
         message = self.messages[1]
         message.end = DateTime() - 2
         # reindex object for catalog...
         message.reindexObject()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
-        # test if printing messages are 1 and 2 without message 0
+        # test if printed message is 2 without messages 0 and 1
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[2], )))
+
+        # tests if message with date set to None is still available
+        message = self.messages[2]
+        message.start = message.end = None
+        # reindex object for catalog...
+        message.reindexObject()
+        # tests that the message is still visible.
+        self.assertEqual(len(viewlet.getAllMessages()), 1)
 
     def _getAllMessages_test_tal_condition(self, viewlet):
         message = self.messages[2]
