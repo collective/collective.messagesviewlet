@@ -197,3 +197,17 @@ class MessageIntegrationTest(unittest.TestCase):
         wftool.doActionFor(self.messages[0], 'disactivate')
         # checks if the hidden uid has whell changed.
         self.assertNotEqual(hidden_uid, self.messages[0])
+
+    def test_required_roles_permissions(self):
+        wftool = self.portal.portal_workflow
+        for i, message_type in enumerate(self.message_types):
+            wftool.doActionFor(self.messages[i], 'activate_for_anonymous')
+        viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
+        # Sets the required role to 'Authenticated' to message 1
+        self.messages[0].required_roles = set(['Authenticated'])
+        # Checks that we still see all messages as we are authenticated
+        self.assertEqual(len(viewlet.getAllMessages()), 3)
+        logout()
+        # Checks that an anonymous user can't see anymore the restricted one.
+        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2])))
+
