@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-08-28 09:54+0000\n"
+"POT-Creation-Date: 2015-08-28 10:29+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,7 +38,7 @@ msgid "Homepage"
 msgstr ""
 
 #: ../message.py:57
-msgid "If checked, the authenticated user can hide the message"
+msgid "If checked, the user can hide the message"
 msgstr ""
 
 #: ../message.py:80

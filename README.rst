@@ -21,13 +21,15 @@ Messages are defined in control panel.
 
 Multiple messages can be displayed together in the viewlet. 
 
-A message contains the following attributes:
+A message contains the following configuration attributes:
 
-* text : displayed text
-* message type : info, warning, important
+* text : displayed text in the viewlet
+* message type : info, warning, important (different layout in the viewlet)
+* can hide : if checked, the user can hide the message
+* start date : displaying start date (optional)
+* end date : displaying end date (optional)
+* required roles : use must have one of the required roles (optional)
 * location : full site or homepage only
-* start date : optional displaying start date
-* end date : optional displaying end date
 
 The collective.behavior.talcondition is enabled, providing 2 attributes. 
 * tal condition : optional tal expression evaluated on viewlet context
@@ -39,12 +41,17 @@ The collective.behavior.talcondition is enabled, providing 2 attributes.
     :height: 901
     :align: center
 
+
 A workflow is provided with the following states:
 
 * inactive : not displayed
 * activated for anonymous : displayed for anonymous users
 * activated for members : displayed only for authenticated users
 * activated for localroles : displayed only for authenticated users having local reader role
+
+Improvements
+------------
+
 
 
 Translations
