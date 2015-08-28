@@ -26,8 +26,9 @@ class MessageIntegrationTest(unittest.TestCase):
 
     layer = COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING
 
-    def _createMessage(self, title, text, msg_type="info", location="fullsite", start_date=DateTime() - 1,
-                       end_date=DateTime() + 1, tal_condition="python:True", roles_bypassing_talcondition=[]):
+    def _createMessage(self, title, text, msg_type="info", location="fullsite", can_hide=True,
+                       start_date=DateTime() - 1, end_date=DateTime() + 1,
+                       tal_condition="python:True", roles_bypassing_talcondition=[]):
         """Method to create one message"""
         message = api.content.create(
             type="Message",
@@ -35,6 +36,7 @@ class MessageIntegrationTest(unittest.TestCase):
             text=RichTextValue(raw=text, mimeType='text/html', outputMimeType='text/html', encoding='utf-8'),
             msg_type=msg_type,
             location=location,
+            can_hide=can_hide,
             start=start_date,
             end=end_date,
             container=self.message_config_folder,
@@ -53,6 +55,7 @@ class MessageIntegrationTest(unittest.TestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.message_types = ["info", "significant", "warning"]
+        self.isHidden = [True, True, False]
         self.portal = self.layer['portal']
         # The products build the "special" folder "messages-config" to store messages.
         self.message_config_folder = getattr(self.portal, "messages-config", None)
@@ -63,8 +66,11 @@ class MessageIntegrationTest(unittest.TestCase):
         for i, message_type in enumerate(self.message_types):
             title = 'message%d' % (i + 1)
             text = "<p>This is test message number %d...</p>"\
-                   "<p>self-destruction programming at the end of this test.</p>" % (i + 1)
-            self._createMessage(title, text, self.message_types[i])
+                   "<p>self-destruction programmed at the end of this test.</p>" % (i + 1)
+            self._createMessage(title=title,
+                                text=text,
+                                msg_type=self.message_types[i],
+                                can_hide=self.isHidden[i])
 
     def test_schema(self):
         fti = queryUtility(IDexterityFTI, name='Message')
@@ -173,3 +179,14 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertIn('messagesviewlet-info', viewlet_rendering)
         self.assertNotIn(self.messages[1].text.output, viewlet_rendering)
         self.assertNotIn(self.messages[2].text.output, viewlet_rendering)
+
+    def test_hidden_uid_when_workflow_changes(self):
+        viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
+        wftool = self.portal.portal_workflow
+        # saves the hidden uid before it changes because of the workflow
+        # modifications
+        hidden_uid = self.messages[0].hidden_uid
+        wftool.doActionFor(self.messages[0], 'activate_for_anonymous')
+        wftool.doActionFor(self.messages[0], 'disactivate')
+        # checks if the hidden uid has whell changed.
+        self.assertNotEqual(hidden_uid, self.messages[0])
