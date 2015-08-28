@@ -52,7 +52,8 @@ A workflow is provided with the following states:
 Improvements
 ------------
 
-
+* Message definition from file system
+* Message definition from rss feed
 
 Translations
 ------------
