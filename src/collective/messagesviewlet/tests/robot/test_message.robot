@@ -60,7 +60,8 @@ Scenario: Create docs with screenshots
    Sleep  0.5
    Update element style  css=#content  border-color  black
    Update element style  css=#content  border-style  solid
-   Update element style  css=#content  border-width  5px   
+   Update element style  css=#content  border-width  5px
+   Update element style  css=#content  padding  10px      
    Capture and crop page screenshot  docs/messageviewletinconfiguration.png  id=content
 
    I create a message 'My Message title3' 'Hello, I\'m a warning message. I can contain stuff like "OMG, run for your life, everything gonna blow in a minute !!!".' 'warning' 'fullsite'
