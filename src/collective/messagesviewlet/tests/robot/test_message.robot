@@ -31,7 +31,7 @@ Input RichText
 
 Resource  plone/app/robotframework/selenium.robot
 Resource  plone/app/robotframework/keywords.robot
-
+Resource  Selenium2Screenshots/keywords.robot
 
 Library  Remote  ${PLONE_URL}/RobotRemote
 Library  Selenium2Screenshots
@@ -46,13 +46,42 @@ Scenario: I can add a Message and hide/show it
   Given a logged-in site administrator
    I create a message 'My Message title' 'Wazaaaaaaaa' 'significant' 'fullsite'
    Then a message 'My Message title' has been created
-    and I change the workflow to 'activate_for_anonymous'
+    and I change the workflow to 'activate_for_anonymous' for 'my-message-title'
    Then a viewlet with message 'Wazaaaaaaaa' is visible
     and I mark the message as read
    Then viewlet message with message 'Wazaaaaaaaa' is invisible
-   Then reactivate message
+   Then reactivate message 'my-message-title'
     and a viewlet with message 'Wazaaaaaaaa' is visible
 
+
+Scenario: Create docs with screenshots
+  Given a logged-in site administrator
+   an add message form
+   Sleep  0.5
+   Update element style  css=#content  border-color  black
+   Update element style  css=#content  border-style  solid
+   Update element style  css=#content  border-width  5px   
+   Capture and crop page screenshot  docs/messageviewletinconfiguration.png  id=content
+
+   I create a message 'My Message title3' 'Hello, I\'m a warning message. I can contain stuff like "OMG, run for your life, everything gonna blow in a minute !!!".' 'warning' 'fullsite'
+   and I change the workflow to 'activate_for_anonymous' for 'my-message-title3'
+   Then a viewlet with message 'Hello, I\'m a warning message.' is visible
+
+   I create a message 'My Message title2' 'Hi there, I\'m a significant message. You can use me to inform people about things they must take into consideration. (e.g. "Don\'t forget the leaving pot of Cedric Friday at 3 PM. Free Belgian beers for E-V-E-R-Y-B-O-D-Y !!!").' 'significant' 'fullsite'
+   and I change the workflow to 'activate_for_anonymous' for 'my-message-title2'
+   Then a viewlet with message 'I\'m a significant message.' is visible   
+
+   I create a message 'My Message title' 'I\'m an information message. I contain junks that nobody cares about. I\'m used to hold texts like "Don\'t forget to clock out" or "The toilets of the third floor are out of order".' 'info' 'fullsite'
+   and I change the workflow to 'activate_for_anonymous' for 'my-message-title'
+   Then a viewlet with message 'I\'m an information message.' is visible
+
+   Sleep  0.5
+   Update element style  css=#visual-portal-wrapper  height  465px
+   Update element style  css=#visual-portal-wrapper  overflow  visible  
+   Update element style  css=#visual-portal-wrapper  border-color  black
+   Update element style  css=#visual-portal-wrapper  border-style  solid
+   Update element style  css=#visual-portal-wrapper  border-width  5px
+   Capture and crop page screenshot  docs/messageviewletinaction.png  id=visual-portal-wrapper
 
 *** Keywords *****************************************************************
 
@@ -64,12 +93,12 @@ I create a message '${title}' '${text}' '${msg_type}' '${location}'
    and I select '${location}' into 'form-widgets-location' selectbox
    and I check 'form-widgets-can_hide-0'
    and I submit the form
-
+   
 
 # --- Given ------------------------------------------------------------------
 
 a logged-in site administrator
-  Enable autologin as  Site Administrator
+  Enable autologin as  test
 
 an add message form
   Go To  ${PLONE_URL}/messages-config/++add++Message
@@ -102,8 +131,8 @@ a message '${title}' has been created
   Page should contain  ${title}
   Page should contain  Item created
   
-I change the workflow to '${state}'
-  ${UID} =  Path to uid  /${PLONE_SITE_ID}/messages-config/my-message-title
+I change the workflow to '${state}' for '${message_id}'
+  ${UID} =  Path to uid  /${PLONE_SITE_ID}/messages-config/${message_id}
   Fire transition  ${UID}  ${state}
 
 a viewlet with message '${msg}' is visible
@@ -118,7 +147,7 @@ viewlet message with message '${msg}' is invisible
   Go To  ${PLONE_URL}
   Page should not contain  ${msg}
   
-reactivate message
-  I change the workflow to 'disactivate'
-  I change the workflow to 'activate_for_anonymous'
+reactivate message '${message_id}'
+  I change the workflow to 'disactivate' for '${message_id}'
+  I change the workflow to 'activate_for_anonymous' for '${message_id}'
   
