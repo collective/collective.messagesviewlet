@@ -36,10 +36,6 @@ def generate_uid():
     return unicode(DateTime().millis())
 
 
-class StartBeforeEnd(Invalid):
-    __doc__ = _(u"The start or end date is invalid")
-
-
 class IMessage(model.Schema):
 
     title = schema.TextLine(
@@ -103,7 +99,7 @@ class IMessage(model.Schema):
     def validateStartEnd(data):
         if data.start is not None and data.end is not None:
             if data.start > data.end:
-                raise StartBeforeEnd(_(u"The start date must be before the end date."))
+                raise Invalid(_(u"The start date must precede the end date."))
 
 
 @indexer(IMessage)
