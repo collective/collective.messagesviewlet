@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-08-28 10:29+0000\n"
+"POT-Creation-Date: 2015-09-04 12:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,31 +17,31 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.messagesviewlet\n"
 
-#: ../message.py:56
+#: ../message.py:64
 msgid "Can be marked as read"
 msgstr ""
 
-#: ../message.py:74
+#: ../message.py:85
 msgid "Choose the roles for which the message will be displayed"
 msgstr ""
 
-#: ../message.py:67
+#: ../message.py:76
 msgid "End date"
 msgstr ""
 
-#: ../message.py:24
+#: ../message.py:28
 msgid "Full site"
 msgstr ""
 
-#: ../message.py:25
+#: ../message.py:29
 msgid "Homepage"
 msgstr ""
 
-#: ../message.py:57
+#: ../message.py:65
 msgid "If checked, the user can hide the message"
 msgstr ""
 
-#: ../message.py:80
+#: ../message.py:91
 msgid "Location"
 msgstr ""
 
@@ -49,11 +49,11 @@ msgstr ""
 msgid "Message"
 msgstr ""
 
-#: ../message.py:45
+#: ../message.py:53
 msgid "Message text"
 msgstr ""
 
-#: ../message.py:49
+#: ../message.py:57
 msgid "Message type"
 msgstr ""
 
@@ -65,27 +65,35 @@ msgstr ""
 msgid "MessagesConfig"
 msgstr ""
 
-#: ../message.py:73
+#: ../message.py:84
 msgid "Required roles"
 msgstr ""
 
-#: ../message.py:69
+#: ../message.py:78
 msgid "Specify end date message appearance"
 msgstr ""
 
-#: ../message.py:63
+#: ../message.py:71
 msgid "Specify start date message appearance"
 msgstr ""
 
-#: ../message.py:61
+#: ../message.py:69
 msgid "Start date"
 msgstr ""
 
-#: ../message.py:43
+#: ../message.py:51
 msgid "Text"
 msgstr ""
 
-#: ../message.py:38
+#: ../message.py:106
+msgid "The start date must be before the end date."
+msgstr ""
+
+#: ../message.py:40
+msgid "The start or end date is invalid"
+msgstr ""
+
+#: ../message.py:46
 msgid "Title"
 msgstr ""
 
@@ -97,15 +105,15 @@ msgstr ""
 msgid "close_title"
 msgstr ""
 
-#: ../message.py:14
+#: ../message.py:18
 msgid "info"
 msgstr ""
 
-#: ../message.py:15
+#: ../message.py:19
 msgid "significant"
 msgstr ""
 
-#: ../message.py:16
+#: ../message.py:20
 msgid "warning"
 msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-08-28 10:29+0000\n"
+"POT-Creation-Date: 2015-09-04 12:26+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,31 +14,31 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: collective.messagesviewlet\n"
 
-#: ../message.py:56
+#: ../message.py:64
 msgid "Can be marked as read"
 msgstr "Peut être marqué comme lu"
 
-#: ../message.py:74
+#: ../message.py:85
 msgid "Choose the roles for which the message will be displayed"
 msgstr "Sélectionnez les rôles pour lesquels le message sera affiché. (sinon tous)"
 
-#: ../message.py:67
+#: ../message.py:76
 msgid "End date"
 msgstr "Date de fin"
 
-#: ../message.py:24
+#: ../message.py:28
 msgid "Full site"
 msgstr "Tout le site"
 
-#: ../message.py:25
+#: ../message.py:29
 msgid "Homepage"
 msgstr "Page d'accueil"
 
-#: ../message.py:57
+#: ../message.py:65
 msgid "If checked, the user can hide the message"
 msgstr "Si coché, un utilisateur peut marquer le message comme lu pour le faire disparaître."
 
-#: ../message.py:80
+#: ../message.py:91
 msgid "Location"
 msgstr "Endroit d'affichage"
 
@@ -46,11 +46,11 @@ msgstr "Endroit d'affichage"
 msgid "Message"
 msgstr "Message"
 
-#: ../message.py:45
+#: ../message.py:53
 msgid "Message text"
 msgstr "Contenu du message"
 
-#: ../message.py:49
+#: ../message.py:57
 msgid "Message type"
 msgstr "Type de message"
 
@@ -62,27 +62,35 @@ msgstr "Configuration des messages"
 msgid "MessagesConfig"
 msgstr "Configuration des messages"
 
-#: ../message.py:73
+#: ../message.py:84
 msgid "Required roles"
 msgstr "Rôle requis"
 
-#: ../message.py:69
+#: ../message.py:78
 msgid "Specify end date message appearance"
 msgstr "Spécifiez une date de fin d'apparition du message (sinon infini)."
 
-#: ../message.py:63
+#: ../message.py:71
 msgid "Specify start date message appearance"
 msgstr "Spécifiez une date de début d'apparition du message (sinon immédiat)."
 
-#: ../message.py:61
+#: ../message.py:69
 msgid "Start date"
 msgstr "Date de début"
 
-#: ../message.py:43
+#: ../message.py:51
 msgid "Text"
 msgstr "Texte"
 
-#: ../message.py:38
+#: ../message.py:106
+msgid "The start date must be before the end date."
+msgstr "La date de début d'apparition du message doit être inférieur à sa date de fin."
+
+#: ../message.py:40
+msgid "The start or end date is invalid"
+msgstr "La date de début ou la date de fin n'est pas valide"
+
+#: ../message.py:46
 msgid "Title"
 msgstr "Intitulé"
 
@@ -94,15 +102,15 @@ msgstr "Coche verte"
 msgid "close_title"
 msgstr "Cacher ce message"
 
-#: ../message.py:14
+#: ../message.py:18
 msgid "info"
 msgstr "Information"
 
-#: ../message.py:15
+#: ../message.py:19
 msgid "significant"
 msgstr "Avertissement"
 
-#: ../message.py:16
+#: ../message.py:20
 msgid "warning"
 msgstr "Attention"
 
