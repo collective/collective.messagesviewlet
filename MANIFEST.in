@@ -1,3 +1,7 @@
-graft src/collective
-graft docs/
-include *.cfg *.rst *.in
+recursive-include src *
+recursive-include docs *
+include *.py
+include *.rst
+include buildout.cfg
+include travis.cfg
+global-exclude *pyc
