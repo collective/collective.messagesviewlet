@@ -1,3 +1,7 @@
+.warning-formHelp {
+    color: orange;
+}
+
 .portaltype-messagesconfig #contentview-folderContents,
 .portaltype-messagesconfig #contentview-edit,
 .portaltype-messagesconfig #contentview-local_roles {

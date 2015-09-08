@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from DateTime import DateTime
+from datetime import datetime
 from zope import schema
 from zope.interface import invariant, Invalid, alsoProvides
 from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
@@ -36,6 +37,10 @@ def generate_uid():
     return unicode(DateTime().millis())
 
 
+def default_start():
+    return datetime.now()
+
+
 class IMessage(model.Schema):
 
     title = schema.TextLine(
@@ -65,14 +70,14 @@ class IMessage(model.Schema):
         title=_(u"Start date"),
         required=False,
         description=_(u"Specify start date message appearance"),
+        defaultFactory=default_start,
     )
     form.widget('start', DatetimeFieldWidget)
 
     end = schema.Datetime(
         title=_(u"End date"),
         required=False,
-        description=_(u"Specify end date message appearance"),
-        #constraint=validate_end
+        description=_(u"Specify end date message appearance. If nothing specified, this is infinite. If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"),
     )
     form.widget('end', DatetimeFieldWidget)
 
