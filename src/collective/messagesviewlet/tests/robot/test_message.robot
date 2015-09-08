@@ -20,7 +20,7 @@ Input RichText
 #
 # 2) Run robot tests:
 #
-# $ bin/robot src/plonetraining/testing/tests/robot/test_message.robot
+# $ bin/robot src/collective/messagesviewlet/tests/robot/test_message.robot
 #
 # See the http://docs.plone.org for further details (search for robot
 # framework).
@@ -36,7 +36,7 @@ Resource  Selenium2Screenshots/keywords.robot
 Library  Remote  ${PLONE_URL}/RobotRemote
 Library  Selenium2Screenshots
 
-Test Setup  Open test browser
+Test Setup  Test Setup
 Test Teardown  Close all browsers
 
 
@@ -61,7 +61,7 @@ Scenario: Create docs with screenshots
    Update element style  css=#content  border-color  black
    Update element style  css=#content  border-style  solid
    Update element style  css=#content  border-width  5px
-   Update element style  css=#content  padding  10px      
+   Update element style  css=#content  padding  10px
    Capture and crop page screenshot  docs/messageviewletinconfiguration.png  id=content
    Click button  id=form-buttons-cancel
 
@@ -152,4 +152,8 @@ viewlet message with message '${msg}' is invisible
 reactivate message '${message_id}'
   I change the workflow to 'disactivate' for '${message_id}'
   I change the workflow to 'activate_for_anonymous' for '${message_id}'
-  
+
+
+Test Setup
+  Open test browser
+  Set Window Size  1280  800
