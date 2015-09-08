@@ -10,8 +10,8 @@ Add-on displaying manager defined messages in a viewlet
 
 .. image:: docs/messageviewletinaction.png 
     :alt: The three message types.
-    :width: 1003
-    :height: 420
+    :width: 1300
+    :height: 495
     :align: center
 
 Features
@@ -37,8 +37,8 @@ The collective.behavior.talcondition is enabled, providing 2 attributes.
 
 .. image:: docs/messageviewletinconfiguration.png 
     :alt: The management interface.
-    :width: 1000
-    :height: 901
+    :width: 1252
+    :height: 1362
     :align: center
 
 
