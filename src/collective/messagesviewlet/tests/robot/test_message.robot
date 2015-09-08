@@ -85,6 +85,14 @@ Scenario: Create docs with screenshots
    Update element style  css=#visual-portal-wrapper  border-width  5px
    Capture and crop page screenshot  docs/messageviewletinaction.png  id=visual-portal-wrapper
 
+
+Scenario: Create message with end date precede start date. So Error.
+  Given a logged-in site administrator
+  I create a message 'My Message title' 'Wazaaaaaaaa' 'significant' 'fullsite' with end date precede start date
+  Sleep  0.5
+  Page should contain  The start date must precede the end date.
+
+
 *** Keywords *****************************************************************
 
 I create a message '${title}' '${text}' '${msg_type}' '${location}'
@@ -94,6 +102,27 @@ I create a message '${title}' '${text}' '${msg_type}' '${location}'
    and I select '${msg_type}' into 'form-widgets-msg_type' selectbox
    and I select '${location}' into 'form-widgets-location' selectbox
    and I check 'form-widgets-can_hide-0'
+   and I submit the form
+
+I create a message '${title}' '${text}' '${msg_type}' '${location}' with end date precede start date
+  and an add message form
+  When I type '${title}' into the title field
+   and I type '${text}' into the richtext
+   and I select '${msg_type}' into 'form-widgets-msg_type' selectbox
+   and I select '${location}' into 'form-widgets-location' selectbox
+   and I check 'form-widgets-can_hide-0'
+   
+   and I select '12' into 'form-widgets-start-day' selectbox
+   and I select '12' into 'form-widgets-start-month' selectbox
+   and I select '2012' into 'form-widgets-start-year' selectbox
+   and I select '12' into 'form-widgets-start-hour' selectbox
+   and I select '12' into 'form-widgets-start-minute' selectbox
+   
+   and I select '11' into 'form-widgets-end-day' selectbox
+   and I select '11' into 'form-widgets-end-month' selectbox
+   and I select '2011' into 'form-widgets-end-year' selectbox
+   and I select '11' into 'form-widgets-end-hour' selectbox
+   and I select '11' into 'form-widgets-end-minute' selectbox   
    and I submit the form
    
 
