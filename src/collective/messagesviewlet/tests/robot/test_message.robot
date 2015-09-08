@@ -63,6 +63,7 @@ Scenario: Create docs with screenshots
    Update element style  css=#content  border-width  5px
    Update element style  css=#content  padding  10px      
    Capture and crop page screenshot  docs/messageviewletinconfiguration.png  id=content
+   Click button  id=form-buttons-cancel
 
    I create a message 'My Message title3' 'Hello, I\'m a warning message. I can contain stuff like "OMG, run for your life, everything gonna blow in a minute !!!".' 'warning' 'fullsite'
    and I change the workflow to 'activate_for_anonymous' for 'my-message-title3'

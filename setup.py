@@ -56,6 +56,7 @@ setup(
             'plone.app.testing',
             'plone.app.contenttypes',
             'plone.app.robotframework[debug]',
+            'robotframework-selenium2screenshots',
         ],
     },
     entry_points="""
