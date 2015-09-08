@@ -5,3 +5,6 @@ include *.rst
 include buildout.cfg
 include travis.cfg
 global-exclude *pyc
+exclude .coveragerc
+exclude .editorconfig
+exclude .gitattributes
