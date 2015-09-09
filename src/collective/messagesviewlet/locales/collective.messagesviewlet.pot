@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-08 10:10+0000\n"
+"POT-Creation-Date: 2015-09-09 13:54+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,12 +21,16 @@ msgstr ""
 msgid "Can be marked as read"
 msgstr ""
 
-#: ../message.py:86
+#: ../message.py:87
 msgid "Choose the roles for which the message will be displayed"
 msgstr ""
 
 #: ../message.py:78
 msgid "End date"
+msgstr ""
+
+#: ../message.py:61
+msgid "Following the type, the color will be different"
 msgstr ""
 
 #: ../message.py:29
@@ -41,7 +45,7 @@ msgstr ""
 msgid "If checked, the user can hide the message"
 msgstr ""
 
-#: ../message.py:92
+#: ../message.py:93
 msgid "Location"
 msgstr ""
 
@@ -65,7 +69,7 @@ msgstr ""
 msgid "MessagesConfig"
 msgstr ""
 
-#: ../message.py:85
+#: ../message.py:86
 msgid "Required roles"
 msgstr ""
 
@@ -85,7 +89,7 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-#: ../message.py:107
+#: ../message.py:108
 msgid "The start date must precede the end date."
 msgstr ""
 
@@ -105,8 +109,32 @@ msgstr ""
 msgid "info"
 msgstr ""
 
+#: ../setuphandlers.py:36
+msgid "maintenance_now_tit"
+msgstr ""
+
+#: ../setuphandlers.py:36
+msgid "maintenance_now_txt"
+msgstr ""
+
+#: ../setuphandlers.py:34
+msgid "maintenance_soon_tit"
+msgstr ""
+
+#: ../setuphandlers.py:34
+msgid "maintenance_soon_txt"
+msgstr ""
+
 #: ../message.py:20
 msgid "significant"
+msgstr ""
+
+#: ../setuphandlers.py:38
+msgid "test_site_tit"
+msgstr ""
+
+#: ../setuphandlers.py:38
+msgid "test_site_txt"
 msgstr ""
 
 #: ../message.py:21

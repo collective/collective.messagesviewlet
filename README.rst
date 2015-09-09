@@ -25,7 +25,7 @@ A message contains the following configuration attributes:
 
 * text : displayed text in the viewlet
 * message type : info, warning, important (different layout in the viewlet)
-* can hide : if checked, the user can hide the message
+* can hide : if checked, the user can hide the message (mark as read)
 * start date : displaying start date (optional)
 * end date : displaying end date (optional)
 * required roles : use must have one of the required roles (optional)
@@ -49,9 +49,13 @@ A workflow is provided with the following states:
 * activated for members : displayed only for authenticated users
 * activated for localroles : displayed only for authenticated users having local reader role
 
+The hiding functionality uses a cookie. It is necessary to deactivate a message to "reset" the cookie.
+When activating again, the message will be displayed. 
+
 Improvements
 ------------
 
+* Modify hidden_uid when some fields are changed: end when gone, can_hide (to unchecked), start when end is gone
 * Message definition from file system
 * Message definition from rss feed
 

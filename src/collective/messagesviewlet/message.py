@@ -58,7 +58,7 @@ class IMessage(model.Schema):
         title=_(u"Message type"),
         required=True,
         source=msg_types,
-        description=_(u"Message type"),
+        description=_(u"Following the type, the color will be different"),
     )
 
     can_hide = schema.Bool(
@@ -77,7 +77,8 @@ class IMessage(model.Schema):
     end = schema.Datetime(
         title=_(u"End date"),
         required=False,
-        description=_(u"Specify end date message appearance. If nothing specified, this is infinite. If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"),
+        description=_(u"Specify end date message appearance. If nothing specified, this is infinite. "
+                      "If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"),
     )
     form.widget('end', DatetimeFieldWidget)
 

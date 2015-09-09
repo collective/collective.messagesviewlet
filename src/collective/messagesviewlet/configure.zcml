@@ -27,9 +27,17 @@
 
     <genericsetup:registerProfile
         name="default"
-        title="collective.messagesviewlet"
+        title="collective.messagesviewlet installation"
         directory="profiles/default"
         description="Installs the collective.messagesviewlet add-on."
+        provides="Products.GenericSetup.interfaces.EXTENSION"
+        />
+
+    <genericsetup:registerProfile
+        name="messages"
+        title="collective.messagesviewlet examples"
+        directory="profiles/messages"
+        description="Add default messages for collective.messagesviewlet."
         provides="Products.GenericSetup.interfaces.EXTENSION"
         />
 
