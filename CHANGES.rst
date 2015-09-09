@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.2 (unreleased)
+0.2 (2015-09-09)
 ----------------
 
 - Added utils method to create message. Added example profile to add some messages.
