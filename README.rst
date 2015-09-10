@@ -52,6 +52,11 @@ A workflow is provided with the following states:
 The hiding functionality uses a cookie. It is necessary to deactivate a message to "reset" the cookie.
 When activating again, the message will be displayed. 
 
+The optional examples profiles add some usefull examples that can be activated when needed:
+* message for scheduled maintenance : must be activated for anonymous or members
+* message for imminent or current maintenance : must be activated for anonymous
+* message for staging site
+
 Improvements
 ------------
 

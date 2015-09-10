@@ -20,7 +20,7 @@ def post_install(context):
         container = api.content.create(site,
                                        "MessagesConfig",
                                        id=FOLDER,
-                                       title=FOLDER
+                                       title=_('Messages viewlet settings')
                                        )
         excl = IExcludeFromNavigation(container)
         excl.exclude_from_nav = True

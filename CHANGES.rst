@@ -5,7 +5,8 @@ Changelog
 0.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Translate title configuration folder.
+  [sgeulette]
 
 
 0.2 (2015-09-09)

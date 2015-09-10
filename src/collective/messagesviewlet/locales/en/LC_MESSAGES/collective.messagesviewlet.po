@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-09 13:54+0000\n"
+"POT-Creation-Date: 2015-09-10 07:15+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,6 +59,7 @@ msgid "Message type"
 msgstr ""
 
 #: ../profiles/default/controlpanel.xml
+#: ../setuphandlers.py:23
 msgid "Messages viewlet settings"
 msgstr ""
 
