@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.3 (unreleased)
+0.3 (2015-09-10)
 ----------------
 
 - Translate title configuration folder.
