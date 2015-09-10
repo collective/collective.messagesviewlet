@@ -8,7 +8,7 @@ collective.messagesviewlet
 
 Add-on displaying manager defined messages in a viewlet
 
-.. image:: docs/messageviewletinaction.png 
+.. image:: https://raw.githubusercontent.com/IMIO/collective.messagesviewlet/master/docs/messageviewletinaction.png 
     :alt: The three message types.
     :width: 1300
     :height: 495
@@ -35,7 +35,7 @@ The collective.behavior.talcondition is enabled, providing 2 attributes.
 * tal condition : optional tal expression evaluated on viewlet context
 * bypassing roles : optional roles bypassing the tal condition
 
-.. image:: docs/messageviewletinconfiguration.png 
+.. image:: https://raw.githubusercontent.com/IMIO/collective.messagesviewlet/master/docs/messageviewletinconfiguration.png 
     :alt: The management interface.
     :width: 1252
     :height: 1362

@@ -5,7 +5,8 @@ Changelog
 0.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Use full url for readme images to display correctly on pypi.
+  [sgeulette]
 
 
 0.3 (2015-09-10)
