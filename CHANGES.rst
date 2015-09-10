@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.4 (unreleased)
+0.4 (2015-09-10)
 ----------------
 
 - Use full url for readme images to display correctly on pypi.
