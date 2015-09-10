@@ -5,7 +5,8 @@ Changelog
 0.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Corrected rst in readme.
+  [sgeulette]
 
 
 0.4 (2015-09-10)
