@@ -181,7 +181,7 @@ class MessageIntegrationTest(unittest.TestCase):
         wftool = self.portal.portal_workflow
         # activate one message.
         wftool.doActionFor(self.messages[0], 'activate_for_anonymous')
-        #viewlet.render()
+        # viewlet.render()
         viewlet_rendering = viewlet.context()
         self.assertIn(self.messages[0].text.output, viewlet_rendering)
         self.assertIn('messagesviewlet-info', viewlet_rendering)
@@ -210,4 +210,3 @@ class MessageIntegrationTest(unittest.TestCase):
         logout()
         # Checks that an anonymous user can't see anymore the restricted one.
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2])))
-
