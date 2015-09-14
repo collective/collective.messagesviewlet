@@ -49,7 +49,6 @@ setup(
         'plone.app.lockingbehavior',
         'plone.formwidget.datetime',
         'setuptools',
-        'z3c.jbot',
     ],
     extras_require={
         'test': [

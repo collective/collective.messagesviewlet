@@ -5,6 +5,8 @@ Changelog
 0.5 (unreleased)
 ----------------
 
+- Removed useless dependency on z3c.jbot.
+  [gbastien]
 - Corrected rst in readme.
   [sgeulette]
 
