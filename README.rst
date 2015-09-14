@@ -34,7 +34,7 @@ A message contains the following configuration attributes:
 * can hide : if checked, the user can hide the message (mark as read)
 * start date : displaying start date (optional)
 * end date : displaying end date (optional)
-* required roles : use must have one of the required roles (optional)
+* required roles : user must have one of the required roles (optional)
 * location : full site or homepage only
 
 The collective.behavior.talcondition is enabled, providing 2 attributes. 
