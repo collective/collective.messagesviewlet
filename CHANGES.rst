@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.5 (unreleased)
+0.5 (2015-09-14)
 ----------------
 
 - Removed useless dependency on z3c.jbot.
