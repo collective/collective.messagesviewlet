@@ -1,3 +1,9 @@
+.. image:: https://travis-ci.org/IMIO/collective.messagesviewlet.svg?branch=master
+    :target: https://travis-ci.org/IMIO/collective.messagesviewlet
+.. image:: https://coveralls.io/repos/IMIO/collective.messagesviewlet/badge.svg?branch=master&service=github
+  :target: https://coveralls.io/github/IMIO/collective.messagesviewlet?branch=master
+
+
 .. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
    If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide_addons.html
    This text does not appear on pypi or github. It is a comment.
