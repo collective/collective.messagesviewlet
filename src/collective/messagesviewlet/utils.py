@@ -43,5 +43,3 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
                           'start': start, 'end': end_date, 'required_roles': req_roles,
                           'location': location, 'hidden_uid': generate_uid(),
                           'tal_condition': tal_condition, 'roles_bypassing_talcondition': roles_byp_talcond})
-
-
