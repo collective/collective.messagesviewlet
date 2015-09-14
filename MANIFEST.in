@@ -2,9 +2,9 @@ recursive-include src *
 recursive-include docs *
 include *.py
 include *.rst
-include buildout.cfg
-include travis.cfg
 global-exclude *pyc
 exclude .coveragerc
 exclude .editorconfig
 exclude .gitattributes
+exclude .travis.yml
+exclude *.cfg
