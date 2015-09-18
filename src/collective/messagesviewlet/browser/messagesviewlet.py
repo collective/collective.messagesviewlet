@@ -49,10 +49,8 @@ class MessagesViewlet(ViewletBase):
             if obj.required_roles:
                 if mb_roles.intersection(obj.required_roles) == set():
                     continue
-            # By default, expression is evaluated with context = (obj or obj.context).
             # We define obj.context to viewlet context to evaluate expression on viewlet context display.
-            obj.context = self.context
-            if not evaluateExpressionFor(obj):
+            if not evaluateExpressionFor(obj, extra_expr_ctx={'context': self.context}):
                 continue
             messages.append(obj)
 
