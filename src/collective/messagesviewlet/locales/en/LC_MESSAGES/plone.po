@@ -23,7 +23,7 @@ msgid "activated"
 msgstr "Activated"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
-msgid "disactivate"
+msgid "deactivate"
 msgstr "Disactivate"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml

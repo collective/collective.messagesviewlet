@@ -12,6 +12,8 @@ Changelog
   [sgeulette]
 - Added local roles test
   [sgeulette]
+- Renamed bad transition name
+  [sgeulette]
 
 
 0.5 (2015-09-14)

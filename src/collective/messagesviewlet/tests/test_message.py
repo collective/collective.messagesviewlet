@@ -185,7 +185,7 @@ class MessageIntegrationTest(unittest.TestCase):
         # modifications
         hidden_uid = self.messages[0].hidden_uid
         self.wftool.doActionFor(self.messages[0], 'activate')
-        self.wftool.doActionFor(self.messages[0], 'disactivate')
+        self.wftool.doActionFor(self.messages[0], 'deactivate')
         # checks if the hidden uid has whell changed.
         self.assertNotEqual(hidden_uid, self.messages[0])
 

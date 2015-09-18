@@ -179,7 +179,7 @@ viewlet message with message '${msg}' is invisible
   Page should not contain  ${msg}
   
 reactivate message '${message_id}'
-  I change the workflow to 'disactivate' for '${message_id}'
+  I change the workflow to 'deactivate' for '${message_id}'
   I change the workflow to 'activate' for '${message_id}'
 
 

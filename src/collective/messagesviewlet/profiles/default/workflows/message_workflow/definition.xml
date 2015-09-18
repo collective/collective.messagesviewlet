@@ -16,7 +16,7 @@
  <permission>View</permission>
  <state state_id="activated" title="activated"  i18n:attributes="title">
   <exit-transition transition_id="activate"/>
-  <exit-transition transition_id="disactivate"/>
+  <exit-transition transition_id="deactivate"/>
   <permission-map name="Access contents information" acquired="False">
    <permission-role>Manager</permission-role>
    <permission-role>Site Administrator</permission-role>   
@@ -72,8 +72,8 @@
    <guard-role>Manager</guard-role>
   </guard>
  </transition>
- <transition transition_id="disactivate" title="disactivate"  i18n:attributes="title" new_state="inactive" trigger="USER" before_script="" after_script="">
-  <action url="%(content_url)s/content_status_modify?workflow_action=disactivate" category="workflow" icon="">disactivate</action>
+ <transition transition_id="deactivate" title="deactivate"  i18n:attributes="title" new_state="inactive" trigger="USER" before_script="" after_script="">
+  <action url="%(content_url)s/content_status_modify?workflow_action=deactivate" category="workflow" icon="">deactivate</action>
   <guard>
    <guard-role>Site Administrator</guard-role>
    <guard-role>Manager</guard-role>
