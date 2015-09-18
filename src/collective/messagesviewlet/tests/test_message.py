@@ -52,15 +52,26 @@ class MessageIntegrationTest(unittest.TestCase):
         self.member = membershopTool.getAuthenticatedMember()
         self.portal.REQUEST['AUTHENTICATED_USER'] = self.member
 
+    def _set_viewlet(self):
+        """
+        """
+        viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
+        viewlet.update()
+        # activate all messages.
+        for i, message_type in enumerate(self.message_types):
+            self.wftool.doActionFor(self.messages[i], 'activate_for_anonymous')
+        return viewlet
+
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.message_types = ["info", "significant", "warning"]
         self.isHidden = [True, True, False]
         self.portal = self.layer['portal']
         # The products build the "special" folder "messages-config" to store messages.
-        self.message_config_folder = getattr(self.portal, "messages-config", None)
+        self.message_config_folder = self.portal["messages-config"]
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.installer = api.portal.get_tool('portal_quickinstaller')
+        self.wftool = self.portal.portal_workflow
         self.messages = []
         # Create some messages
         for i, message_type in enumerate(self.message_types):
@@ -99,19 +110,18 @@ class MessageIntegrationTest(unittest.TestCase):
         viewlet.update()
         # no message in viewlet because all messages are in "inactive" state
         self.assertEqual(len(viewlet.getAllMessages()), 0)
-        wftool = self.portal.portal_workflow
         # activate for anonymous the first message
-        wftool.doActionFor(self.messages[0], 'activate_for_anonymous')
+        self.wftool.doActionFor(self.messages[0], 'activate_for_anonymous')
         # viewlet contain one message
         self.assertEqual(len(viewlet.getAllMessages()), 1)
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0], )))
         # activate for members the second message
-        wftool.doActionFor(self.messages[1], 'activate_for_members')
+        self.wftool.doActionFor(self.messages[1], 'activate_for_members')
         # viewlet contain one message
         self.assertEqual(len(viewlet.getAllMessages()), 2)
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0], self.messages[1])))
         # activate for local roles the third message
-        wftool.doActionFor(self.messages[2], 'activate_for_local_roles')
+        self.wftool.doActionFor(self.messages[2], 'activate_for_local_roles')
         # viewlet contain one message
         self.assertEqual(len(viewlet.getAllMessages()), 3)
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0], self.messages[1], self.messages[2])))
@@ -120,22 +130,9 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertEqual(len(viewlet.getAllMessages()), 1)
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0], )))
 
-    def test_getAllMessages(self):
-        """
-        """
-        viewlet = MessagesViewlet(self.message_config_folder, self.message_config_folder.REQUEST, None, None)
-        viewlet.update()
-        wftool = self.portal.portal_workflow
-        # activate all messages.
-        for i, message_type in enumerate(self.message_types):
-            wftool.doActionFor(self.messages[i], 'activate_for_anonymous')
+    def test_getAllMessages_date(self):
+        viewlet = self._set_viewlet()
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
-        # Please keep chronological methods.
-        self._getAllMessages_test_date(viewlet)
-        self._getAllMessages_test_tal_condition(viewlet)
-        self._getAllMessages_test_location(viewlet)
-
-    def _getAllMessages_test_date(self, viewlet):
         # set message as message 0 and change date to ignore it.
         message = self.messages[0]
         message.start = DateTime() + 1
@@ -160,17 +157,24 @@ class MessageIntegrationTest(unittest.TestCase):
         # tests that the message is still visible.
         self.assertEqual(len(viewlet.getAllMessages()), 1)
 
-    def _getAllMessages_test_tal_condition(self, viewlet):
+    def test_getAllMessages_tal_condition(self):
+        viewlet = self._set_viewlet()
+        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
         message = self.messages[2]
         message.tal_condition = "python:False"
-        self.assertEqual(len(viewlet.getAllMessages()), 0)
+        self.assertEqual(len(viewlet.getAllMessages()), 2)
+        message.tal_condition = "python:context==portal"
+        self.assertEqual(len(viewlet.getAllMessages()), 3)
 
-    def _getAllMessages_test_location(self, viewlet):
+    def test_getAllMessages_location(self):
+        viewlet = self._set_viewlet()
+        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
         message = self.messages[2]
-        message.tal_condition = "python:True"
         message.location = "homepage"
         message.reindexObject()
-        self.assertEqual(len(viewlet.getAllMessages()), 0)
+        self.assertEqual(len(viewlet.getAllMessages()), 3)
+        viewlet.context = self.message_config_folder
+        self.assertEqual(len(viewlet.getAllMessages()), 2)
 
     def test_viewlet_rendering(self):
         """
@@ -178,9 +182,8 @@ class MessageIntegrationTest(unittest.TestCase):
         """
         viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
         viewlet.update()
-        wftool = self.portal.portal_workflow
         # activate one message.
-        wftool.doActionFor(self.messages[0], 'activate_for_anonymous')
+        self.wftool.doActionFor(self.messages[0], 'activate_for_anonymous')
         # viewlet.render()
         viewlet_rendering = viewlet.context()
         self.assertIn(self.messages[0].text.output, viewlet_rendering)
@@ -189,19 +192,17 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertNotIn(self.messages[2].text.output, viewlet_rendering)
 
     def test_hidden_uid_when_workflow_changes(self):
-        wftool = self.portal.portal_workflow
         # saves the hidden uid before it changes because of the workflow
         # modifications
         hidden_uid = self.messages[0].hidden_uid
-        wftool.doActionFor(self.messages[0], 'activate_for_anonymous')
-        wftool.doActionFor(self.messages[0], 'disactivate')
+        self.wftool.doActionFor(self.messages[0], 'activate_for_anonymous')
+        self.wftool.doActionFor(self.messages[0], 'disactivate')
         # checks if the hidden uid has whell changed.
         self.assertNotEqual(hidden_uid, self.messages[0])
 
     def test_required_roles_permissions(self):
-        wftool = self.portal.portal_workflow
         for i, message_type in enumerate(self.message_types):
-            wftool.doActionFor(self.messages[i], 'activate_for_anonymous')
+            self.wftool.doActionFor(self.messages[i], 'activate_for_anonymous')
         viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
         # Sets the required role to 'Authenticated' to message 1
         self.messages[0].required_roles = set(['Authenticated'])
