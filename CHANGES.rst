@@ -8,6 +8,8 @@ Changelog
 - Simplify workflow. Only one activated state. Unrestricted search results before filtering.
   Added 'use local role' boolean attribute.
   [sgeulette]
+- Updated default messages
+  [sgeulette]
 
 
 0.5 (2015-09-14)

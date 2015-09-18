@@ -32,8 +32,8 @@ def add_default_messages(context):
     if context.readDataFile('collectivemessagesviewlet_messages.txt') is None:
         return
     add_message('maintenance-soon', _('maintenance_soon_tit'), _('maintenance_soon_txt'), msg_type='significant',
-                can_hide=True)
+                can_hide=True, req_roles=['Member'])
     add_message('maintenance-now', _('maintenance_now_tit'), _('maintenance_now_txt'), msg_type='warning',
-                can_hide=False)
+                can_hide=False, req_roles=['Anonymous'])
     add_message('test-site', _('test_site_tit'), _('test_site_txt'), msg_type='warning',
                 can_hide=False)

@@ -20,7 +20,7 @@ def _richtextval(text):
 
 
 def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime.now(), end='', req_roles=[],
-                location='fullsite', tal_condition='', roles_byp_talcond=[]):
+                location='fullsite', tal_condition='', roles_byp_talcond=[], use_local_roles=False):
     """
         Add a message in the configuration folder
             msg_type: info, significant, warning
@@ -42,4 +42,5 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
                        **{'msg_type': msg_type, 'text': rich_text, 'can_hide': can_hide,
                           'start': start, 'end': end_date, 'required_roles': req_roles,
                           'location': location, 'hidden_uid': generate_uid(),
-                          'tal_condition': tal_condition, 'roles_bypassing_talcondition': roles_byp_talcond})
+                          'tal_condition': tal_condition, 'roles_bypassing_talcondition': roles_byp_talcond,
+                          'use_local_roles': use_local_roles})
