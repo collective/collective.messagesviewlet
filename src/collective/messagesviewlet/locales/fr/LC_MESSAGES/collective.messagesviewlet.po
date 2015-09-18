@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-10 07:15+0000\n"
+"POT-Creation-Date: 2015-09-18 10:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,11 +38,15 @@ msgstr "Tout le site"
 msgid "Homepage"
 msgstr "Page d'accueil"
 
+#: ../message.py:94
+msgid "If checked, the message will be shown only to users having local role 'Reader'"
+msgstr "Si coché, le message sera affiché aux utilisateurs ayant le rôle local 'Lecteur' (sinon tous)"
+
 #: ../message.py:66
 msgid "If checked, the user can hide the message"
 msgstr "Si coché, un utilisateur peut marquer le message comme lu pour le faire disparaître."
 
-#: ../message.py:93
+#: ../message.py:99
 msgid "Location"
 msgstr "Endroit d'affichage"
 
@@ -87,13 +91,17 @@ msgstr "Date de début"
 msgid "Text"
 msgstr "Texte"
 
-#: ../message.py:108
+#: ../message.py:114
 msgid "The start date must precede the end date."
 msgstr "La date de début doit précéder la date de fin."
 
 #: ../message.py:47
 msgid "Title"
 msgstr "Intitulé"
+
+#: ../message.py:93
+msgid "Use Reader local roles"
+msgstr "Utiliser les rôles locaux"
 
 #: ../browser/messagesviewlet.pt:16
 msgid "close_alt"

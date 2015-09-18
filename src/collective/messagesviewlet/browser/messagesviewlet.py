@@ -21,17 +21,17 @@ class MessagesViewlet(ViewletBase):
 
     def getAllMessages(self):
         catalog = api.portal.get_tool(name='portal_catalog')
+        # Getting user roles on context
         if api.user.is_anonymous():
             mb_roles = set(['Anonymous'])
         else:
             mb_roles = set(api.user.get_roles(obj=self.context))
         now = DateTime()
-        brains = catalog.searchResults(portal_type=['Message'],
-                                       start={'query': now, 'range': 'max'},
-                                       end={'query': now, 'range': 'min'},
-                                       review_state=('activated_for_anonymous', 'activated_for_local_roles',
-                                                     'activated_for_members'),
-                                       sort_on='getObjPositionInParent')
+        brains = catalog.unrestrictedSearchResults(portal_type=['Message'],
+                                                   start={'query': now, 'range': 'max'},
+                                                   end={'query': now, 'range': 'min'},
+                                                   review_state=('activated'),
+                                                   sort_on='getObjPositionInParent')
         messages = []
         for brain in brains:
             if brain.location == 'homepage':
@@ -39,7 +39,7 @@ class MessagesViewlet(ViewletBase):
                 if not IPloneSiteRoot.providedBy(self.context) and \
                         not isDefaultPage(self.portal, self.context):
                     continue
-            obj = brain.getObject()
+            obj = brain._unrestrictedGetObject()
             # check in the cookie if message is marked as read
             if obj.can_hide:
                 m_uids = self.request.get('messagesviewlet', '')
@@ -51,6 +51,9 @@ class MessagesViewlet(ViewletBase):
                     continue
             # We define obj.context to viewlet context to evaluate expression on viewlet context display.
             if not evaluateExpressionFor(obj, extra_expr_ctx={'context': self.context}):
+                continue
+            # We check the local roles
+            if obj.use_local_roles and not api.user.is_anonymous() and not 'Reader' in api.user.get_roles(obj=obj):
                 continue
             messages.append(obj)
 

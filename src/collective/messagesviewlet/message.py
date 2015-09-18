@@ -89,6 +89,12 @@ class IMessage(model.Schema):
         value_type=schema.Choice(vocabulary='plone.app.vocabularies.Roles'),
     )
 
+    use_local_roles = schema.Bool(
+        title=_(u"Use Reader local roles"),
+        description=_(u"If checked, the message will be shown only to users having local role 'Reader'"),
+        default=False,
+    )
+
     location = schema.Choice(
         title=_(u"Location"),
         required=True,

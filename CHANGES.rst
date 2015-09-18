@@ -5,7 +5,9 @@ Changelog
 0.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Simplify workflow. Only one activated state. Unrestricted search results before filtering.
+  Added 'use local role' boolean attribute.
+  [sgeulette]
 
 
 0.5 (2015-09-14)

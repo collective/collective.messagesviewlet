@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-10 07:15+0000\n"
+"POT-Creation-Date: 2015-09-18 10:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,11 +41,15 @@ msgstr ""
 msgid "Homepage"
 msgstr ""
 
+#: ../message.py:94
+msgid "If checked, the message will be shown only to users having local role 'Reader'"
+msgstr ""
+
 #: ../message.py:66
 msgid "If checked, the user can hide the message"
 msgstr ""
 
-#: ../message.py:93
+#: ../message.py:99
 msgid "Location"
 msgstr ""
 
@@ -90,12 +94,16 @@ msgstr ""
 msgid "Text"
 msgstr ""
 
-#: ../message.py:108
+#: ../message.py:114
 msgid "The start date must precede the end date."
 msgstr ""
 
 #: ../message.py:47
 msgid "Title"
+msgstr ""
+
+#: ../message.py:93
+msgid "Use Reader local roles"
 msgstr ""
 
 #: ../browser/messagesviewlet.pt:16

@@ -46,7 +46,7 @@ Scenario: I can add a Message and hide/show it
   Given a logged-in site administrator
    I create a message 'My Message title' 'Wazaaaaaaaa' 'significant' 'fullsite'
    Then a message 'My Message title' has been created
-    and I change the workflow to 'activate_for_anonymous' for 'my-message-title'
+    and I change the workflow to 'activate' for 'my-message-title'
    Then a viewlet with message 'Wazaaaaaaaa' is visible
     and I mark the message as read
    Then viewlet message with message 'Wazaaaaaaaa' is invisible
@@ -66,15 +66,15 @@ Scenario: Create docs with screenshots
    Click button  id=form-buttons-cancel
 
    I create a message 'My Message title3' 'Hello, I\'m a warning message. I can contain stuff like "OMG, run for your life, everything gonna blow in a minute !!!".' 'warning' 'fullsite'
-   and I change the workflow to 'activate_for_anonymous' for 'my-message-title3'
+   and I change the workflow to 'activate' for 'my-message-title3'
    Then a viewlet with message 'Hello, I\'m a warning message.' is visible
 
    I create a message 'My Message title2' 'Hi there, I\'m a significant message. You can use me to inform people about things they must take into consideration. (e.g. "Don\'t forget the leaving pot of Cedric Friday at 3 PM. Free Belgian beers for E-V-E-R-Y-B-O-D-Y !!!").' 'significant' 'fullsite'
-   and I change the workflow to 'activate_for_anonymous' for 'my-message-title2'
+   and I change the workflow to 'activate' for 'my-message-title2'
    Then a viewlet with message 'I\'m a significant message.' is visible   
 
    I create a message 'My Message title' 'I\'m an information message. I contain junks that nobody cares about. I\'m used to hold texts like "Don\'t forget to clock out" or "The toilets of the third floor are out of order".' 'info' 'fullsite'
-   and I change the workflow to 'activate_for_anonymous' for 'my-message-title'
+   and I change the workflow to 'activate' for 'my-message-title'
    Then a viewlet with message 'I\'m an information message.' is visible
 
    Sleep  0.5
@@ -180,7 +180,7 @@ viewlet message with message '${msg}' is invisible
   
 reactivate message '${message_id}'
   I change the workflow to 'disactivate' for '${message_id}'
-  I change the workflow to 'activate_for_anonymous' for '${message_id}'
+  I change the workflow to 'activate' for '${message_id}'
 
 
 Test Setup

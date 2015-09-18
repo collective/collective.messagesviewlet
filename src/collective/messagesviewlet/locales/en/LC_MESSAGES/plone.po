@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-04 12:26+0000\n"
+"POT-Creation-Date: 2015-09-18 10:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,28 +15,12 @@ msgstr ""
 "Domain: DOMAIN\n"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
-msgid "activate_for_anonymous"
-msgstr "Activate for anonymous"
+msgid "activate"
+msgstr "Activate"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
-msgid "activate_for_local_roles"
-msgstr "Activate for local roles"
-
-#: ../profiles/default/workflows/message_workflow/definition.xml
-msgid "activate_for_members"
-msgstr "Activate for members"
-
-#: ../profiles/default/workflows/message_workflow/definition.xml
-msgid "activated_for_anonymous"
-msgstr "Activated for anonymous"
-
-#: ../profiles/default/workflows/message_workflow/definition.xml
-msgid "activated_for_local_roles"
-msgstr "Activated for local roles"
-
-#: ../profiles/default/workflows/message_workflow/definition.xml
-msgid "activated_for_members"
-msgstr "Activated for members"
+msgid "activated"
+msgstr "Activated"
 
 #: ../profiles/default/workflows/message_workflow/definition.xml
 msgid "disactivate"
