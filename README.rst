@@ -35,6 +35,7 @@ A message contains the following configuration attributes:
 * start date : displaying start date (optional)
 * end date : displaying end date (optional)
 * required roles : user must have one of the required roles (optional)
+* use local roles : message displayed for users having Reader local role on message (optional)
 * location : full site or homepage only
 
 The collective.behavior.talcondition is enabled, providing 2 attributes. 
@@ -52,17 +53,15 @@ The collective.behavior.talcondition is enabled, providing 2 attributes.
 A workflow is provided with the following states:
 
 * inactive : not displayed
-* activated for anonymous : displayed for anonymous users
-* activated for members : displayed only for authenticated users
-* activated for localroles : displayed only for authenticated users having local reader role
+* activated : displayed
 
 The hiding functionality uses a cookie. It is necessary to deactivate a message to "reset" the cookie.
-When activating again, the message will be displayed. 
+When activating again, the message will be displayed again even for users that hide it. 
 
 The optional examples profiles add some usefull examples that can be activated when needed:
 
-* message for scheduled maintenance : must be activated for anonymous or members
-* message for imminent or current maintenance : must be activated for anonymous
+* message for scheduled maintenance (limited to Member)
+* message for imminent or current maintenance : (given to anonymous)
 * message for staging site
 
 Improvements
