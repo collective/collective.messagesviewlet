@@ -39,7 +39,7 @@ msgid "Homepage"
 msgstr "Page d'accueil"
 
 #: ../message.py:94
-msgid "If checked, the message will be shown only to users having local role 'Reader'"
+msgid "If checked, the message will be shown only to users having message local role 'Reader'"
 msgstr "Si coché, le message sera affiché aux utilisateurs ayant le rôle local 'Lecteur' (sinon tous)"
 
 #: ../message.py:66
