@@ -207,3 +207,8 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertEqual(len(viewlet.getAllMessages()), 2)
         self.messages[0].manage_setLocalRoles(TEST_USER_ID, ['Reader'])
         self.assertEqual(len(viewlet.getAllMessages()), 3)
+
+    def test_examples_profile(self):
+        self.portal.portal_setup.runImportStepFromProfile('profile-collective.messagesviewlet:messages',
+                                                          'collective-messagesviewlet-messages')
+        self.assertEqual(len(self.portal.portal_catalog(portal_type='Message')), 6)
