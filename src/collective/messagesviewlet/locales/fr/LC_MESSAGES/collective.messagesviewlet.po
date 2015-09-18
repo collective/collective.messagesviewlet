@@ -100,7 +100,7 @@ msgid "Title"
 msgstr "Intitulé"
 
 #: ../message.py:93
-msgid "Use Reader local roles"
+msgid "Use Reader local role"
 msgstr "Utiliser les rôles locaux"
 
 #: ../browser/messagesviewlet.pt:16

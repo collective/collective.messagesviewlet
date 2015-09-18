@@ -90,7 +90,7 @@ class IMessage(model.Schema):
     )
 
     use_local_roles = schema.Bool(
-        title=_(u"Use Reader local roles"),
+        title=_(u"Use Reader local role"),
         description=_(u"If checked, the message will be shown only to users having local role 'Reader'"),
         default=False,
     )
