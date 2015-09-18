@@ -191,6 +191,7 @@ class MessageIntegrationTest(unittest.TestCase):
 
     def test_required_roles_permissions(self):
         viewlet = self._set_viewlet()
+        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
         # Sets the required role to 'Authenticated' to message 1
         self.messages[0].required_roles = set(['Authenticated'])
         # Checks that we still see all messages as we are authenticated
@@ -198,3 +199,11 @@ class MessageIntegrationTest(unittest.TestCase):
         logout()
         # Checks that an anonymous user can't see anymore the restricted one.
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2])))
+
+    def test_getAllMessages_local_roles(self):
+        viewlet = self._set_viewlet()
+        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
+        self.messages[0].use_local_roles = True
+        self.assertEqual(len(viewlet.getAllMessages()), 2)
+        self.messages[0].manage_setLocalRoles(TEST_USER_ID, ['Reader'])
+        self.assertEqual(len(viewlet.getAllMessages()), 3)

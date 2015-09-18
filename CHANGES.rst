@@ -10,6 +10,8 @@ Changelog
   [sgeulette]
 - Updated default messages
   [sgeulette]
+- Added local roles test
+  [sgeulette]
 
 
 0.5 (2015-09-14)

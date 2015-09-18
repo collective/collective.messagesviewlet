@@ -53,7 +53,7 @@ class MessagesViewlet(ViewletBase):
             if not evaluateExpressionFor(obj, extra_expr_ctx={'context': self.context}):
                 continue
             # We check the local roles
-            if obj.use_local_roles and not api.user.is_anonymous() and not 'Reader' in api.user.get_roles(obj=obj):
+            if obj.use_local_roles and not api.user.is_anonymous() and 'Reader' not in api.user.get_roles(obj=obj):
                 continue
             messages.append(obj)
 
