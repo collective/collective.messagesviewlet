@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.6 (unreleased)
+0.6 (2015-09-18)
 ----------------
 
 - Simplify workflow. Only one activated state. Unrestricted search results before filtering.
