@@ -5,7 +5,8 @@ Changelog
 0.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Corrected and added icon type images.
+  [sgeulette]
 
 
 0.6 (2015-09-18)
