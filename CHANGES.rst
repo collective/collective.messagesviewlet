@@ -6,6 +6,7 @@ Changelog
 ----------------
 
 - Give context to translate method.
+  [sgeulette]
 - Corrected and added icon type images.
   [sgeulette]
 
