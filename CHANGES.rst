@@ -5,7 +5,8 @@ Changelog
 0.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Give context to translate method.
+  [sgeulette]
 
 
 0.6 (2015-09-18)
