@@ -4,7 +4,7 @@
   <property name="title" i18n:translate="">MessagesConfig</property>
   <property name="description"
     i18n:translate="Folder containing viewlet messages."></property>
-  <property name="icon_expr"></property>
+  <property name="icon_expr">string:${portal_url}/folder_icon.png</property>
   <property name="factory">MessagesConfig</property>
   <property name="add_view_expr">string:${folder_url}/++add++MessagesConfig</property>
   <property name="link_target"></property>

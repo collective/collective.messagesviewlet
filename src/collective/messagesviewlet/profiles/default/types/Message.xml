@@ -4,7 +4,7 @@
   <property name="title" i18n:translate="">Message</property>
   <property name="description"
     i18n:translate="Message to be displayed in a viewlet."></property>
-  <property name="icon_expr">string:$portal_url/++resource++collective.messagesviewlet/message-icon.png</property>
+  <property name="icon_expr">string:${portal_url}/++resource++collective.messagesviewlet/message-icon.png</property>
   <property name="factory">Message</property>
   <property name="add_view_expr">string:${folder_url}/++add++Message</property>
   <property name="link_target"></property>
