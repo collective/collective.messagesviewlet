@@ -34,12 +34,12 @@ class MessagesViewlet(ViewletBase):
                                                    sort_on='getObjPositionInParent')
         messages = []
         for brain in brains:
-            if brain.location == 'homepage':
+            obj = brain._unrestrictedGetObject()
+            if obj.location == 'homepage':
                 # Test if context is PloneSite or its default page
                 if not IPloneSiteRoot.providedBy(self.context) and \
                         not isDefaultPage(self.portal, self.context):
                     continue
-            obj = brain._unrestrictedGetObject()
             # check in the cookie if message is marked as read
             if obj.can_hide:
                 m_uids = self.request.get('messagesviewlet', '')
