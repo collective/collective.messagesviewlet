@@ -1,6 +1,6 @@
 .. image:: https://travis-ci.org/collective/collective.messagesviewlet.svg?branch=master
     :target: https://travis-ci.org/collective/collective.messagesviewlet
-.. image:: https://coveralls.io/repos/collective/collective.messagesviewlet/badge.svg?branch=master&service=github
+.. image:: https://coveralls.io/repos/collective/collective.messagesviewlet/badge.svg?branch=master
   :target: https://coveralls.io/github/collective/collective.messagesviewlet?branch=master
 
 
