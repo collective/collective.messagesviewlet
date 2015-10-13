@@ -14,7 +14,7 @@ script:
   - bin/createcoverage run bin/test
 
 after_success:
-  - pip install -q coveralls
+  - pip install coveralls==0.5
   - coveralls
 
 notifications:
