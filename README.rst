@@ -1,7 +1,7 @@
-.. image:: https://travis-ci.org/IMIO/collective.messagesviewlet.svg?branch=master
-    :target: https://travis-ci.org/IMIO/collective.messagesviewlet
-.. image:: https://coveralls.io/repos/IMIO/collective.messagesviewlet/badge.svg?branch=master&service=github
-  :target: https://coveralls.io/github/IMIO/collective.messagesviewlet?branch=master
+.. image:: https://travis-ci.org/collective/collective.messagesviewlet.svg?branch=master
+    :target: https://travis-ci.org/collective/collective.messagesviewlet
+.. image:: https://coveralls.io/repos/collective/collective.messagesviewlet/badge.svg?branch=master&service=github
+  :target: https://coveralls.io/github/collective/collective.messagesviewlet?branch=master
 
 
 .. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
