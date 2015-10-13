@@ -5,9 +5,10 @@
     i18n_domain="collective.messagesviewlet">
 
   <!-- Publish static files -->
-  <browser:resourceDirectory
+  <plone:static
       name="collective.messagesviewlet"
       directory="static"
+      type="plone"
       />
 
     <browser:viewlet
