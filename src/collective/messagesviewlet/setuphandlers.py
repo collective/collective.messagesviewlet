@@ -33,7 +33,7 @@ def add_default_messages(context):
         return
     site = context.getSite()
     add_message('maintenance-soon', _('maintenance_soon_tit', context=site), _('maintenance_soon_txt', context=site),
-                msg_type='significant', can_hide=True, req_roles=['Member'])
+                msg_type='significant', can_hide=True, req_roles=['Authenticated'])
     add_message('maintenance-now', _('maintenance_now_tit', context=site), _('maintenance_now_txt', context=site),
                 msg_type='warning', can_hide=False, req_roles=['Anonymous'])
     add_message('test-site', _('test_site_tit', context=site), _('test_site_txt', context=site),
