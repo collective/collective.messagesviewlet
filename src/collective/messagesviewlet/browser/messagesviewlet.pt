@@ -3,9 +3,6 @@
      tal:condition= "messages"
      i18n:domain="collective.messagesviewlet">
 
-	<script src="++resource++collective.messagesviewlet/js.cookie-2.0.3.min.js"></script>
-	<script src="++resource++collective.messagesviewlet/hidemessageviewlet.js"></script>
-
     <tal:message repeat="message messages">
         <dl tal:attributes="class python:'messagesviewlet-' + message.msg_type;
 		                    id message/hidden_uid">
