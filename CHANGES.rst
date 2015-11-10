@@ -5,6 +5,8 @@ Changelog
 0.7 (unreleased)
 ----------------
 
+- Do not pass a default 'context' in utils._ to avoid strange ConnectionStateError.
+  [gbastien] 
 - Give context to translate method.
   [sgeulette]
 - Corrected and added icon type images.

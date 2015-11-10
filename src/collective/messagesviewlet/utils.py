@@ -7,7 +7,7 @@ from plone.app.textfield.value import RichTextValue
 from message import generate_uid
 
 
-def _(msgid, context=api.portal.getSite(), domain='collective.messagesviewlet'):
+def _(msgid, context, domain='collective.messagesviewlet'):
     translation_domain = queryUtility(ITranslationDomain, domain)
     return translation_domain.translate(msgid, context=context.REQUEST)
 
