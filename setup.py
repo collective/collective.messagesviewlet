@@ -19,7 +19,7 @@ long_description = (
 
 setup(
     name='collective.messagesviewlet',
-    version='0.7',
+    version='0.8.dev0',
     description="Add-on displaying manager defined messages in a viewlet",
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
