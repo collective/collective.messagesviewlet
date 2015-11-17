@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.7 (unreleased)
+0.7 (2015-11-17)
 ----------------
 
 - Do not pass a default 'context' in utils._ to avoid strange ConnectionStateError.
