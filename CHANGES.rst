@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.8 (unreleased)
+0.8 (2016-01-18)
 ----------------
 
 - Added parameter 'activate' to utils.add_message that makes it possible to create
