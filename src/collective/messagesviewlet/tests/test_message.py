@@ -3,8 +3,6 @@ import unittest
 
 from DateTime import DateTime
 
-from Products.CMFCore.utils import getToolByName
-
 from zope.component import queryUtility
 from zope.component import createObject
 
@@ -17,6 +15,8 @@ from plone import api
 
 from collective.messagesviewlet.browser.messagesviewlet import MessagesViewlet
 from collective.messagesviewlet.message import IMessage
+from collective.messagesviewlet.message import location
+from collective.messagesviewlet.message import msg_types
 from collective.messagesviewlet.testing import COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING  # noqa
 from collective.messagesviewlet.utils import add_message
 
@@ -28,8 +28,7 @@ class MessageIntegrationTest(unittest.TestCase):
     def _changeUser(self, loginName):
         logout()
         login(self.portal, loginName)
-        membershipTool = getToolByName(self.portal, 'portal_membership')
-        self.member = membershipTool.getAuthenticatedMember()
+        self.member = api.user.get_current()
         self.portal.REQUEST['AUTHENTICATED_USER'] = self.member
 
     def _set_viewlet(self):
@@ -44,9 +43,9 @@ class MessageIntegrationTest(unittest.TestCase):
 
     def setUp(self):
         """Custom shared utility setup for tests."""
-        self.message_types = ["info", "significant", "warning"]
         self.isHidden = [True, True, False]
         self.portal = self.layer['portal']
+        self.message_types = [term.token for term in msg_types(self.portal)._terms]
         # The products build the "special" folder "messages-config" to store messages.
         self.message_config_folder = self.portal["messages-config"]
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
@@ -140,6 +139,8 @@ class MessageIntegrationTest(unittest.TestCase):
     def test_getAllMessages_location(self):
         viewlet = self._set_viewlet()
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
+        locations = [term.token for term in location(self.portal)._terms]
+        self.assertEquals(locations, ['fullsite', 'homepage'])
         message = self.messages[2]
         message.location = "homepage"
         message.reindexObject()

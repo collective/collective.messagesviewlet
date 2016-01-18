@@ -5,7 +5,8 @@ Changelog
 0.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Increased coverage by using vocabulary methods instead of redefining it in tests.
+  [gbastien]
 
 
 0.8 (2016-01-18)
