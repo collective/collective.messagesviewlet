@@ -5,7 +5,11 @@ Changelog
 0.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added parameter 'activate' to utils.add_message that makes it possible to create
+  an 'activated' message directly.
+  [gbastien]
+- Adapted tests to use utils.add_message instead of duplicating this code.
+  [gbastien]
 
 
 0.7 (2015-11-17)

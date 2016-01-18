@@ -20,7 +20,7 @@ def _richtextval(text):
 
 
 def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime.now(), end='', req_roles=[],
-                location='fullsite', tal_condition='', roles_byp_talcond=[], use_local_roles=False):
+                location='fullsite', tal_condition='', roles_byp_talcond=[], use_local_roles=False, activate=False):
     """
         Add a message in the configuration folder
             msg_type: info, significant, warning
@@ -38,9 +38,12 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
         end_date = datetime.strptime(end, '%Y%m%d-%H%M')
     except ValueError:
         end_date = None
-    api.content.create(container=config, type='Message', id=id, title=title,
-                       **{'msg_type': msg_type, 'text': rich_text, 'can_hide': can_hide,
-                          'start': start, 'end': end_date, 'required_roles': req_roles,
-                          'location': location, 'hidden_uid': generate_uid(),
-                          'tal_condition': tal_condition, 'roles_bypassing_talcondition': roles_byp_talcond,
-                          'use_local_roles': use_local_roles})
+    message = api.content.create(container=config, type='Message', id=id, title=title,
+                                 **{'msg_type': msg_type, 'text': rich_text, 'can_hide': can_hide,
+                                    'start': start, 'end': end_date, 'required_roles': req_roles,
+                                    'location': location, 'hidden_uid': generate_uid(),
+                                    'tal_condition': tal_condition, 'roles_bypassing_talcondition': roles_byp_talcond,
+                                    'use_local_roles': use_local_roles})
+    if activate:
+        api.content.transition(message, 'activate')
+    return message

@@ -1,4 +1,6 @@
 # -*- coding: utf-8 -*-
+import unittest
+
 from DateTime import DateTime
 
 from Products.CMFCore.utils import getToolByName
@@ -10,40 +12,18 @@ from plone.app.testing import TEST_USER_ID
 from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
-from plone.app.textfield.value import RichTextValue
 from plone.dexterity.interfaces import IDexterityFTI
 from plone import api
 
-from collective.behavior.talcondition.behavior import ITALCondition
 from collective.messagesviewlet.browser.messagesviewlet import MessagesViewlet
 from collective.messagesviewlet.message import IMessage
 from collective.messagesviewlet.testing import COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING  # noqa
-
-import unittest2 as unittest
+from collective.messagesviewlet.utils import add_message
 
 
 class MessageIntegrationTest(unittest.TestCase):
 
     layer = COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING
-
-    def _createMessage(self, title, text, msg_type="info", location="fullsite", can_hide=True,
-                       start_date=DateTime() - 1, end_date=DateTime() + 1,
-                       tal_condition="python:True", roles_bypassing_talcondition=[]):
-        """Method to create one message"""
-        message = api.content.create(
-            type="Message",
-            title=title,
-            text=RichTextValue(raw=text, mimeType='text/html', outputMimeType='text/html', encoding='utf-8'),
-            msg_type=msg_type,
-            location=location,
-            can_hide=can_hide,
-            start=start_date,
-            end=end_date,
-            container=self.message_config_folder,
-        )
-        ITALCondition(message).tal_condition = tal_condition
-        ITALCondition(message).roles_bypassing_talcondition = roles_bypassing_talcondition
-        self.messages.append(message)
 
     def _changeUser(self, loginName):
         logout()
@@ -78,10 +58,12 @@ class MessageIntegrationTest(unittest.TestCase):
             title = 'message%d' % (i + 1)
             text = "<p>This is test message number %d...</p>"\
                    "<p>self-destruction programmed at the end of this test.</p>" % (i + 1)
-            self._createMessage(title=title,
-                                text=text,
-                                msg_type=self.message_types[i],
-                                can_hide=self.isHidden[i])
+            message = add_message(id=title,
+                                  title=title,
+                                  text=text,
+                                  msg_type=self.message_types[i],
+                                  can_hide=self.isHidden[i])
+            self.messages.append(message)
 
     def test_schema(self):
         fti = queryUtility(IDexterityFTI, name='Message')
