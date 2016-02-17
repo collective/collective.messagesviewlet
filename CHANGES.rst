@@ -7,7 +7,8 @@ Changelog
 
 - Increased coverage by using vocabulary methods instead of redefining it in tests.
   [gbastien]
-
+- Added new example message: bad browser (not Firefox) warning
+  [sgeulette]
 
 0.8 (2016-01-18)
 ----------------

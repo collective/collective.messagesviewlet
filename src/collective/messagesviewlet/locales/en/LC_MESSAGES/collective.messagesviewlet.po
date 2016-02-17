@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-18 10:12+0000\n"
+"POT-Creation-Date: 2016-02-17 13:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,6 +103,14 @@ msgstr ""
 msgid "Use Reader local role"
 msgstr ""
 
+#: ../setuphandlers.py:41
+msgid "bad_browser_tit"
+msgstr "Bad browser"
+
+#: ../setuphandlers.py:41
+msgid "bad_browser_txt"
+msgstr "To use correctly this application, you have to use the browser <a href=\"http://www.getfirefox.com\">Firefox <img src=\"../++resource++collective.messagesviewlet/firefox-24.png\" /></a>"
+
 #: ../browser/messagesviewlet.pt:16
 msgid "close_alt"
 msgstr "Green check"
@@ -115,19 +123,19 @@ msgstr "Hide this message"
 msgid "info"
 msgstr "Information"
 
-#: ../setuphandlers.py:36
+#: ../setuphandlers.py:37
 msgid "maintenance_now_tit"
 msgstr "Imminent maintenance"
 
-#: ../setuphandlers.py:36
+#: ../setuphandlers.py:37
 msgid "maintenance_now_txt"
 msgstr "From 1pm to 3pm : Site unavailable for maintenance !"
 
-#: ../setuphandlers.py:34
+#: ../setuphandlers.py:35
 msgid "maintenance_soon_tit"
 msgstr "Scheduled maintenance"
 
-#: ../setuphandlers.py:34
+#: ../setuphandlers.py:35
 msgid "maintenance_soon_txt"
 msgstr "Friday 25 september, from 1pm to 3pm : Site unavailable for maintenance."
 
@@ -135,11 +143,11 @@ msgstr "Friday 25 september, from 1pm to 3pm : Site unavailable for maintenance.
 msgid "significant"
 msgstr "Significant"
 
-#: ../setuphandlers.py:38
+#: ../setuphandlers.py:39
 msgid "test_site_tit"
 msgstr "Test site"
 
-#: ../setuphandlers.py:38
+#: ../setuphandlers.py:39
 msgid "test_site_txt"
 msgstr "THIS IS A TEST SITE. ALL ENCODED DATA WILL BE LOST !"
 

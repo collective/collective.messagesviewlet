@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-18 10:12+0000\n"
+"POT-Creation-Date: 2016-02-17 13:21+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,7 +103,15 @@ msgid "Title"
 msgstr ""
 
 #: ../message.py:93
-msgid "Use Reader local roles"
+msgid "Use Reader local role"
+msgstr ""
+
+#: ../setuphandlers.py:41
+msgid "bad_browser_tit"
+msgstr ""
+
+#: ../setuphandlers.py:41
+msgid "bad_browser_txt"
 msgstr ""
 
 #: ../browser/messagesviewlet.pt:16
@@ -118,19 +126,19 @@ msgstr ""
 msgid "info"
 msgstr ""
 
-#: ../setuphandlers.py:36
+#: ../setuphandlers.py:37
 msgid "maintenance_now_tit"
 msgstr ""
 
-#: ../setuphandlers.py:36
+#: ../setuphandlers.py:37
 msgid "maintenance_now_txt"
 msgstr ""
 
-#: ../setuphandlers.py:34
+#: ../setuphandlers.py:35
 msgid "maintenance_soon_tit"
 msgstr ""
 
-#: ../setuphandlers.py:34
+#: ../setuphandlers.py:35
 msgid "maintenance_soon_txt"
 msgstr ""
 
@@ -138,11 +146,11 @@ msgstr ""
 msgid "significant"
 msgstr ""
 
-#: ../setuphandlers.py:38
+#: ../setuphandlers.py:39
 msgid "test_site_tit"
 msgstr ""
 
-#: ../setuphandlers.py:38
+#: ../setuphandlers.py:39
 msgid "test_site_txt"
 msgstr ""
 
