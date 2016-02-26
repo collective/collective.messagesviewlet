@@ -47,7 +47,7 @@ setup(
         'plone.api',
         'plone.app.dexterity',
         'plone.app.lockingbehavior',
-        'plone.formwidget.datetime',
+        'plone.formwidget.datetime >= 1.3',
         'setuptools',
     ],
     extras_require={
