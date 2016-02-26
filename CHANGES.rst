@@ -9,6 +9,8 @@ Changelog
   [gbastien]
 - Added new example message: bad browser (not Firefox) warning
   [sgeulette]
+- Use plone.formwidget.datetime to have hour at 0 by default.
+  [sgeulette]
 
 0.8 (2016-01-18)
 ----------------
