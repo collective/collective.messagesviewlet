@@ -9,7 +9,6 @@ install:
   - bin/buildout -Nc travis.cfg
 
 script:
-  - bin/code-analysis
   - bin/test
   - bin/createcoverage run bin/test
 
