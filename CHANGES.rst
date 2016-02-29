@@ -11,6 +11,8 @@ Changelog
   [sgeulette]
 - Use plone.formwidget.datetime to have hour at 0 by default.
   [sgeulette]
+- CSS fix : display 'cursor: pointer;' when hovering the close button.
+  [gbastien]
 
 0.8 (2016-01-18)
 ----------------

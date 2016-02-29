@@ -58,6 +58,7 @@ dl.messagesviewlet-significant dd{
 .close-button {
     float: right;
     margin-top: -28px;
+    cursor: pointer;
 }
 
 /*Colorization of the workflow states in the folder and in the menu.*/
