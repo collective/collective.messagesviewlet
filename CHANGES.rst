@@ -13,6 +13,8 @@ Changelog
   [sgeulette]
 - CSS fix : display 'cursor: pointer;' when hovering the close button.
   [gbastien]
+- Added 'MessagesConfig' to site_properties.types_not_searched.
+  [gbastien]
 
 0.8 (2016-01-18)
 ----------------
