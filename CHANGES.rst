@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.9 (unreleased)
+0.9 (2016-03-30)
 ----------------
 
 - Increased coverage by using vocabulary methods instead of redefining it in tests.
