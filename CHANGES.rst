@@ -16,6 +16,7 @@ Changelog
 - Added 'MessagesConfig' to site_properties.types_not_searched.
   [gbastien]
 
+
 0.8 (2016-01-18)
 ----------------
 
