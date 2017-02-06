@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.10 (unreleased)
+0.10 (2017-02-06)
 -----------------
 
 - Use INavigationRoot instead of IPloneSiteRoot to check if context is homepage.
