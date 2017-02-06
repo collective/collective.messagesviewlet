@@ -4,8 +4,8 @@ from DateTime import DateTime
 
 from plone import api
 from plone.app.layout.navigation.defaultpage import isDefaultPage
+from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
-from Products.CMFPlone.interfaces.siteroot import IPloneSiteRoot
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
 from collective.behavior.talcondition.utils import evaluateExpressionFor
@@ -36,7 +36,7 @@ class MessagesViewlet(ViewletBase):
         for brain in brains:
             if brain.location == 'homepage':
                 # Test if context is PloneSite or its default page
-                if not IPloneSiteRoot.providedBy(self.context) and \
+                if not INavigationRoot.providedBy(self.context) and \
                         not isDefaultPage(self.portal, self.context):
                     continue
             obj = brain._unrestrictedGetObject()
