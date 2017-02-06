@@ -5,13 +5,15 @@ from DateTime import DateTime
 
 from zope.component import queryUtility
 from zope.component import createObject
+from zope.interface import alsoProvides
 
+from plone import api
+from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.dexterity.interfaces import IDexterityFTI
-from plone import api
 
 from collective.messagesviewlet.browser.messagesviewlet import MessagesViewlet
 from collective.messagesviewlet.message import IMessage
@@ -147,6 +149,9 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertEqual(len(viewlet.getAllMessages()), 3)
         viewlet.context = self.message_config_folder
         self.assertEqual(len(viewlet.getAllMessages()), 2)
+        alsoProvides(self.message_config_folder, INavigationRoot)
+        viewlet.context = self.message_config_folder
+        self.assertEqual(len(viewlet.getAllMessages()), 3)
 
     def test_viewlet_rendering(self):
         """
