@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2016-02-17 13:21+0000\n"
+"POT-Creation-Date: 2017-03-16 11:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,11 +103,19 @@ msgstr ""
 msgid "Use Reader local role"
 msgstr ""
 
+#: ../setuphandlers.py:45
+msgid "bad_browser_ff_chrome_tit"
+msgstr ""
+
+#: ../setuphandlers.py:46
+msgid "bad_browser_ff_chrome_txt"
+msgstr ""
+
 #: ../setuphandlers.py:41
 msgid "bad_browser_tit"
 msgstr "Bad browser"
 
-#: ../setuphandlers.py:41
+#: ../setuphandlers.py:42
 msgid "bad_browser_txt"
 msgstr "To use correctly this application, you have to use the browser <a href=\"http://www.getfirefox.com\">Firefox <img src=\"../++resource++collective.messagesviewlet/firefox-24.png\" /></a>"
 
@@ -118,6 +126,10 @@ msgstr "Green check"
 #: ../browser/messagesviewlet.pt:16
 msgid "close_title"
 msgstr "Hide this message"
+
+#: ../utils.py:10
+msgid "collective.messagesviewlet"
+msgstr ""
 
 #: ../message.py:19
 msgid "info"

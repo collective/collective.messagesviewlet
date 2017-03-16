@@ -5,7 +5,10 @@ Changelog
 0.11 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added default message to warn that application only runs correctly on Firefox
+  and Chrome, in addition to the already existing message that warned about the
+  application only running correctly on Firefox.
+  [gbastien]
 
 
 0.10 (2017-02-06)
