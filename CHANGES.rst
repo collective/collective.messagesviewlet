@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.11 (unreleased)
+0.11 (2017-03-16)
 -----------------
 
 - Added default message to warn that application only runs correctly on Firefox
