@@ -23,6 +23,7 @@ def msg_types(context):
     terms.append(SimpleTerm("warning", title=_("warning")))
     return SimpleVocabulary(terms)
 
+
 alsoProvides(msg_types, schema.interfaces.IContextSourceBinder)
 
 
@@ -31,6 +32,7 @@ def location(context):
     terms.append(SimpleTerm("fullsite", title=_("Full site")))
     terms.append(SimpleTerm("homepage", title=_("Homepage")))
     return SimpleVocabulary(terms)
+
 
 alsoProvides(location, schema.interfaces.IContextSourceBinder)
 
