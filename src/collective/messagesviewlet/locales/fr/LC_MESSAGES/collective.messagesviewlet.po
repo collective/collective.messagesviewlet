@@ -129,7 +129,7 @@ msgstr "Cacher ce message"
 
 #: ../utils.py:10
 msgid "collective.messagesviewlet"
-msgstr ""
+msgstr "collective.messagesviewlet"
 
 #: ../message.py:19
 msgid "info"
