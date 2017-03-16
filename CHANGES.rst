@@ -9,6 +9,13 @@ Changelog
   and Chrome, in addition to the already existing message that warned about the
   application only running correctly on Firefox.
   [gbastien]
+- Use CheckBoxWidget for IMessage.required_roles` to ease selection when
+  displaying several elements.
+  [gbastien]
+- Use RadioFieldWidget for Bool fields `IMessage.can_hide` and
+  `IMessage.use_local_roles` so it is displayed correctly on the view,
+  especially when it is False.
+  [gbastien]
 
 
 0.10 (2017-02-06)
