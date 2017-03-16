@@ -199,4 +199,5 @@ class MessageIntegrationTest(unittest.TestCase):
     def test_examples_profile(self):
         self.portal.portal_setup.runImportStepFromProfile('profile-collective.messagesviewlet:messages',
                                                           'collective-messagesviewlet-messages')
-        self.assertEqual(len(self.portal.portal_catalog(portal_type='Message')), 7)
+        self.assertEqual(len(self.portal.portal_catalog(portal_type='Message')), 8)
+
