@@ -5,7 +5,7 @@
 
 	<script src="++resource++collective.messagesviewlet/js.cookie-2.0.3.min.js"></script>
 	<script src="++resource++collective.messagesviewlet/hidemessageviewlet.js"></script>
-
+  <tal:def define="portal_url context/@@plone_portal_state/portal_url;">
     <tal:message repeat="message messages">
         <dl tal:attributes="class python:'messagesviewlet-' + message.msg_type;
 		                    id message/hidden_uid">
@@ -15,11 +15,11 @@
             </dd>
 			<img tal:condition="message/can_hide"
 				 class="close-button"
-				 src="pb_close.png" 
+				 tal:attributes="src string:${portal_url}/pb_close.png"
 				 i18n:attributes='alt close_alt;
 								  title close_title'
 			/>
         </dl>
     </tal:message>
-
+  </tal:def>
 </div>

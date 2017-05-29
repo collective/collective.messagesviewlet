@@ -5,8 +5,8 @@ Changelog
 0.12 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Corrected image path.
+  [sgeulette]
 
 0.11 (2017-03-16)
 -----------------
