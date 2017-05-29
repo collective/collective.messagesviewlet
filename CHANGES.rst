@@ -7,6 +7,8 @@ Changelog
 
 - Corrected image path.
   [sgeulette]
+- Decrease space between messages
+  [sgeulette]
 
 0.11 (2017-03-16)
 -----------------

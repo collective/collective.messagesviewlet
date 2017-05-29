@@ -14,7 +14,7 @@ dl.messagesviewlet-significant{
     border: 1px solid #996;
     clear: both;
     font-size: 80%;
-    margin: 1em 0;  
+    margin: 0.5em 0;
 }
 dl.messagesviewlet-info {
     background-color: #ffffe3;
