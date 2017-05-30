@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.12 (unreleased)
+0.12 (2017-05-30)
 -----------------
 
 - Corrected image path.
