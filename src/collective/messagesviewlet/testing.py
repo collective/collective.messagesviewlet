@@ -9,6 +9,7 @@ from plone.testing import z2
 from plone import api
 
 import collective.messagesviewlet
+IS_PLONE_5 = api.env.plone_version().startswith('5')
 
 
 class CollectiveMessagesviewletLayer(PloneSandboxLayer):
@@ -19,7 +20,10 @@ class CollectiveMessagesviewletLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.messagesviewlet)
 
     def setUpPloneSite(self, portal):
-        applyProfile(portal, 'collective.messagesviewlet:default')
+        if IS_PLONE_5:
+            applyProfile(portal, 'collective.messagesviewlet:plone5')
+        else:
+            applyProfile(portal, 'collective.messagesviewlet:plone4')
         api.user.create(email='test@imio.be', username='test')
         api.user.grant_roles(username='test', roles=['Site Administrator'])
 

@@ -7,6 +7,9 @@ Changelog
 
 - Call JS on portal_url so it can be cached by the browser.
   [gbastien]
+- Tests on Plone5 and Plone4.
+  [bsuttor]
+
 
 0.12 (2017-05-30)
 -----------------
