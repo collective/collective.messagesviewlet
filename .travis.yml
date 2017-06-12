@@ -13,9 +13,8 @@ env:
 matrix:
   fast_finish: true
 install:
-  - sed -ie "s#travis-5.x#travis-$PLONE_VERSION.x#" travis.cfg
   - sed -ie "s#5-latest#$PLONE_VERSION-latest#" buildout.cfg
-  - python bootstrap-buildout.py --version=2.5.3 -c travis.cfg
+  - python bootstrap-buildout.py --version=2.5.3
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True buildout:test-eggs=$TEST_EGGS annotate
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True buildout:test-eggs=$TEST_EGGS
 before_script:
