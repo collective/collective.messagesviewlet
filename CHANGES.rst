@@ -5,7 +5,8 @@ Changelog
 0.13 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Tests on Plone5 and Plone4.
+  [bsuttor]
 
 
 0.12 (2017-05-30)

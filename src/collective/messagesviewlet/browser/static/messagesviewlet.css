@@ -1,0 +1,87 @@
+.warning-formHelp {
+    color: orange;
+}
+
+.portaltype-messagesconfig #contentview-folderContents,
+.portaltype-messagesconfig #contentview-edit,
+.portaltype-messagesconfig #contentview-local_roles {
+    display: none;
+}
+
+dl.messagesviewlet-info,
+dl.messagesviewlet-warning,
+dl.messagesviewlet-significant{
+    border: 1px solid #996;
+    clear: both;
+    font-size: 80%;
+    margin: 0.5em 0;
+}
+dl.messagesviewlet-info {
+    background-color: #ffffe3;
+}
+dl.messagesviewlet-significant {
+    background-color: #fd7;
+}
+dl.messagesviewlet-warning {
+    background-color: #fdc;
+}
+
+dl.messagesviewlet-info dt,
+dl.messagesviewlet-warning dt,
+dl.messagesviewlet-significant dt{
+    width: 85px;
+    color: White;
+    float: left;
+    font-weight: bold;
+    line-height: 1.25em;
+    margin: 0 0.5em 0 0;
+    padding: 0.5em 0.75em;
+}
+dl.messagesviewlet-info dt{
+    background-color: #996;
+}
+dl.messagesviewlet-significant dt{
+    background-color: #d80;
+}
+dl.messagesviewlet-warning dt{
+    background-color: #d00;
+}
+
+dl.messagesviewlet-info dd,
+dl.messagesviewlet-warning dd,
+dl.messagesviewlet-significant dd{
+    line-height: 1.25em;
+    margin: 0 25px 0 110px;
+    padding: 0.5em;
+}
+
+.close-button {
+    float: right;
+    margin-top: -28px;
+    cursor: pointer;
+}
+
+/*Colorization of the workflow states in the folder and in the menu.*/
+.state-inactive {
+ color: red !important;
+}
+
+#plone-contentmenu-workflow .state-inactive {
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    background-color: red;
+    padding: 0 0.5em;
+    color: white !important;
+    border: 2px solid red;
+}
+
+.state-activated {
+ color: blue !important;
+}
+
+#plone-contentmenu-workflow .state-activated {
+    border-radius: 0.5em 0.5em 0.5em 0.5em;
+    background-color: blue;
+    padding: 0 0.5em;
+    color: white !important;
+    border: 2px solid blue;
+}
