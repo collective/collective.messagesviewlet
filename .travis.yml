@@ -6,9 +6,9 @@ python:
   - 2.7
 sudo: false
 env:
-  - PLONE_VERSION=4.3 TEST_EGGS=collective.messageviewlet[plone4]
-  - PLONE_VERSION=5.0 TEST_EGGS=collective.messageviewlet[plone5]
-  - PLONE_VERSION=5.1 TEST_EGGS=collective.messageviewlet[plone5]
+  - PLONE_VERSION=4.3 TEST_EGGS=collective.messagesviewlet [plone4]
+  - PLONE_VERSION=5.0 TEST_EGGS=collective.messagesviewlet [plone5]
+  - PLONE_VERSION=5.1 TEST_EGGS=collective.messagesviewlet [plone5]
 
 install:
   - mkdir -p buildout-cache/{eggs,downloads}
