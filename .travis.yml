@@ -10,8 +10,6 @@ env:
   - PLONE_VERSION=4.3 TEST_EGGS=collective.messagesviewlet [plone4]
   - PLONE_VERSION=5.0 TEST_EGGS=collective.messagesviewlet [plone5]
   - PLONE_VERSION=5.1 TEST_EGGS=collective.messagesviewlet [plone5]
-matrix:
-  fast_finish: true
 install:
   - sed -ie "s#5-latest#$PLONE_VERSION-latest#" buildout.cfg
   - python bootstrap-buildout.py --version=2.5.3
@@ -26,7 +24,7 @@ script:
   - bin/createcoverage run bin/test
 after_success:
   - bin/createcoverage
-  - pip install coveralls==0.5
+  - pip install coveralls
   - coveralls
 notifications:
   email:
