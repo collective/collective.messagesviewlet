@@ -15,7 +15,7 @@ cache:
 
 install:
   - mkdir -p buildout-cache/{eggs,downloads}
-  - sed -ie "s#/travis-5.x#travis-$PLONE_VERSION#" travis.cfg
+  - sed -ie "s#travis-5.x#travis-$PLONE_VERSION#" travis.cfg
   - sed -ie "s#5-latest#$PLONE_VERSION#" buildout.cfg
   - python bootstrap-buildout.py --version=2.5.3 -c travis.cfg
   - bin/buildout -Nc travis.cfg buildout:test-eggs=$TEST_EGGS annotate
