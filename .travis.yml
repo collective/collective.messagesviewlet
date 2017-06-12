@@ -5,11 +5,10 @@ python:
 
 install:
   - mkdir -p buildout-cache/{eggs,downloads}
-  - python bootstrap-buildout.py -c travis.cfg
+  - python bootstrap-buildout.py --version=2.5.3 -c travis.cfg
   - bin/buildout -Nc travis.cfg
 
 script:
-  - bin/code-analysis
   - bin/test
   - bin/createcoverage run bin/test
 

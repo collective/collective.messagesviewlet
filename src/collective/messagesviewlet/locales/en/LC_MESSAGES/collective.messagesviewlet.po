@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2015-09-18 10:12+0000\n"
+"POT-Creation-Date: 2017-03-16 11:18+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,92 +16,108 @@ msgstr ""
 
 #: ../message.py:65
 msgid "Can be marked as read"
-msgstr ""
+msgstr "Can be marked as read"
 
 #: ../message.py:87
 msgid "Choose the roles for which the message will be displayed"
-msgstr ""
+msgstr "Choose the roles for which the message will be displayed"
 
 #: ../message.py:78
 msgid "End date"
-msgstr ""
+msgstr "End date"
 
 #: ../message.py:61
 msgid "Following the type, the color will be different"
-msgstr ""
+msgstr "Following the type, the color will be different"
 
 #: ../message.py:29
 msgid "Full site"
-msgstr ""
+msgstr "Full site"
 
 #: ../message.py:30
 msgid "Homepage"
-msgstr ""
+msgstr "Homepage"
 
 #: ../message.py:94
 msgid "If checked, the message will be shown only to users having message local role 'Reader'"
-msgstr ""
+msgstr "If checked, the message will be shown only to users having message local role 'Reader'"
 
 #: ../message.py:66
 msgid "If checked, the user can hide the message"
-msgstr ""
+msgstr "If checked, the user can hide the message"
 
 #: ../message.py:99
 msgid "Location"
-msgstr ""
+msgstr "Location"
 
 #: ../profiles/default/types/Message.xml
 msgid "Message"
-msgstr ""
+msgstr "Message"
 
 #: ../message.py:54
 msgid "Message text"
-msgstr ""
+msgstr "Message text"
 
 #: ../message.py:58
 msgid "Message type"
-msgstr ""
+msgstr "Message type"
 
 #: ../profiles/default/controlpanel.xml
 #: ../setuphandlers.py:23
 msgid "Messages viewlet settings"
-msgstr ""
+msgstr "Messages viewlet settings"
 
 #: ../profiles/default/types/MessagesConfig.xml
 msgid "MessagesConfig"
-msgstr "Messages Config"
+msgstr "Messages Configuration"
 
 #: ../message.py:86
 msgid "Required roles"
-msgstr ""
+msgstr "Required roles"
 
 #: ../message.py:80
 msgid "Specify end date message appearance. If nothing specified, this is infinite. If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"
-msgstr ""
+msgstr "Specify end date message appearance. If nothing specified, this is infinite. If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"
 
 #: ../message.py:72
 msgid "Specify start date message appearance"
-msgstr ""
+msgstr "Specify start date message appearance"
 
 #: ../message.py:70
 msgid "Start date"
-msgstr ""
+msgstr "Start date"
 
 #: ../message.py:52
 msgid "Text"
-msgstr ""
+msgstr "Text"
 
 #: ../message.py:114
 msgid "The start date must precede the end date."
-msgstr ""
+msgstr "The start date must precede the end date."
 
 #: ../message.py:47
 msgid "Title"
-msgstr ""
+msgstr "Title"
 
 #: ../message.py:93
 msgid "Use Reader local role"
-msgstr ""
+msgstr "Use Reader local role"
+
+#: ../setuphandlers.py:45
+msgid "bad_browser_ff_chrome_tit"
+msgstr "Bad browser (support Firefox and Chrome)"
+
+#: ../setuphandlers.py:46
+msgid "bad_browser_ff_chrome_txt"
+msgstr "This application will run correctly when using browsers <a href=\"http://www.getfirefox.com\">Firefox <img src=\"../++resource++collective.messagesviewlet/firefox-24.png\" /></a> or <a href=\"https://www.google.fr/chrome\">Chrome <img src=\"../++resource++collective.messagesviewlet/chrome-24.png\" /></a>"
+
+#: ../setuphandlers.py:41
+msgid "bad_browser_tit"
+msgstr "Bad browser"
+
+#: ../setuphandlers.py:42
+msgid "bad_browser_txt"
+msgstr "To use correctly this application, you have to use the browser <a href=\"http://www.getfirefox.com\">Firefox <img src=\"../++resource++collective.messagesviewlet/firefox-24.png\" /></a>"
 
 #: ../browser/messagesviewlet.pt:16
 msgid "close_alt"
@@ -111,23 +127,27 @@ msgstr "Green check"
 msgid "close_title"
 msgstr "Hide this message"
 
+#: ../utils.py:10
+msgid "collective.messagesviewlet"
+msgstr "collective.messagesviewlet"
+
 #: ../message.py:19
 msgid "info"
 msgstr "Information"
 
-#: ../setuphandlers.py:36
+#: ../setuphandlers.py:37
 msgid "maintenance_now_tit"
 msgstr "Imminent maintenance"
 
-#: ../setuphandlers.py:36
+#: ../setuphandlers.py:37
 msgid "maintenance_now_txt"
 msgstr "From 1pm to 3pm : Site unavailable for maintenance !"
 
-#: ../setuphandlers.py:34
+#: ../setuphandlers.py:35
 msgid "maintenance_soon_tit"
 msgstr "Scheduled maintenance"
 
-#: ../setuphandlers.py:34
+#: ../setuphandlers.py:35
 msgid "maintenance_soon_txt"
 msgstr "Friday 25 september, from 1pm to 3pm : Site unavailable for maintenance."
 
@@ -135,11 +155,11 @@ msgstr "Friday 25 september, from 1pm to 3pm : Site unavailable for maintenance.
 msgid "significant"
 msgstr "Significant"
 
-#: ../setuphandlers.py:38
+#: ../setuphandlers.py:39
 msgid "test_site_tit"
 msgstr "Test site"
 
-#: ../setuphandlers.py:38
+#: ../setuphandlers.py:39
 msgid "test_site_txt"
 msgstr "THIS IS A TEST SITE. ALL ENCODED DATA WILL BE LOST !"
 

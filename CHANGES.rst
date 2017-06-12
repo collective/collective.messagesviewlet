@@ -2,9 +2,73 @@ Changelog
 =========
 
 
-0.7 (unreleased)
+0.13 (unreleased)
+-----------------
+
+- Nothing changed yet.
+
+
+0.12 (2017-05-30)
+-----------------
+
+- Corrected image path.
+  [sgeulette]
+- Decrease space between messages
+  [sgeulette]
+
+0.11 (2017-03-16)
+-----------------
+
+- Added default message to warn that application only runs correctly on Firefox
+  and Chrome, in addition to the already existing message that warned about the
+  application only running correctly on Firefox.
+  [gbastien]
+- Use CheckBoxWidget for IMessage.required_roles` to ease selection when
+  displaying several elements.
+  [gbastien]
+- Use RadioFieldWidget for Bool fields `IMessage.can_hide` and
+  `IMessage.use_local_roles` so it is displayed correctly on the view,
+  especially when it is False.
+  [gbastien]
+
+
+0.10 (2017-02-06)
+-----------------
+
+- Use INavigationRoot instead of IPloneSiteRoot to check if context is homepage.
+  [bsuttor]
+
+
+0.9 (2016-03-30)
 ----------------
 
+- Increased coverage by using vocabulary methods instead of redefining it in tests.
+  [gbastien]
+- Added new example message: bad browser (not Firefox) warning
+  [sgeulette]
+- Use plone.formwidget.datetime to have hour at 0 by default.
+  [sgeulette]
+- CSS fix : display 'cursor: pointer;' when hovering the close button.
+  [gbastien]
+- Added 'MessagesConfig' to site_properties.types_not_searched.
+  [gbastien]
+
+
+0.8 (2016-01-18)
+----------------
+
+- Added parameter 'activate' to utils.add_message that makes it possible to create
+  an 'activated' message directly.
+  [gbastien]
+- Adapted tests to use utils.add_message instead of duplicating this code.
+  [gbastien]
+
+
+0.7 (2015-11-17)
+----------------
+
+- Do not pass a default 'context' in utils._ to avoid strange ConnectionStateError.
+  [gbastien] 
 - Give context to translate method.
   [sgeulette]
 - Corrected and added icon type images.

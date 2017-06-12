@@ -3,6 +3,7 @@
  <object name="site_properties" meta_type="Plone Property Sheet">
   <property name="types_not_searched" type="lines" purge="False">
    <element value="Message"/>
+   <element value="MessagesConfig"/>
   </property>
  </object>
 </object>

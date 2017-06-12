@@ -19,7 +19,7 @@ long_description = (
 
 setup(
     name='collective.messagesviewlet',
-    version='0.7.dev0',
+    version='0.13.dev0',
     description="Add-on displaying manager defined messages in a viewlet",
     long_description=long_description,
     # Get more from http://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -47,7 +47,7 @@ setup(
         'plone.api',
         'plone.app.dexterity',
         'plone.app.lockingbehavior',
-        'plone.formwidget.datetime',
+        'plone.formwidget.datetime >= 1.2',
         'setuptools',
     ],
     extras_require={

@@ -1,55 +1,36 @@
 # -*- coding: utf-8 -*-
-from DateTime import DateTime
+import unittest
 
-from Products.CMFCore.utils import getToolByName
+from DateTime import DateTime
 
 from zope.component import queryUtility
 from zope.component import createObject
+from zope.interface import alsoProvides
 
+from plone import api
+from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.testing import TEST_USER_ID
 from plone.app.testing import login
 from plone.app.testing import logout
 from plone.app.testing import setRoles
-from plone.app.textfield.value import RichTextValue
 from plone.dexterity.interfaces import IDexterityFTI
-from plone import api
 
-from collective.behavior.talcondition.behavior import ITALCondition
 from collective.messagesviewlet.browser.messagesviewlet import MessagesViewlet
 from collective.messagesviewlet.message import IMessage
+from collective.messagesviewlet.message import location
+from collective.messagesviewlet.message import msg_types
 from collective.messagesviewlet.testing import COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING  # noqa
-
-import unittest2 as unittest
+from collective.messagesviewlet.utils import add_message
 
 
 class MessageIntegrationTest(unittest.TestCase):
 
     layer = COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING
 
-    def _createMessage(self, title, text, msg_type="info", location="fullsite", can_hide=True,
-                       start_date=DateTime() - 1, end_date=DateTime() + 1,
-                       tal_condition="python:True", roles_bypassing_talcondition=[]):
-        """Method to create one message"""
-        message = api.content.create(
-            type="Message",
-            title=title,
-            text=RichTextValue(raw=text, mimeType='text/html', outputMimeType='text/html', encoding='utf-8'),
-            msg_type=msg_type,
-            location=location,
-            can_hide=can_hide,
-            start=start_date,
-            end=end_date,
-            container=self.message_config_folder,
-        )
-        ITALCondition(message).tal_condition = tal_condition
-        ITALCondition(message).roles_bypassing_talcondition = roles_bypassing_talcondition
-        self.messages.append(message)
-
     def _changeUser(self, loginName):
         logout()
         login(self.portal, loginName)
-        membershipTool = getToolByName(self.portal, 'portal_membership')
-        self.member = membershipTool.getAuthenticatedMember()
+        self.member = api.user.get_current()
         self.portal.REQUEST['AUTHENTICATED_USER'] = self.member
 
     def _set_viewlet(self):
@@ -64,9 +45,9 @@ class MessageIntegrationTest(unittest.TestCase):
 
     def setUp(self):
         """Custom shared utility setup for tests."""
-        self.message_types = ["info", "significant", "warning"]
         self.isHidden = [True, True, False]
         self.portal = self.layer['portal']
+        self.message_types = [term.token for term in msg_types(self.portal)._terms]
         # The products build the "special" folder "messages-config" to store messages.
         self.message_config_folder = self.portal["messages-config"]
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
@@ -78,10 +59,12 @@ class MessageIntegrationTest(unittest.TestCase):
             title = 'message%d' % (i + 1)
             text = "<p>This is test message number %d...</p>"\
                    "<p>self-destruction programmed at the end of this test.</p>" % (i + 1)
-            self._createMessage(title=title,
-                                text=text,
-                                msg_type=self.message_types[i],
-                                can_hide=self.isHidden[i])
+            message = add_message(id=title,
+                                  title=title,
+                                  text=text,
+                                  msg_type=self.message_types[i],
+                                  can_hide=self.isHidden[i])
+            self.messages.append(message)
 
     def test_schema(self):
         fti = queryUtility(IDexterityFTI, name='Message')
@@ -158,12 +141,17 @@ class MessageIntegrationTest(unittest.TestCase):
     def test_getAllMessages_location(self):
         viewlet = self._set_viewlet()
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
+        locations = [term.token for term in location(self.portal)._terms]
+        self.assertEquals(locations, ['fullsite', 'homepage'])
         message = self.messages[2]
         message.location = "homepage"
         message.reindexObject()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
         viewlet.context = self.message_config_folder
         self.assertEqual(len(viewlet.getAllMessages()), 2)
+        alsoProvides(self.message_config_folder, INavigationRoot)
+        viewlet.context = self.message_config_folder
+        self.assertEqual(len(viewlet.getAllMessages()), 3)
 
     def test_viewlet_rendering(self):
         """
@@ -211,4 +199,5 @@ class MessageIntegrationTest(unittest.TestCase):
     def test_examples_profile(self):
         self.portal.portal_setup.runImportStepFromProfile('profile-collective.messagesviewlet:messages',
                                                           'collective-messagesviewlet-messages')
-        self.assertEqual(len(self.portal.portal_catalog(portal_type='Message')), 6)
+        self.assertEqual(len(self.portal.portal_catalog(portal_type='Message')), 8)
+

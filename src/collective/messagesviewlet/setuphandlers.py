@@ -38,3 +38,12 @@ def add_default_messages(context):
                 msg_type='warning', can_hide=False, req_roles=['Anonymous'])
     add_message('test-site', _('test_site_tit', context=site), _('test_site_txt', context=site),
                 msg_type='warning', can_hide=False)
+    add_message('browser-warning', _('bad_browser_tit', context=site),
+                _('bad_browser_txt', context=site),
+                msg_type='warning', can_hide=False,
+                tal_condition="python:'Firefox' not in context.REQUEST.get('HTTP_USER_AGENT')")
+    add_message('browser-warning-ff-chrome', _('bad_browser_ff_chrome_tit', context=site),
+                _('bad_browser_ff_chrome_txt', context=site),
+                msg_type='warning', can_hide=False,
+                tal_condition="python: 'Firefox' not in context.REQUEST.get('HTTP_USER_AGENT') and "
+                "'Chrome' not in context.REQUEST.get('HTTP_USER_AGENT')")
