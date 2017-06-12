@@ -24,7 +24,7 @@ script:
 
 after_success:
   - bin/createcoverage
-  - pip install coveralls==0.5
+  - pip install coveralls
   - coveralls
 notifications:
   email:
