@@ -2,6 +2,6 @@
 <metadata>
   <version>1000</version>
   <dependencies>
-    <dependency>profile-collective.messagesviewlet:default</dependency>
+    <dependency>profile-collective.messagesviewlet:install-base</dependency>
   </dependencies>
 </metadata>
