@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
+from zope.interface import implementer
 from plone import api
+from Products.CMFPlone import interfaces as Plone
 from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from utils import _, add_message
@@ -25,6 +27,16 @@ def post_install(context):
         excl = IExcludeFromNavigation(container)
         excl.exclude_from_nav = True
         types.getTypeInfo('MessagesConfig').global_allow = False
+
+
+@implementer(Plone.INonInstallable)
+class HiddenProfiles(object):
+
+    def getNonInstallableProfiles(self):
+        """Do not show on Plone's list of installable profiles."""
+        return [
+            u'collective.messagesviewlet:install-base',
+        ]
 
 
 def add_default_messages(context):
