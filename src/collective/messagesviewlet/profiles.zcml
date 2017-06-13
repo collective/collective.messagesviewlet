@@ -40,4 +40,6 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <utility factory=".setuphandlers.HiddenProfiles" name="collective.messagesviewlet" />
+
 </configure>
