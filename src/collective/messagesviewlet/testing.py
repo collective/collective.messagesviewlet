@@ -20,10 +20,7 @@ class CollectiveMessagesviewletLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.messagesviewlet)
 
     def setUpPloneSite(self, portal):
-        if IS_PLONE_5:
-            applyProfile(portal, 'collective.messagesviewlet:plone5')
-        else:
-            applyProfile(portal, 'collective.messagesviewlet:plone4')
+        applyProfile(portal, 'collective.messagesviewlet:default')
         api.user.create(email='test@imio.be', username='test')
         api.user.grant_roles(username='test', roles=['Site Administrator'])
 

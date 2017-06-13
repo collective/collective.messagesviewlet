@@ -7,7 +7,8 @@ Changelog
 
 - Tests on Plone5 and Plone4.
   [bsuttor]
-
+- Manage profiles differently
+  [sgeulette]
 
 0.12 (2017-05-30)
 -----------------
@@ -69,7 +70,7 @@ Changelog
 ----------------
 
 - Do not pass a default 'context' in utils._ to avoid strange ConnectionStateError.
-  [gbastien] 
+  [gbastien]
 - Give context to translate method.
   [sgeulette]
 - Corrected and added icon type images.

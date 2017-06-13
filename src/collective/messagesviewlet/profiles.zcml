@@ -1,14 +1,15 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="collective.messagesviewlet">
 
 <genericsetup:registerProfile
-    name="default"
+    name="install-base"
     title="collective.messagesviewlet installation"
-    directory="profiles/default"
+    directory="profiles/base"
     description="Installs the collective.messagesviewlet add-on."
     provides="Products.GenericSetup.interfaces.EXTENSION"
     />
@@ -22,7 +23,8 @@
     />
 
   <genericsetup:registerProfile
-      name="plone5"
+      zcml:condition="have plone-5"
+      name="default"
       title="collective.messagesviewlet plone5 installation"
       directory="profiles/plone5"
       description="Installs the collective.messagesviewlet add-on on Plone 5."
@@ -30,7 +32,8 @@
       />
 
   <genericsetup:registerProfile
-      name="plone4"
+      zcml:condition="not-have plone-5"
+      name="default"
       title="collective.messagesviewlet plone4 installation"
       directory="profiles/plone4"
       description="Installs the collective.messagesviewlet add-on on Plone 4."
