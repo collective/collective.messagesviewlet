@@ -21,9 +21,8 @@ before_script:
   - firefox -v
 script:
   - bin/test
-  - bin/createcoverage run bin/test
 after_success:
-  - bin/createcoverage
+  - bin/createcoverage --output-dir htmlcov
   - pip install coveralls==0.5
   - coveralls
 notifications:
