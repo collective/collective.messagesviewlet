@@ -11,7 +11,7 @@ cache:
 
 install:
   - mkdir -p buildout-cache/{eggs,downloads}
-  - python bootstrap-buildout.py --version=2.10.0 -c travis.cfg
+  - python bootstrap-buildout.py --version=2.10.0 --setuptools-version=18.8 -c travis.cfg
   - bin/buildout -Nc travis.cfg
 
 script:
