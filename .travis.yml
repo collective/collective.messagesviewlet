@@ -16,7 +16,7 @@ install:
 
 script:
   - bin/test
-  - bin/createcoverage run bin/test
+  - bin/coverage run bin/test
 
 after_success:
   - bin/coverage run bin/test
