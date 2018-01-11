@@ -5,8 +5,8 @@ Changelog
 0.13 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Call JS on portal_url so it can be cached by the browser.
+  [gbastien]
 
 0.12 (2017-05-30)
 -----------------
