@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.13 (unreleased)
+0.13 (2018-06-13)
 -----------------
 
 - Call JS on portal_url so it can be cached by the browser.
