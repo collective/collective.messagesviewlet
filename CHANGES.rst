@@ -7,6 +7,8 @@ Changelog
 
 - Call JS on portal_url so it can be cached by the browser.
   [gbastien]
+- Add <span> around cross <img> to ease override.
+  [mgennart]
 
 0.12 (2017-05-30)
 -----------------
