@@ -5,8 +5,8 @@ Changelog
 0.14 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Generate new uid when message is activated or re-activated.
+  [sgeulette]
 
 0.13 (2018-06-13)
 -----------------
@@ -76,7 +76,7 @@ Changelog
 ----------------
 
 - Do not pass a default 'context' in utils._ to avoid strange ConnectionStateError.
-  [gbastien] 
+  [gbastien]
 - Give context to translate method.
   [sgeulette]
 - Corrected and added icon type images.
