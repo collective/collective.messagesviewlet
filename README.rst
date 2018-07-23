@@ -30,7 +30,7 @@ Multiple messages can be displayed together in the viewlet.
 A message contains the following configuration attributes:
 
 * text : displayed text in the viewlet
-* message type : info, warning, important (different layout in the viewlet)
+* message type : info, significant, warning (different layout in the viewlet)
 * can hide : if checked, the user can hide the message (mark as read)
 * start date : displaying start date (optional)
 * end date : displaying end date (optional)
