@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.14 (unreleased)
+0.14 (2018-07-23)
 -----------------
 
 - Generate new uid when message is activated or re-activated.
