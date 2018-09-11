@@ -1,5 +1,6 @@
 <?xml version="1.0"?>
 <registry>
+
   <records prefix="plone.resources/messagesviewlet"
            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
     <value key="js">++plone++collective.messagesviewlet/hidemessageviewlet.js</value>
@@ -8,11 +9,14 @@
       <element>++plone++collective.messagesviewlet/messagesviewlet.less</element>
     </value>
   </records>
+
   <records prefix="plone.bundles/messagesviewlet"
            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
-    <value key="resources">
+    <value key="resources" purge="false">
       <element>messagesviewlet</element>
     </value>
     <value key="enabled">True</value>
+    <value key="csscompilation">++plone++collective.messagesviewlet/messagesviewlet.min.css</value>
+    <value key="last_compilation">2018-09-11 10:00:00</value>
   </records>
 </registry>
