@@ -4,7 +4,7 @@ from message import generate_uid
 
 def change_hidden_uid(message, event):
     """
-        Generate a new uid if the message is deactivated
+        Generate a new uid if the message is activated
     """
-    if event.action == 'deactivate':
+    if event.action == 'activate':
         message.hidden_uid = generate_uid()

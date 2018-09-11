@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.13 (unreleased)
+0.15 (unreleased)
 -----------------
 
 - Call JS on portal_url so it can be cached by the browser.
@@ -11,6 +11,19 @@ Changelog
   [bsuttor]
 - Manage profiles differently
   [sgeulette]
+
+
+0.14 (2018-07-23)
+-----------------
+
+- Generate new uid when message is activated or re-activated.
+  [sgeulette]
+
+0.13 (2018-06-13)
+-----------------
+
+- Add <span> around cross <img> to ease override.
+  [mgennart]
 
 0.12 (2017-05-30)
 -----------------
