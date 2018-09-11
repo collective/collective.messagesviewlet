@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<layers>
+  <layer
+      name="collective.messagesviewlet"
+      interface="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer" remove="True" />
+</layers>
