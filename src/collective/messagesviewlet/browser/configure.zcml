@@ -2,14 +2,23 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     i18n_domain="collective.messagesviewlet">
 
   <!-- Publish static files -->
   <plone:static
+      zcml:condition="have plone-5"
       name="collective.messagesviewlet"
       directory="static"
       type="plone"
       />
+
+  <browser:resourceDirectory
+      zcml:condition="not-have plone-5"
+      name="collective.messagesviewlet"
+      directory="static"
+      />
+  <!-- End publish static files -->
 
     <browser:viewlet
         for="*"
