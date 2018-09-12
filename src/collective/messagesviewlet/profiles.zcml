@@ -40,6 +40,15 @@
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
+  <genericsetup:registerProfile
+       zcml:condition="have plone-5"
+       name="uninstall"
+       title="Uninstall Messagesviewlet"
+       directory="profiles/uninstall"
+       description="Uninstall Messages Viewlet."
+       provides="Products.GenericSetup.interfaces.EXTENSION"
+       />
+
   <utility factory=".setuphandlers.HiddenProfiles" name="collective.messagesviewlet" />
 
 </configure>

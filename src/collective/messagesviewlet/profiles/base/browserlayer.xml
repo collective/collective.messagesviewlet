@@ -2,6 +2,5 @@
 <layers>
   <layer
       name="collective.messagesviewlet"
-      interface="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer"
-      />
+      interface="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer"/>
 </layers>
