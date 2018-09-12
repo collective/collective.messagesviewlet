@@ -12,7 +12,7 @@ env:
   - PLONE_VERSION=5.1
 install:
   - sed -ie "s#5-latest#$PLONE_VERSION-latest#" buildout.cfg
-  - python bootstrap-buildout.py --version=2.5.3
+  - python bootstrap-buildout.py --version=2.11.4
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True
 before_script:
