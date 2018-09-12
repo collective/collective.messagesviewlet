@@ -3,8 +3,10 @@
      tal:condition= "messages"
      i18n:domain="collective.messagesviewlet">
 
-  <script tal:attributes="src string:${view/portal_url}/++resource++collective.messagesviewlet/js.cookie-2.0.3.min.js"></script>
-  <script tal:attributes="src string:${view/portal_url}/++resource++collective.messagesviewlet/hidemessageviewlet.js"></script>
+  <tal:plone4 condition="python: not view.is_plone_5()">
+    <script tal:attributes="src string:${view/portal_url}/++resource++collective.messagesviewlet/js.cookie-2.0.3.min.js"></script>
+    <script tal:attributes="src string:${view/portal_url}/++resource++collective.messagesviewlet/hidemessageviewlet.js"></script>
+  </tal:plone4>
     <tal:message repeat="message messages">
         <dl tal:attributes="class python:'messagesviewlet-' + message.msg_type;
                         id message/hidden_uid">

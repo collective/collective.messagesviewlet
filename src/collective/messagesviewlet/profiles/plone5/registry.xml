@@ -3,7 +3,7 @@
 
   <records prefix="plone.resources/messagesviewlet"
            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
-    <value key="js">++plone++collective.messagesviewlet/hidemessageviewlet.js</value>
+    <value key="js">++plone++collective.messagesviewlet/messagesviewlet.js</value>
     <value key="deps">jquery.cookie</value>
     <value key="css">
       <element>++plone++collective.messagesviewlet/messagesviewlet.less</element>
@@ -16,7 +16,8 @@
       <element>messagesviewlet</element>
     </value>
     <value key="enabled">True</value>
-    <value key="csscompilation">++plone++collective.messagesviewlet/messagesviewlet.min.css</value>
-    <value key="last_compilation">2018-09-11 10:00:00</value>
+    <value key="csscompilation">++plone++static/messagesviewlet.min.css</value>
+    <value key="jscompilation">++plone++static/messagesviewlet.min.js</value>
+    <value key="compile">False</value>
   </records>
 </registry>

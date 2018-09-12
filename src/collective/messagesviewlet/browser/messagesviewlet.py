@@ -2,6 +2,7 @@
 
 from DateTime import DateTime
 
+from collective.messagesviewlet import HAS_PLONE_5
 from plone import api
 from plone.app.layout.navigation.defaultpage import isDefaultPage
 from plone.app.layout.navigation.interfaces import INavigationRoot
@@ -18,6 +19,9 @@ class MessagesViewlet(ViewletBase):
     def __init__(self, context, request, view, manager=None):
         super(MessagesViewlet, self).__init__(context, request, view, manager=manager)
         self.portal = api.portal.get()
+
+    def is_plone_5(self):
+        return HAS_PLONE_5
 
     def getAllMessages(self):
         catalog = api.portal.get_tool(name='portal_catalog')
