@@ -15,7 +15,6 @@ def upgrade_to_2000(context):
     brains = catalog(portal_type='Message')
     logger.info("Found %d messages" % len(brains))
     count = 0
-    import ipdb; ipdb.set_trace()
     for brain in brains:
         obj = brain.getObject()
         correction = False
