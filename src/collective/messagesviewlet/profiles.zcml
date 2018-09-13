@@ -49,6 +49,14 @@
        provides="Products.GenericSetup.interfaces.EXTENSION"
        />
 
+  <genericsetup:upgradeStep
+      title="Go to collective.messagesviewlet 2000"
+      description="Update message start and end dates to add site timezone"
+      source="*"
+      destination="2000"
+      handler="collective.messagesviewlet.upgrades.upgrade_to_2000"
+      profile="collective.messagesviewlet:default" />
+
   <utility factory=".setuphandlers.HiddenProfiles" name="collective.messagesviewlet" />
 
 </configure>

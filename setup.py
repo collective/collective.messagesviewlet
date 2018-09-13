@@ -45,6 +45,7 @@ setup(
     install_requires=[
         'collective.behavior.talcondition',
         'plone.api',
+        'plone.app.contenttypes',
         'plone.app.dexterity',
         'plone.app.lockingbehavior',
         'plone.formwidget.datetime >= 1.2',

@@ -1,19 +1,23 @@
 # -*- coding: utf-8 -*-
+from collective.messagesviewlet import _
+from collective.messagesviewlet import HAS_PLONE_5
 from DateTime import DateTime
-from datetime import datetime
-from zope import schema
-from zope.interface import invariant, Invalid, alsoProvides
-from zope.schema.vocabulary import SimpleVocabulary, SimpleTerm
-from z3c.form.browser.checkbox import CheckBoxFieldWidget
-from z3c.form.browser.radio import RadioFieldWidget
-
+from plone.app.event.base import default_timezone
+from plone.app.event.base import localized_now
 from plone.app.textfield import RichText
+from plone.app.z3cform.widget import DatetimeFieldWidget as dtfw5
 from plone.autoform import directives as form
-from plone.formwidget.datetime.z3cform.widget import DatetimeFieldWidget
+from plone.formwidget.datetime.z3cform.widget import DatetimeFieldWidget as dtfw4
 from plone.indexer import indexer
 from plone.supermodel import model
-
-from collective.messagesviewlet import _
+from z3c.form.browser.checkbox import CheckBoxFieldWidget
+from z3c.form.browser.radio import RadioFieldWidget
+from zope import schema
+from zope.interface import alsoProvides
+from zope.interface import Invalid
+from zope.interface import invariant
+from zope.schema.vocabulary import SimpleTerm
+from zope.schema.vocabulary import SimpleVocabulary
 
 
 def msg_types(context):
@@ -42,7 +46,8 @@ def generate_uid():
 
 
 def default_start():
-    return datetime.now()
+    now = localized_now()
+    return now.replace(minute=(now.minute - now.minute % 5), second=0, microsecond=0)
 
 
 class IMessage(model.Schema):
@@ -69,6 +74,7 @@ class IMessage(model.Schema):
     can_hide = schema.Bool(
         title=_(u"Can be marked as read"),
         description=_(u"If checked, the user can hide the message"),
+        default=False
     )
 
     start = schema.Datetime(
@@ -77,7 +83,10 @@ class IMessage(model.Schema):
         description=_(u"Specify start date message appearance"),
         defaultFactory=default_start,
     )
-    form.widget('start', DatetimeFieldWidget)
+    if HAS_PLONE_5:
+        form.widget('start', dtfw5, default_timezone=default_timezone)
+    else:
+        form.widget('start', dtfw4)
 
     end = schema.Datetime(
         title=_(u"End date"),
@@ -85,7 +94,10 @@ class IMessage(model.Schema):
         description=_(u"Specify end date message appearance. If nothing specified, this is infinite. "
                       "If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"),
     )
-    form.widget('end', DatetimeFieldWidget)
+    if HAS_PLONE_5:
+        form.widget('end', dtfw5, default_timezone=default_timezone)
+    else:
+        form.widget('end', dtfw4)
 
     required_roles = schema.Set(
         title=_(u'Required roles'),
@@ -120,13 +132,22 @@ class IMessage(model.Schema):
             if data.start > data.end:
                 raise Invalid(_(u"The start date must precede the end date."))
 
+if not HAS_PLONE_5:
+    TZ = default_timezone(as_tzinfo=True)
+
+
+def add_timezone(dt):
+    if not HAS_PLONE_5:
+        return TZ.localize(dt)
+    return dt
+
 
 @indexer(IMessage)
 def start_index(obj):
     if obj.start is None:
         return obj.created()
     else:
-        return obj.start
+        return add_timezone(obj.start)
 
 
 @indexer(IMessage)
@@ -134,4 +155,4 @@ def end_index(obj):
     if obj.end is None:
         return DateTime(2099, 01, 01)
     else:
-        return obj.end
+        return add_timezone(obj.end)
