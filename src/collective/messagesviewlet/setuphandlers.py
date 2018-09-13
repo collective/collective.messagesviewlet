@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from zope.interface import implementer
 from plone import api
-from Products.CMFPlone import interfaces as Plone
-from Products.CMFCore.utils import getToolByName
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
-from utils import _, add_message
+from Products.CMFCore.utils import getToolByName
+from Products.CMFPlone import interfaces as Plone
+from utils import _
+from utils import add_message
+from zope.interface import implementer
+
 
 FOLDER = "messages-config"
 

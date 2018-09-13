@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 from datetime import datetime
-from zope.component import queryUtility
-from zope.i18n.interfaces import ITranslationDomain
+from message import generate_uid
 from plone import api
 from plone.app.textfield.value import RichTextValue
-from message import generate_uid
+from zope.component import queryUtility
+from zope.i18n.interfaces import ITranslationDomain
 
 
 def _(msgid, context, domain='collective.messagesviewlet'):

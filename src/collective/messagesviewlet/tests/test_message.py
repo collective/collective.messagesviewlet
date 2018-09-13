@@ -1,26 +1,23 @@
 # -*- coding: utf-8 -*-
-import unittest
-
-from DateTime import DateTime
-
-from zope.component import queryUtility
-from zope.component import createObject
-from zope.interface import alsoProvides
-
-from plone import api
-from plone.app.layout.navigation.interfaces import INavigationRoot
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import login
-from plone.app.testing import logout
-from plone.app.testing import setRoles
-from plone.dexterity.interfaces import IDexterityFTI
-
 from collective.messagesviewlet.browser.messagesviewlet import MessagesViewlet
 from collective.messagesviewlet.message import IMessage
 from collective.messagesviewlet.message import location
 from collective.messagesviewlet.message import msg_types
 from collective.messagesviewlet.testing import COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING  # noqa
 from collective.messagesviewlet.utils import add_message
+from DateTime import DateTime
+from plone import api
+from plone.app.layout.navigation.interfaces import INavigationRoot
+from plone.app.testing import login
+from plone.app.testing import logout
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.dexterity.interfaces import IDexterityFTI
+from zope.component import createObject
+from zope.component import queryUtility
+from zope.interface import alsoProvides
+
+import unittest
 
 
 class MessageIntegrationTest(unittest.TestCase):
@@ -200,4 +197,3 @@ class MessageIntegrationTest(unittest.TestCase):
         self.portal.portal_setup.runImportStepFromProfile('profile-collective.messagesviewlet:messages',
                                                           'collective-messagesviewlet-messages')
         self.assertEqual(len(self.portal.portal_catalog(portal_type='Message')), 8)
-

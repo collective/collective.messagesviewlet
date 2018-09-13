@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from DateTime import DateTime
-
+from collective.behavior.talcondition.utils import evaluateExpressionFor
 from collective.messagesviewlet import HAS_PLONE_5
+from DateTime import DateTime
 from plone import api
 from plone.app.layout.navigation.defaultpage import isDefaultPage
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from collective.behavior.talcondition.utils import evaluateExpressionFor
 
 
 class MessagesViewlet(ViewletBase):

@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
-import logging
 from plone import api
 from plone.app.event.base import default_timezone
+
+import logging
+
 
 logger = logging.getLogger('collective.messagesviewlet: upgrade. ')
 
