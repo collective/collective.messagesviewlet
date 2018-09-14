@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from collective.messagesviewlet import HAS_PLONE_5
 from plone import api
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFCore.utils import getToolByName
@@ -45,6 +46,9 @@ def add_default_messages(context):
     """ Add maintenance messages that can be activated when necessary """
     if context.readDataFile('collectivemessagesviewlet_messages.txt') is None:
         return
+    resource = 'resource'
+    if HAS_PLONE_5:
+        resource = 'plone'
     site = context.getSite()
     add_message('maintenance-soon', _('maintenance_soon_tit', context=site), _('maintenance_soon_txt', context=site),
                 msg_type='significant', can_hide=True, req_roles=['Authenticated'])
@@ -53,11 +57,11 @@ def add_default_messages(context):
     add_message('test-site', _('test_site_tit', context=site), _('test_site_txt', context=site),
                 msg_type='warning', can_hide=False)
     add_message('browser-warning', _('bad_browser_tit', context=site),
-                _('bad_browser_txt', context=site),
+                _('bad_browser_txt ${resource}', mapping={'resource': resource}, context=site),
                 msg_type='warning', can_hide=False,
                 tal_condition="python:'Firefox' not in context.REQUEST.get('HTTP_USER_AGENT')")
     add_message('browser-warning-ff-chrome', _('bad_browser_ff_chrome_tit', context=site),
-                _('bad_browser_ff_chrome_txt', context=site),
+                _('bad_browser_ff_chrome_txt ${resource}', mapping={'resource': resource}, context=site),
                 msg_type='warning', can_hide=False,
                 tal_condition="python: 'Firefox' not in context.REQUEST.get('HTTP_USER_AGENT') and "
                 "'Chrome' not in context.REQUEST.get('HTTP_USER_AGENT')")
