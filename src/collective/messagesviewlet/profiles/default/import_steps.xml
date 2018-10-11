@@ -1,14 +1,19 @@
 <?xml version="1.0"?>
 <import-steps>
 
- <import-step 
-    id="collective-messagesviewlet-post-install" 
+ <import-step
+    id="collective-messagesviewlet-post-install"
     handler="collective.messagesviewlet.setuphandlers.post_install"
     title="manual coded post-install for collective.messagesviewlet"
     version="2015-08-24">
-   <dependency step=""/>
+   <dependency step="browserlayer"/>
+   <dependency step="controlpanel"/>
+   <dependency step="cssregistry"/>
+   <dependency step="propertiestool"/>
+   <dependency step="rolemap"/>
+   <dependency step="typeinfo"/>
+   <dependency step="workflow"/>
    manual coded post-install for collective.messagesviewlet
  </import-step>
 
 </import-steps>
- 

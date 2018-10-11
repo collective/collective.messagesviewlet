@@ -1,0 +1,14 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.messagesviewlet">
+
+  <genericsetup:upgradeStep
+      title="Migration profile for collective.messagesviewlet to 1001"
+      description="Upgrade from 1000 to 1001"
+      source="1000"
+      destination="1001"
+      handler=".upgrades.v1001"
+      profile="collective.messagesviewlet:default" />
+
+</configure>
