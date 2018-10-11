@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.15 (unreleased)
+0.15 (2018-10-11)
 -----------------
 
 - Corrected import step dependencies to avoid unresolved warning.
