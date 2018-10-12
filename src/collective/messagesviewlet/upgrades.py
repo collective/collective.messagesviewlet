@@ -8,6 +8,20 @@ import logging
 logger = logging.getLogger('collective.messagesviewlet: upgrade. ')
 
 
+def upgrade_to_1001(context):
+    """ Avoid warning about unresolved dependencies """
+    setup = api.portal.get_tool('portal_setup')
+    registry = setup.getImportStepRegistry()
+    config = {'collective-messagesviewlet-post-install': (u'browserlayer', u'controlpanel', u'cssregistry',
+                                                          u'propertiestool', u'rolemap', u'typeinfo', u'workflow'),
+              'collective-messagesviewlet-messages': ()}
+    for key, value in config.items():
+        step = registry._registered.get(key)
+        if step is not None:
+            step['dependencies'] = value
+    logger.info("Import step dependency corrected")
+
+
 def upgrade_to_2000(context):
     """
         Add timezone to start and end

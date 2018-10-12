@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.15 (unreleased)
+0.16 (unreleased)
 -----------------
 
 - Call JS on portal_url so it can be cached by the browser.
@@ -12,6 +12,12 @@ Changelog
 - Manage profiles differently
   [sgeulette]
 
+
+0.15 (2018-10-11)
+-----------------
+
+- Corrected import step dependencies to avoid unresolved warning.
+  [sgeulette]
 
 0.14 (2018-07-23)
 -----------------

@@ -25,7 +25,7 @@ setup:
 .PHONY: buildout
 buildout:
 	if ! test -f bin/buildout;then make setup;fi
-	if ! test -f var/filestorage/Data.fs;then make standard-config; else bin/buildout -v;fi
+	bin/buildout -v
 
 .PHONY: run
 run:
