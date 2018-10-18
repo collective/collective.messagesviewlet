@@ -19,6 +19,7 @@ def upgrade_to_1001(context):
         step = registry._registered.get(key)
         if step is not None:
             step['dependencies'] = value
+    setup._p_changed = True
     logger.info("Import step dependency corrected")
 
 
