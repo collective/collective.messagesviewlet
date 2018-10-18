@@ -5,8 +5,8 @@ Changelog
 0.16 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Corrected import step dependencies to avoid unresolved warning. Save really changes !
+  [sgeulette]
 
 0.15 (2018-10-11)
 -----------------
