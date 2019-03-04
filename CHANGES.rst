@@ -13,6 +13,12 @@ Changelog
   [sgeulette]
 
 
+0.16 (2018-10-18)
+-----------------
+
+- Corrected import step dependencies to avoid unresolved warning. Save really changes !
+  [sgeulette]
+
 0.15 (2018-10-11)
 -----------------
 
