@@ -137,7 +137,7 @@ if not HAS_PLONE_5:
 
 
 def add_timezone(dt):
-    if not HAS_PLONE_5:
+    if not HAS_PLONE_5 and not dt.tzinfo:
         return TZ.localize(dt)
     return dt
 

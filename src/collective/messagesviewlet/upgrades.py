@@ -34,12 +34,12 @@ def upgrade_to_2000(context):
     count = 0
     for brain in brains:
         obj = brain.getObject()
-        correction = False
+        obj.unindexObject()
         for attr in ('start', 'end'):
             if getattr(obj, attr, False):
                 setattr(obj, attr, tzinfo.localize(getattr(obj, attr)))
                 correction = True
         if correction:
             count += 1
-        obj.reindexObject(['start', 'end'])
+        obj.reindexObject()
     logger.info("Corrected %d messages" % count)

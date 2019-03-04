@@ -18,6 +18,10 @@ Changelog
 - Moved `MessagesViewlet.getAllMessages` code to `utils.get_all_messages`
   so it is easily callable from outside.
   [gbastien]
+- Be defensive while managing TZ of message dates : do not set it if already
+  set, it fails, moreover, indexing a metadata from a date attribute that had
+  no TZ to one having TZ fails so undindex/reindex the entire message.
+  [gbastien]
 
 0.16 (2018-10-18)
 -----------------
