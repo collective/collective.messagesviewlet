@@ -18,7 +18,7 @@ bootstrap:
 
 .PHONY: setup
 setup:
-	virtualenv-2.7 .
+	if [ -f /usr/bin/virtualenv-2.7 ] ; then virtualenv-2.7 .;else virtualenv -p python2.7 .;fi
 	./bin/pip install --upgrade pip
 	./bin/pip install -r requirements.txt
 
