@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<registry>
+
+  <records prefix="plone.resources/messagesviewlet"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+    <value key="js">++plone++collective.messagesviewlet/messagesviewlet.js</value>
+    <value key="deps">jquery.cookie</value>
+    <value key="css">
+      <element>++plone++collective.messagesviewlet/messagesviewlet.less</element>
+    </value>
+  </records>
+
+  <records prefix="plone.bundles/messagesviewlet"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="resources" purge="false">
+      <element>messagesviewlet</element>
+    </value>
+    <value key="enabled">True</value>
+    <value key="csscompilation">++plone++static/messagesviewlet.min.css</value>
+    <value key="jscompilation">++plone++static/messagesviewlet.min.js</value>
+    <value key="compile">False</value>
+  </records>
+</registry>

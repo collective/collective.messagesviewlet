@@ -2,10 +2,15 @@ Changelog
 =========
 
 
-0.17 (unreleased)
+0.16 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Call JS on portal_url so it can be cached by the browser.
+  [gbastien]
+- Tests on Plone5 and Plone4.
+  [bsuttor]
+- Manage profiles differently
+  [sgeulette]
 
 
 0.16 (2018-10-18)
@@ -29,8 +34,6 @@ Changelog
 0.13 (2018-06-13)
 -----------------
 
-- Call JS on portal_url so it can be cached by the browser.
-  [gbastien]
 - Add <span> around cross <img> to ease override.
   [mgennart]
 

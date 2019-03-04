@@ -1,0 +1,98 @@
+.warning-formHelp {
+    color: orange;
+}
+.portaltype-messagesconfig #contentview-folderContents,.portaltype-messagesconfig #contentview-edit,.portaltype-messagesconfig #contentview-local_roles {
+    display: none;
+}
+#messagesviewlet {
+    float: left;
+    width: 100%;
+    padding-top: 0.5em;
+    line-height: initial;
+    :before{
+        display:none;
+    }
+    .portalMessage p:first-of-type{
+        display:inline-block;
+    }
+    > div {
+        margin-bottom: 0.5em;
+        padding: 0.5em;
+        padding-left: 0.25em;
+        position:relative;
+    }
+    .messagesviewlet-type {
+        padding: 0.4em;
+        padding-left: 0.25em;
+        color: white;
+        border-radius: 5px;
+        margin-right: 1em;
+    }
+    .portalMessage.info .messagesviewlet-type {
+        background: #27789c;
+    }
+    .portalMessage.warning .messagesviewlet-type {
+        background: #c06d01;
+    }
+    .portalMessage.error .messagesviewlet-type {
+        background: #ae2609;
+    }
+    .close-button {
+        position:absolute;
+        bottom:0.25em;
+        right:0.25em;
+    }
+    .close-button::after {
+        content: "×";
+        background: black;
+        color: white;
+        border-radius: 50%;
+        font-weight: bold;
+        text-transform: uppercase;
+        font-size: 20px;
+        display: table-cell;
+        border: 0px solid white;
+        width: 30px;
+        height: 30px;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+}
+
+.portalMessage.error .messagesviewlet-type {
+    background: #d54a30;
+    padding: 0.4em;
+    color: white;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+
+
+.state-inactive {
+    color: red !important;
+}
+#plone-contentmenu-workflow {
+    .state-inactive {
+        border-radius: 0.5em 0.5em 0.5em 0.5em;
+        background-color: red;
+        padding: 0 0.5em;
+        color: white !important;
+        border: 2px solid red;
+    }
+    .state-activated {
+        border-radius: 0.5em 0.5em 0.5em 0.5em;
+        background-color: blue;
+        padding: 0 0.5em;
+        color: white !important;
+        border: 2px solid blue;
+    }
+}
+.state-activated {
+    color: blue !important;
+}
+
+.icon-controlpanel-messagesviewlet_settings:before {
+    font-family: 'fontello';
+    content: '\E83B';
+}

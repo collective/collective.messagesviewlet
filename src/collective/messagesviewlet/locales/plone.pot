@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-03-16 11:18+0000\n"
+"POT-Creation-Date: 2018-09-13 13:37+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,19 +17,18 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: plone\n"
 
-#: ../profiles/default/workflows/message_workflow/definition.xml
+#: ../profiles/base/workflows/message_workflow/definition.xml
 msgid "activate"
 msgstr ""
 
-#: ../profiles/default/workflows/message_workflow/definition.xml
+#: ../profiles/base/workflows/message_workflow/definition.xml
 msgid "activated"
 msgstr ""
 
-#: ../profiles/default/workflows/message_workflow/definition.xml
+#: ../profiles/base/workflows/message_workflow/definition.xml
 msgid "deactivate"
 msgstr ""
 
-#: ../profiles/default/workflows/message_workflow/definition.xml
+#: ../profiles/base/workflows/message_workflow/definition.xml
 msgid "inactive"
 msgstr ""
-
