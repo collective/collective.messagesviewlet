@@ -53,7 +53,7 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
     return message
 
 
-def get_all_messages(obj):
+def get_all_messages(context):
 
     portal = api.portal.get()
     catalog = api.portal.get_tool(name='portal_catalog')
@@ -61,7 +61,7 @@ def get_all_messages(obj):
     if api.user.is_anonymous():
         mb_roles = set(['Anonymous'])
     else:
-        mb_roles = set(api.user.get_roles(obj=obj))
+        mb_roles = set(api.user.get_roles(obj=context))
     now = DateTime()
     brains = catalog.unrestrictedSearchResults(portal_type=['Message'],
                                                start={'query': now, 'range': 'max'},
@@ -70,27 +70,27 @@ def get_all_messages(obj):
                                                sort_on='getObjPositionInParent')
     messages = []
     for brain in brains:
-        obj = brain._unrestrictedGetObject()
-        if obj.location == 'homepage':
+        message = brain._unrestrictedGetObject()
+        if message.location == 'homepage':
             # Test if context is PloneSite or its default page
-            if not INavigationRoot.providedBy(obj) and \
-                    not isDefaultPage(portal, obj):
+            if not INavigationRoot.providedBy(context) and \
+                    not isDefaultPage(portal, context):
                 continue
         # check in the cookie if message is marked as read
-        if obj.can_hide:
-            m_uids = obj.REQUEST.get('messagesviewlet', '')
-            if obj.hidden_uid in m_uids.split('|'):
+        if message.can_hide:
+            m_uids = context.REQUEST.get('messagesviewlet', '')
+            if message.hidden_uid in m_uids.split('|'):
                 continue
         # check if member has a required role on the context
-        if obj.required_roles:
-            if mb_roles.intersection(obj.required_roles) == set():
+        if message.required_roles:
+            if mb_roles.intersection(message.required_roles) == set():
                 continue
         # We define obj.context to viewlet context to evaluate expression on viewlet context display.
-        if not ITALCondition(obj).evaluate(extra_expr_ctx={'context': obj}):
+        if not ITALCondition(message).evaluate(extra_expr_ctx={'context': context}):
             continue
         # We check the local roles
-        if obj.use_local_roles and not api.user.is_anonymous() and 'Reader' not in api.user.get_roles(obj=obj):
+        if message.use_local_roles and not api.user.is_anonymous() and 'Reader' not in api.user.get_roles(obj=message):
             continue
-        messages.append(obj)
+        messages.append(message)
 
     return messages
