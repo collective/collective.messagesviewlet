@@ -8,7 +8,7 @@ from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-from collective.behavior.talcondition.utils import evaluateExpressionFor
+from collective.behavior.talcondition.behavior import ITALCondition
 
 
 class MessagesViewlet(ViewletBase):
@@ -50,7 +50,7 @@ class MessagesViewlet(ViewletBase):
                 if mb_roles.intersection(obj.required_roles) == set():
                     continue
             # We define obj.context to viewlet context to evaluate expression on viewlet context display.
-            if not evaluateExpressionFor(obj, extra_expr_ctx={'context': self.context}):
+            if not ITALCondition(obj).evaluate(extra_expr_ctx={'context': self.context}):
                 continue
             # We check the local roles
             if obj.use_local_roles and not api.user.is_anonymous() and 'Reader' not in api.user.get_roles(obj=obj):

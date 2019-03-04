@@ -5,8 +5,10 @@ Changelog
 0.17 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Evaluate TAL condition using behavior `evaluate` method instead calling
+  directly submethod `utils.evaluateExpressionFor` so behavior method
+  `complete_extra_expr_ctx` is called.
+  [gbastien]
 
 0.16 (2018-10-18)
 -----------------
