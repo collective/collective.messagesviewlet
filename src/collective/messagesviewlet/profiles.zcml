@@ -1,0 +1,70 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    i18n_domain="collective.messagesviewlet">
+
+<genericsetup:registerProfile
+    name="install-base"
+    title="collective.messagesviewlet installation"
+    directory="profiles/base"
+    description="Installs the collective.messagesviewlet add-on."
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+<genericsetup:registerProfile
+    name="messages"
+    title="collective.messagesviewlet examples"
+    directory="profiles/messages"
+    description="Add default messages for collective.messagesviewlet."
+    provides="Products.GenericSetup.interfaces.EXTENSION"
+    />
+
+  <genericsetup:registerProfile
+      zcml:condition="have plone-5"
+      name="default"
+      title="collective.messagesviewlet plone5 installation"
+      directory="profiles/plone5"
+      description="Installs the collective.messagesviewlet add-on on Plone 5."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      zcml:condition="not-have plone-5"
+      name="default"
+      title="collective.messagesviewlet plone4 installation"
+      directory="profiles/plone4"
+      description="Installs the collective.messagesviewlet add-on on Plone 4."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+       zcml:condition="have plone-5"
+       name="uninstall"
+       title="Uninstall Messagesviewlet"
+       directory="profiles/uninstall"
+       description="Uninstall Messages Viewlet."
+       provides="Products.GenericSetup.interfaces.EXTENSION"
+       />
+
+  <genericsetup:upgradeStep
+      title="Migration profile for collective.messagesviewlet to 1001"
+      description="Upgrade from 1000 to 1001"
+      source="1000"
+      destination="1001"
+      handler="collective.messagesviewlet.upgrades.upgrade_to_1001"
+      profile="collective.messagesviewlet:default" />
+
+  <genericsetup:upgradeStep
+      title="Go to collective.messagesviewlet 2000"
+      description="Update message start and end dates to add site timezone"
+      source="*"
+      destination="2000"
+      handler="collective.messagesviewlet.upgrades.upgrade_to_2000"
+      profile="collective.messagesviewlet:default" />
+
+  <utility factory=".setuphandlers.HiddenProfiles" name="collective.messagesviewlet" />
+
+</configure>

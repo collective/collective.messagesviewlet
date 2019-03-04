@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object name="portal_workflow" meta_type="Plone Workflow Tool">
+ <property name="title">Contains workflow definitions for your portal</property>
+ <object name="message_workflow" meta_type="Workflow" remove="True"/>
+  <bindings>
+   <type type_id="Message">
+    <bound-workflow workflow_id="message_workflow"/>
+   </type>
+  </bindings>
+</object>

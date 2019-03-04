@@ -1,26 +1,24 @@
 # -*- coding: utf-8 -*-
-import unittest
-
-from DateTime import DateTime
-
-from zope.component import queryUtility
-from zope.component import createObject
-from zope.interface import alsoProvides
-
-from plone import api
-from plone.app.layout.navigation.interfaces import INavigationRoot
-from plone.app.testing import TEST_USER_ID
-from plone.app.testing import login
-from plone.app.testing import logout
-from plone.app.testing import setRoles
-from plone.dexterity.interfaces import IDexterityFTI
-
 from collective.messagesviewlet.browser.messagesviewlet import MessagesViewlet
 from collective.messagesviewlet.message import IMessage
 from collective.messagesviewlet.message import location
 from collective.messagesviewlet.message import msg_types
 from collective.messagesviewlet.testing import COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING  # noqa
+from collective.messagesviewlet.testing import IS_PLONE_5
 from collective.messagesviewlet.utils import add_message
+from DateTime import DateTime
+from plone import api
+from plone.app.layout.navigation.interfaces import INavigationRoot
+from plone.app.testing import login
+from plone.app.testing import logout
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.dexterity.interfaces import IDexterityFTI
+from zope.component import createObject
+from zope.component import queryUtility
+from zope.interface import alsoProvides
+
+import unittest
 
 
 class MessageIntegrationTest(unittest.TestCase):
@@ -164,7 +162,10 @@ class MessageIntegrationTest(unittest.TestCase):
         # viewlet.render()
         viewlet_rendering = viewlet.context()
         self.assertIn(self.messages[0].text.output, viewlet_rendering)
-        self.assertIn('messagesviewlet-info', viewlet_rendering)
+        if not IS_PLONE_5:
+            self.assertIn('messagesviewlet-info', viewlet_rendering)
+        else:
+            self.assertIn('portalMessage info', viewlet_rendering)
         self.assertNotIn(self.messages[1].text.output, viewlet_rendering)
         self.assertNotIn(self.messages[2].text.output, viewlet_rendering)
 
@@ -200,4 +201,3 @@ class MessageIntegrationTest(unittest.TestCase):
         self.portal.portal_setup.runImportStepFromProfile('profile-collective.messagesviewlet:messages',
                                                           'collective-messagesviewlet-messages')
         self.assertEqual(len(self.portal.portal_catalog(portal_type='Message')), 8)
-

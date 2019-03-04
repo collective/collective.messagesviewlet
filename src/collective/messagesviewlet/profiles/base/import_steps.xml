@@ -8,8 +8,6 @@
     version="2015-08-24">
    <dependency step="browserlayer"/>
    <dependency step="controlpanel"/>
-   <dependency step="cssregistry"/>
-   <dependency step="propertiestool"/>
    <dependency step="rolemap"/>
    <dependency step="typeinfo"/>
    <dependency step="workflow"/>

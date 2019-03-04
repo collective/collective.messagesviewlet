@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
 
+from collective.behavior.talcondition.behavior import ITALCondition
+from collective.messagesviewlet import HAS_PLONE_5
 from DateTime import DateTime
-
 from plone import api
 from plone.app.layout.navigation.defaultpage import isDefaultPage
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.layout.viewlets import ViewletBase
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-from collective.behavior.talcondition.behavior import ITALCondition
 
 
 class MessagesViewlet(ViewletBase):
@@ -18,6 +17,9 @@ class MessagesViewlet(ViewletBase):
     def __init__(self, context, request, view, manager=None):
         super(MessagesViewlet, self).__init__(context, request, view, manager=manager)
         self.portal = api.portal.get()
+
+    def is_plone_5(self):
+        return HAS_PLONE_5
 
     def getAllMessages(self):
         catalog = api.portal.get_tool(name='portal_catalog')
@@ -34,12 +36,12 @@ class MessagesViewlet(ViewletBase):
                                                    sort_on='getObjPositionInParent')
         messages = []
         for brain in brains:
-            if brain.location == 'homepage':
+            obj = brain._unrestrictedGetObject()
+            if obj.location == 'homepage':
                 # Test if context is PloneSite or its default page
                 if not INavigationRoot.providedBy(self.context) and \
                         not isDefaultPage(self.portal, self.context):
                     continue
-            obj = brain._unrestrictedGetObject()
             # check in the cookie if message is marked as read
             if obj.can_hide:
                 m_uids = self.request.get('messagesviewlet', '')
@@ -58,3 +60,7 @@ class MessagesViewlet(ViewletBase):
             messages.append(obj)
 
         return messages
+
+    def getCSSClassName(self, msg_type):
+        mapping_type={'info':'info','significant':'warning','warning':'error'}
+        return "portalMessage {0}".format(mapping_type[msg_type])

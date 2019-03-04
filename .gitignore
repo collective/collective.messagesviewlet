@@ -23,3 +23,5 @@ output.xml
 *.html
 *.komodoproject
 share/
+local/
+pip-selfcheck.json
