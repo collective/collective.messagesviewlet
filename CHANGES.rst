@@ -15,7 +15,9 @@ Changelog
   [bsuttor]
 - Manage profiles differently
   [sgeulette]
-
+- Moved `MessagesViewlet.getAllMessages` code to `utils.get_all_messages`
+  so it is easily callable from outside.
+  [gbastien]
 
 0.16 (2018-10-18)
 -----------------
