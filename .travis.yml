@@ -8,7 +8,6 @@ python:
   - 2.7
 env:
   - PLONE_VERSION=4.3
-  - PLONE_VERSION=5.0
   - PLONE_VERSION=5.1
 install:
   - sed -ie "s#5-latest#$PLONE_VERSION-latest#" buildout.cfg
