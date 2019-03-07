@@ -53,7 +53,10 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
     return message
 
 
-def get_all_messages(context):
+def get_messages_to_show(context):
+    """
+        Returns every message to be displayed for current context.
+    """
 
     portal = api.portal.get()
     catalog = api.portal.get_tool(name='portal_catalog')

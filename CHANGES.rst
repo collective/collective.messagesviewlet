@@ -15,7 +15,7 @@ Changelog
   [bsuttor]
 - Manage profiles differently
   [sgeulette]
-- Moved `MessagesViewlet.getAllMessages` code to `utils.get_all_messages`
+- Moved `MessagesViewlet.getAllMessages` code to `utils.get_messages_to_show`
   so it is easily callable from outside.
   [gbastien]
 - Be defensive while managing TZ of message dates : do not set it if already
