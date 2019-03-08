@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from plone import api
-from plone.app.event.base import default_timezone
+from plone.indexer.wrapper import IndexableObjectWrapper
 
 import logging
 
@@ -27,7 +27,6 @@ def upgrade_to_2000(context):
     """
         Add timezone to start and end
     """
-    tzinfo = default_timezone(as_tzinfo=True)
     catalog = api.portal.get_tool('portal_catalog')
     brains = catalog(portal_type='Message')
     logger.info("Found %d messages" % len(brains))
@@ -37,9 +36,13 @@ def upgrade_to_2000(context):
         correction = False
         for attr in ('start', 'end'):
             if getattr(obj, attr, False):
-                setattr(obj, attr, tzinfo.localize(getattr(obj, attr)))
+                # use plone.indexer index to be sure we have same value
+                indexable_wrapper = IndexableObjectWrapper(obj, catalog)
+                setattr(obj, attr, getattr(indexable_wrapper, attr))
                 correction = True
         if correction:
             count += 1
-        obj.reindexObject(['start', 'end'])
+        # reindex entire object to avoid datetime with/without TZ comparison
+        # that breaks metadata update
+        obj.reindexObject()
     logger.info("Corrected %d messages" % count)
