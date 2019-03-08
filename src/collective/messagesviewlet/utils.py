@@ -57,7 +57,6 @@ def get_messages_to_show(context):
     """
         Returns every message to be displayed for current context.
     """
-
     portal = api.portal.get()
     catalog = api.portal.get_tool(name='portal_catalog')
     # Getting user roles on context
