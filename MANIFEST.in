@@ -8,3 +8,5 @@ exclude .editorconfig
 exclude .gitattributes
 exclude .travis.yml
 exclude *.cfg
+include *.txt
+include Makefile
