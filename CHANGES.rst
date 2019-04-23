@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.16 (unreleased)
+0.17 (2019-04-23)
 -----------------
 
 - Evaluate TAL condition using behavior `evaluate` method instead calling
