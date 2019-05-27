@@ -5,8 +5,9 @@ Changelog
 0.18 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Define version to `2000` in `metadata.xml` of plone4 profile or upgrade step
+  to 2000 is always displayed.
+  [gbastien]
 
 0.17 (2019-04-23)
 -----------------
