@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.18 (unreleased)
+0.18 (2019-05-27)
 -----------------
 
 - Define version to `2000` in `metadata.xml` of plone4 profile or upgrade step
