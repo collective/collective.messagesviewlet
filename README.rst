@@ -64,6 +64,8 @@ The optional 'messages' profile adds some usefull examples that can be activated
 * message for imminent or current maintenance : (given to anonymous)
 * message for staging site
 
+There is also a PseudoMessage class that can be instantiated and used in viewlet templates.
+
 Improvements
 ------------
 

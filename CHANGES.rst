@@ -5,8 +5,8 @@ Changelog
 0.19 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Added PseudoMessage class that be be used in viewlet template.
+  [sgeulette]
 
 0.18 (2019-05-27)
 -----------------
