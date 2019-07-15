@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.19 (unreleased)
+0.19 (2019-07-15)
 -----------------
 
 - Added PseudoMessage class that be be used in viewlet template.
