@@ -7,7 +7,9 @@ from plone import api
 from plone.app.layout.navigation.defaultpage import isDefaultPage
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.textfield.value import RichTextValue
+from zope.annotation import IAnnotations
 from zope.component import queryUtility
+from zope.globalrequest import getRequest
 from zope.i18n.interfaces import ITranslationDomain
 
 
@@ -53,46 +55,62 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
     return message
 
 
-def get_messages_to_show(context):
+def get_messages_to_show(context, caching=True):
     """
         Returns every message to be displayed for current context.
     """
-    portal = api.portal.get()
-    catalog = api.portal.get_tool(name='portal_catalog')
-    # Getting user roles on context
-    if api.user.is_anonymous():
-        mb_roles = set(['Anonymous'])
-    else:
-        mb_roles = set(api.user.get_roles(obj=context))
-    now = DateTime()
-    brains = catalog.unrestrictedSearchResults(portal_type=['Message'],
-                                               start={'query': now, 'range': 'max'},
-                                               end={'query': now, 'range': 'min'},
-                                               review_state=('activated'),
-                                               sort_on='getObjPositionInParent')
-    messages = []
-    for brain in brains:
-        message = brain._unrestrictedGetObject()
-        if message.location == 'homepage':
-            # Test if context is PloneSite or its default page
-            if not INavigationRoot.providedBy(context) and \
-                    not isDefaultPage(portal, context):
+    messages = None
+    if caching:
+        request = getRequest()
+        if request:
+            key = 'messagesviewlet-utils-get_messages_to_show-{0}'.format(context.UID())
+            cache = IAnnotations(request)
+            messages = cache.get(key, None)
+        else:
+            caching = False
+
+    if messages is None:
+        messages = []
+        portal = api.portal.get()
+        catalog = api.portal.get_tool(name='portal_catalog')
+        # Getting user roles on context
+        if api.user.is_anonymous():
+            mb_roles = set(['Anonymous'])
+        else:
+            mb_roles = set(api.user.get_roles(obj=context))
+        now = DateTime()
+        brains = catalog.unrestrictedSearchResults(portal_type=['Message'],
+                                                   start={'query': now, 'range': 'max'},
+                                                   end={'query': now, 'range': 'min'},
+                                                   review_state=('activated'),
+                                                   sort_on='getObjPositionInParent')
+        for brain in brains:
+            message = brain._unrestrictedGetObject()
+            if message.location == 'homepage':
+                # Test if context is PloneSite or its default page
+                if not INavigationRoot.providedBy(context) and \
+                        not isDefaultPage(portal, context):
+                    continue
+            # check in the cookie if message is marked as read
+            if message.can_hide:
+                m_uids = context.REQUEST.get('messagesviewlet', '')
+                if message.hidden_uid in m_uids.split('|'):
+                    continue
+            # check if member has a required role on the context
+            if message.required_roles:
+                if mb_roles.intersection(message.required_roles) == set():
+                    continue
+            # We define obj.context to viewlet context to evaluate expression on viewlet context display.
+            if not ITALCondition(message).evaluate(extra_expr_ctx={'context': context}):
                 continue
-        # check in the cookie if message is marked as read
-        if message.can_hide:
-            m_uids = context.REQUEST.get('messagesviewlet', '')
-            if message.hidden_uid in m_uids.split('|'):
+            # We check the local roles
+            if message.use_local_roles and \
+               not api.user.is_anonymous() and \
+               'Reader' not in api.user.get_roles(obj=message):
                 continue
-        # check if member has a required role on the context
-        if message.required_roles:
-            if mb_roles.intersection(message.required_roles) == set():
-                continue
-        # We define obj.context to viewlet context to evaluate expression on viewlet context display.
-        if not ITALCondition(message).evaluate(extra_expr_ctx={'context': context}):
-            continue
-        # We check the local roles
-        if message.use_local_roles and not api.user.is_anonymous() and 'Reader' not in api.user.get_roles(obj=message):
-            continue
-        messages.append(message)
+            messages.append(message)
+
+        if caching:
+            cache[key] = messages
 
     return messages

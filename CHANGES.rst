@@ -5,8 +5,9 @@ Changelog
 0.20 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Added parameter `caching=True` to `utils.get_messages_to_show`, if `True`,
+  the method result is cached in the request for given `context`.
+  [gbastien]
 
 0.19 (2019-07-15)
 -----------------
