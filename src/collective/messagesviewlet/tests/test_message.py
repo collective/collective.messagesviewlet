@@ -14,6 +14,7 @@ from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.dexterity.interfaces import IDexterityFTI
+from zope.annotation import IAnnotations
 from zope.component import createObject
 from zope.component import queryUtility
 from zope.interface import alsoProvides
@@ -29,22 +30,31 @@ class MessageIntegrationTest(unittest.TestCase):
         logout()
         login(self.portal, loginName)
         self.member = api.user.get_current()
-        self.portal.REQUEST['AUTHENTICATED_USER'] = self.member
+        self.request['AUTHENTICATED_USER'] = self.member
 
     def _set_viewlet(self):
         """
         """
-        viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
+        viewlet = MessagesViewlet(self.portal, self.request, None, None)
         viewlet.update()
         # activate all messages.
         for i, message_type in enumerate(self.message_types):
             self.wftool.doActionFor(self.messages[i], 'activate')
         return viewlet
 
+    def _clean_cache(self):
+        """ """
+        # utils.get_messages_to_show is cached, remove infos in request annotation
+        cache_keys = [k for k in IAnnotations(self.request)
+                      if k.startswith('messagesviewlet-utils-get_messages_to_show-')]
+        for cache_key in cache_keys:
+            del IAnnotations(self.request)[cache_key]
+
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.isHidden = [True, True, False]
         self.portal = self.layer['portal']
+        self.request = self.portal.REQUEST
         self.message_types = [term.token for term in msg_types(self.portal)._terms]
         # The products build the "special" folder "messages-config" to store messages.
         self.message_config_folder = self.portal["messages-config"]
@@ -94,9 +104,11 @@ class MessageIntegrationTest(unittest.TestCase):
         # activate for required roles the first message
         self.wftool.doActionFor(self.messages[0], 'activate')
         # viewlet contain one message
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0], )))
         logout()
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0], )))
 
@@ -108,6 +120,7 @@ class MessageIntegrationTest(unittest.TestCase):
         message.start = DateTime() + 1
         # reindex object for catalog...
         message.reindexObject()
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 2)
         # test if printed messages are 1 and 2 without message 0
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2])))
@@ -115,6 +128,7 @@ class MessageIntegrationTest(unittest.TestCase):
         message.end = DateTime() - 2
         # reindex object for catalog...
         message.reindexObject()
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
         # test if printed message is 2 without messages 0 and 1
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[2], )))
@@ -125,6 +139,7 @@ class MessageIntegrationTest(unittest.TestCase):
         # reindex object for catalog...
         message.reindexObject()
         # tests that the message is still visible.
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
 
     def test_getAllMessages_tal_condition(self):
@@ -132,8 +147,10 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
         message = self.messages[2]
         message.tal_condition = "python:False"
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 2)
         message.tal_condition = "python:context==portal"
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
 
     def test_getAllMessages_location(self):
@@ -144,11 +161,14 @@ class MessageIntegrationTest(unittest.TestCase):
         message = self.messages[2]
         message.location = "homepage"
         message.reindexObject()
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
         viewlet.context = self.message_config_folder
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 2)
         alsoProvides(self.message_config_folder, INavigationRoot)
         viewlet.context = self.message_config_folder
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
 
     def test_viewlet_rendering(self):
@@ -184,17 +204,21 @@ class MessageIntegrationTest(unittest.TestCase):
         # Sets the required role to 'Authenticated' to message 1
         self.messages[0].required_roles = set(['Authenticated'])
         # Checks that we still see all messages as we are authenticated
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
         logout()
         # Checks that an anonymous user can't see anymore the restricted one.
+        self._clean_cache()
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2])))
 
     def test_getAllMessages_local_roles(self):
         viewlet = self._set_viewlet()
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
         self.messages[0].use_local_roles = True
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 2)
         self.messages[0].manage_setLocalRoles(TEST_USER_ID, ['Reader'])
+        self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
 
     def test_examples_profile(self):

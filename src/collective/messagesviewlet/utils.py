@@ -63,7 +63,8 @@ def get_messages_to_show(context, caching=True):
     if caching:
         request = getRequest()
         if request:
-            key = 'messagesviewlet-utils-get_messages_to_show-{0}'.format(context.UID())
+            key = 'messagesviewlet-utils-get_messages_to_show-{0}'.format(
+                '_'.join(context.getPhysicalPath()))
             cache = IAnnotations(request)
             messages = cache.get(key, None)
         else:
