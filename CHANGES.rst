@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.20 (unreleased)
+0.20 (2019-08-23)
 -----------------
 
 - Added parameter `caching=True` to `utils.get_messages_to_show`, if `True`,
