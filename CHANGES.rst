@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.21 (unreleased)
+0.21 (2019-10-14)
 -----------------
 
 - Bypass allowed content types contraint when (post)install messagesConfig container
