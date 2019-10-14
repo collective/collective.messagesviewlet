@@ -5,7 +5,8 @@ Changelog
 0.21 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Bypass allowed content types contraint when (post)install messagesConfig container
+  [boulch]
 
 
 0.20 (2019-08-23)
