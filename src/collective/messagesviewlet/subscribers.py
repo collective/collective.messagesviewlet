@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from message import generate_uid
+from collective.messagesviewlet.message import generate_uid
 
 
 def change_hidden_uid(message, event):

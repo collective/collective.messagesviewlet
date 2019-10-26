@@ -5,8 +5,8 @@ from plone import api
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFPlone import interfaces as Plone
 from Products.CMFPlone.utils import _createObjectByType
-from utils import _
-from utils import add_message
+from collective.messagesviewlet.utils import _
+from collective.messagesviewlet.utils import add_message
 from zope.interface import implementer
 
 

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+
 from collective.messagesviewlet.browser.messagesviewlet import MessagesViewlet
 from collective.messagesviewlet.message import add_timezone
 from collective.messagesviewlet.message import IMessage
