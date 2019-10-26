@@ -7,8 +7,8 @@ from collective.messagesviewlet.message import msg_types
 from collective.messagesviewlet.testing import COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING  # noqa
 from collective.messagesviewlet.testing import IS_PLONE_5
 from collective.messagesviewlet.utils import add_message
-from DateTime import DateTime
 from datetime import datetime
+from DateTime import DateTime
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.testing import login

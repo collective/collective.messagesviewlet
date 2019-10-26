@@ -100,7 +100,7 @@ class IMessage(model.Schema):
         title=_(u'End date'),
         required=False,
         description=_(u'Specify end date message appearance. If nothing specified, this is infinite. '
-                      u'If you pick a date, <span class=warning-formHelp>dont\'t forget hours !</span>'),
+                      u"If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"),
     )
     if HAS_PLONE_5:
         form.widget('end', dtfw5, default_timezone=default_timezone)
@@ -118,7 +118,7 @@ class IMessage(model.Schema):
     form.widget('use_local_roles', RadioFieldWidget)
     use_local_roles = schema.Bool(
         title=_(u'Use Reader local role'),
-        description=_(u'If checked, the message will be shown only to users having message local role \'Reader\''),
+        description=_(u"If checked, the message will be shown only to users having message local role 'Reader'"),
         default=False,
     )
 
