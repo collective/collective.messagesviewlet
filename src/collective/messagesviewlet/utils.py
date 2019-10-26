@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
+
 from collective.behavior.talcondition.behavior import ITALCondition
 from collective.messagesviewlet import HAS_PLONE_5
 from collective.messagesviewlet.message import add_timezone
-from DateTime import DateTime
 from datetime import datetime
+from DateTime import DateTime
 from message import generate_uid
 from plone import api
 from plone.app.layout.navigation.defaultpage import isDefaultPage
