@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from collective.messagesviewlet import _
+from collective.messagesviewlet import HAS_PAE
 from collective.messagesviewlet import HAS_PLONE_5
 from DateTime import DateTime
-from plone.app.event.base import default_timezone
-from plone.app.event.base import localized_now
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import DatetimeFieldWidget as dtfw5
 from plone.autoform import directives as form
@@ -20,6 +19,9 @@ from zope.schema.fieldproperty import FieldProperty
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+if HAS_PAE:
+    from plone.app.event.base import default_timezone
+    from plone.app.event.base import localized_now
 
 if not HAS_PLONE_5:
     from plone.formwidget.datetime.z3cform.widget import DatetimeFieldWidget as dtfw4
@@ -139,7 +141,8 @@ class IMessage(model.Schema):
 
 
 def add_timezone(dt, force=False):
-    TZ = default_timezone(as_tzinfo=True)
+    if HAS_PAE:
+        TZ = default_timezone(as_tzinfo=True)
     if force or (not HAS_PLONE_5 and not dt.tzinfo):
         return TZ.localize(dt)
     return dt
