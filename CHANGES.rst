@@ -5,8 +5,8 @@ Changelog
 0.22 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Adapted code for Plone5.2/Py3.
+  [gbastien]
 
 0.21 (2019-10-14)
 -----------------

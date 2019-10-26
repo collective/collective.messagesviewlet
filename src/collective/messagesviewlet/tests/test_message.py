@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.messagesviewlet.browser.messagesviewlet import MessagesViewlet
+from collective.messagesviewlet.message import add_timezone
 from collective.messagesviewlet.message import IMessage
 from collective.messagesviewlet.message import location
 from collective.messagesviewlet.message import msg_types
@@ -7,6 +8,7 @@ from collective.messagesviewlet.testing import COLLECTIVE_MESSAGESVIEWLET_INTEGR
 from collective.messagesviewlet.testing import IS_PLONE_5
 from collective.messagesviewlet.utils import add_message
 from DateTime import DateTime
+from datetime import datetime
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.testing import login
@@ -70,6 +72,7 @@ class MessageIntegrationTest(unittest.TestCase):
             message = add_message(id=title,
                                   title=title,
                                   text=text,
+                                  start=add_timezone(datetime(2019, 10, 26, 12, 0)),
                                   msg_type=self.message_types[i],
                                   can_hide=self.isHidden[i])
             self.messages.append(message)

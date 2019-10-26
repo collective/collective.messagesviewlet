@@ -2,8 +2,8 @@
 
 from collective.messagesviewlet import HAS_PLONE_5
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
-from Products.CMFPlone.utils import _createObjectByType
 from Products.CMFPlone import interfaces as Plone
+from Products.CMFPlone.utils import _createObjectByType
 from utils import _
 from utils import add_message
 from zope.interface import implementer

@@ -22,6 +22,8 @@ class CollectiveMessagesviewletLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.messagesviewlet)
 
     def setUpPloneSite(self, portal):
+        installer = portal['portal_quickinstaller']
+        installer.installProduct('collective.messagesviewlet')
         applyProfile(portal, 'collective.messagesviewlet:default')
         api.user.create(email='test@imio.be', username='test')
         api.user.grant_roles(username='test', roles=['Site Administrator'])

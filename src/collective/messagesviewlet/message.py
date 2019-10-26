@@ -20,6 +20,7 @@ from zope.schema.fieldproperty import FieldProperty
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+
 if not HAS_PLONE_5:
     from plone.formwidget.datetime.z3cform.widget import DatetimeFieldWidget as dtfw4
 
@@ -136,12 +137,10 @@ class IMessage(model.Schema):
             if data.start > data.end:
                 raise Invalid(_(u"The start date must precede the end date."))
 
-if not HAS_PLONE_5:
+
+def add_timezone(dt, force=False):
     TZ = default_timezone(as_tzinfo=True)
-
-
-def add_timezone(dt):
-    if not HAS_PLONE_5 and not dt.tzinfo:
+    if force or (not HAS_PLONE_5 and not dt.tzinfo):
         return TZ.localize(dt)
     return dt
 

@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.behavior.talcondition.behavior import ITALCondition
+from collective.messagesviewlet import HAS_PLONE_5
+from collective.messagesviewlet.message import add_timezone
 from DateTime import DateTime
 from datetime import datetime
 from message import generate_uid
@@ -40,8 +42,12 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
     if id in config:
         return None
     rich_text = _richtextval(text)
+    # Add TZ when using Plone5
+    if HAS_PLONE_5:
+        start = add_timezone(start, force=True)
     try:
         end_date = datetime.strptime(end, '%Y%m%d-%H%M')
+        end_date = add_timezone(end_date, force=True)
     except ValueError:
         end_date = None
     message = api.content.create(container=config, type='Message', id=id, title=title,
