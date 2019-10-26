@@ -156,7 +156,7 @@ def start_index(obj):
 @indexer(IMessage)
 def end_index(obj):
     if obj.end is None:
-        return DateTime(2099, 01, 01)
+        return DateTime('2099/01/01')
     else:
         return add_timezone(obj.end)
 
