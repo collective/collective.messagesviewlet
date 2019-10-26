@@ -3,7 +3,7 @@
 from collective.messagesviewlet.testing import COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING  # noqa
 from plone import api
 
-import unittest2 as unittest
+import unittest
 
 
 class TestSetup(unittest.TestCase):
