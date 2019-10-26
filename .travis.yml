@@ -27,6 +27,8 @@ matrix:
   fast_finish: true
 
 install:
+  - echo $PLONE_VERSION
+  - echo $TEST_EGG
   - sed -ie "s#5#$PLONE_VERSION#" buildout.cfg
   - sed -ie "s#collective.messagesviewlet[test]#$TEST_EGG#" buildout.cfg
   - cat buildout.cfg
