@@ -7,7 +7,6 @@ from plone.app.event.base import localized_now
 from plone.app.textfield import RichText
 from plone.app.z3cform.widget import DatetimeFieldWidget as dtfw5
 from plone.autoform import directives as form
-from plone.formwidget.datetime.z3cform.widget import DatetimeFieldWidget as dtfw4
 from plone.indexer import indexer
 from plone.supermodel import model
 from z3c.form.browser.checkbox import CheckBoxFieldWidget
@@ -20,6 +19,9 @@ from zope.interface import invariant
 from zope.schema.fieldproperty import FieldProperty
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
+
+if not HAS_PLONE_5:
+    from plone.formwidget.datetime.z3cform.widget import DatetimeFieldWidget as dtfw4
 
 
 def msg_types(context):

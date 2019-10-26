@@ -13,13 +13,23 @@ cache:
 python:
   - 2.7
 
-env:
-  - PLONE_VERSION=4.3
-  - PLONE_VERSION=5.1
+matrix:
+  include:
+    - python: "2.7"
+      env: PLONE_VERSION=4.3
+    - python: "2.7"
+      env: PLONE_VERSION=5.1
+    - python: "2.7"
+      env: PLONE_VERSION=5.2
+    - python: "3.7"
+      env: PLONE_VERSION=5.2
+  sudo: true
+  fast_finish: true
 
 install:
   - sed -ie "s#5.1#$PLONE_VERSION#" buildout.cfg
-  - python bootstrap-buildout.py --version=2.11.4
+  - pip install -r requirements.txt
+  - python bootstrap-buildout.py
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True
 

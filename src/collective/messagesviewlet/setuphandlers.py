@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from collective.messagesviewlet import HAS_PLONE_5
-from plone import api
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
-from Products.CMFCore.utils import getToolByName
 from Products.CMFPlone.utils import _createObjectByType
 from Products.CMFPlone import interfaces as Plone
 from utils import _
@@ -21,10 +19,11 @@ def post_install(context):
     site = context.getSite()
 
     if not site.get(FOLDER):
-        container = _createObjectByType('MessagesConfig',
-                            container=site,
-                            id=FOLDER,
-                            title=_('Messages viewlet settings', context=site))
+        container = _createObjectByType(
+            'MessagesConfig',
+            container=site,
+            id=FOLDER,
+            title=_('Messages viewlet settings', context=site))
         excl = IExcludeFromNavigation(container)
         excl.exclude_from_nav = True
 

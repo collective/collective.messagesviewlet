@@ -3,5 +3,6 @@
   <version>2000</version>
   <dependencies>
     <dependency>profile-collective.messagesviewlet:install-base</dependency>
+    <dependency>profile-plone.app.dexterity:default</dependency>
   </dependencies>
 </metadata>
