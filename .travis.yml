@@ -27,7 +27,7 @@ matrix:
   fast_finish: true
 
 install:
-  - sed -ie "s#5.1#$PLONE_VERSION#" buildout.cfg
+  - sed -ie "s#5#$PLONE_VERSION#" buildout.cfg
   - pip install -r requirements.txt
   - python bootstrap-buildout.py
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate
