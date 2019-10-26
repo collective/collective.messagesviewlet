@@ -33,6 +33,7 @@ install:
   - python bootstrap-buildout.py
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True
+  - cat bin/test
 
 before_script:
   - firefox -v
