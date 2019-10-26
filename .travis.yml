@@ -16,18 +16,19 @@ python:
 matrix:
   include:
     - python: "2.7"
-      env: PLONE_VERSION=4.3
+      env: PLONE_VERSION=4.3 TEST_EGG=collective.messagesviewlet[plone4,test]
     - python: "2.7"
-      env: PLONE_VERSION=5.1
+      env: PLONE_VERSION=5.1 TEST_EGG=collective.messagesviewlet[test]
     - python: "2.7"
-      env: PLONE_VERSION=5.2
+      env: PLONE_VERSION=5.2 TEST_EGG=collective.messagesviewlet[test]
     - python: "3.7"
-      env: PLONE_VERSION=5.2
+      env: PLONE_VERSION=5.2 TEST_EGG=collective.messagesviewlet[test]
   sudo: true
   fast_finish: true
 
 install:
   - sed -ie "s#5#$PLONE_VERSION#" buildout.cfg
+  - sed -ie "s#collective.messagesviewlet[test]#$TEST_EGG#" buildout.cfg
   - pip install -r requirements.txt
   - python bootstrap-buildout.py
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate

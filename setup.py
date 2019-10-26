@@ -6,15 +6,11 @@ from setuptools import setup
 
 
 long_description = (
-    open('README.rst').read()
-    + '\n' +
+    open('README.rst').read() + '\n' +
     'Contributors\n'
-    '============\n'
-    + '\n' +
-    open('CONTRIBUTORS.rst').read()
-    + '\n' +
-    open('CHANGES.rst').read()
-    + '\n')
+    '============\n' + '\n' +
+    open('CONTRIBUTORS.rst').read() + '\n' +
+    open('CHANGES.rst').read() + '\n')
 
 
 setup(
@@ -49,9 +45,15 @@ setup(
     extras_require={
         'test': [
             'plone.app.testing',
-#            'plone.app.contenttypes',
             'plone.app.robotframework[debug]',
             'robotframework-selenium2screenshots',
+        ],
+        'plone4': [
+            'plone.api',
+            'plone.app.contenttypes',
+            'plone.app.dexterity',
+            'plone.app.lockingbehavior',
+            'plone.formwidget.datetime >= 1.2',
         ],
     },
     entry_points="""
