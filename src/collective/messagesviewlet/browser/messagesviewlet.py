@@ -18,4 +18,4 @@ class MessagesViewlet(ViewletBase):
 
     def getCSSClassName(self, msg_type):
         mapping_type = {'info': 'info', 'significant': 'warning', 'warning': 'error'}
-        return "portalMessage {0}".format(mapping_type[msg_type])
+        return 'portalMessage {0}'.format(mapping_type[msg_type])

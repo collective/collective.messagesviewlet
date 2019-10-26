@@ -35,17 +35,14 @@ class MessageIntegrationTest(unittest.TestCase):
         self.request['AUTHENTICATED_USER'] = self.member
 
     def _set_viewlet(self):
-        """
-        """
         viewlet = MessagesViewlet(self.portal, self.request, None, None)
         viewlet.update()
         # activate all messages.
         for i, message_type in enumerate(self.message_types):
-            self.wftool.doActionFor(self.messages[i], 'activate')
+            api.content.transition(self.messages[i], 'activate')
         return viewlet
 
     def _clean_cache(self):
-        """ """
         # utils.get_messages_to_show is cached, remove infos in request annotation
         cache_keys = [k for k in IAnnotations(self.request)
                       if k.startswith('messagesviewlet-utils-get_messages_to_show-')]
@@ -59,16 +56,16 @@ class MessageIntegrationTest(unittest.TestCase):
         self.request = self.portal.REQUEST
         self.message_types = [term.token for term in msg_types(self.portal)._terms]
         # The products build the "special" folder "messages-config" to store messages.
-        self.message_config_folder = self.portal["messages-config"]
+        self.message_config_folder = self.portal['messages-config']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
         self.installer = api.portal.get_tool('portal_quickinstaller')
         self.wftool = self.portal.portal_workflow
         self.messages = []
         # Create some messages
         for i, message_type in enumerate(self.message_types):
-            title = 'message%d' % (i + 1)
-            text = "<p>This is test message number %d...</p>"\
-                   "<p>self-destruction programmed at the end of this test.</p>" % (i + 1)
+            title = 'message{0}'.format(i + 1)
+            text = '<p>This is test message number {0}...</p>' \
+                   '<p>self-destruction programmed at the end of this test.</p>'.format(i + 1)
             message = add_message(id=title,
                                   title=title,
                                   text=text,
@@ -94,18 +91,16 @@ class MessageIntegrationTest(unittest.TestCase):
 
     def test_adding(self):
         for i, message_type in enumerate(self.message_types):
-            message = 'message%d' % (i + 1)
+            message = 'message{0}'.format(i + 1)
             self.assertTrue(IMessage.providedBy(self.message_config_folder[message]))
 
     def test_getAllMessages_wf(self):
-        """
-        """
         viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
         viewlet.update()
         # no message in viewlet because all messages are in "inactive" state
         self.assertEqual(len(viewlet.getAllMessages()), 0)
         # activate for required roles the first message
-        self.wftool.doActionFor(self.messages[0], 'activate')
+        api.content.transition(self.messages[0], 'activate')
         # viewlet contain one message
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
@@ -149,10 +144,10 @@ class MessageIntegrationTest(unittest.TestCase):
         viewlet = self._set_viewlet()
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
         message = self.messages[2]
-        message.tal_condition = "python:False"
+        message.tal_condition = 'python:False'
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 2)
-        message.tal_condition = "python:context==portal"
+        message.tal_condition = 'python:context==portal'
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
 
@@ -160,9 +155,9 @@ class MessageIntegrationTest(unittest.TestCase):
         viewlet = self._set_viewlet()
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
         locations = [term.token for term in location(self.portal)._terms]
-        self.assertEquals(locations, ['fullsite', 'homepage'])
+        self.assertEqual(locations, ['fullsite', 'homepage'])
         message = self.messages[2]
-        message.location = "homepage"
+        message.location = 'homepage'
         message.reindexObject()
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
@@ -181,7 +176,7 @@ class MessageIntegrationTest(unittest.TestCase):
         viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
         viewlet.update()
         # activate one message.
-        self.wftool.doActionFor(self.messages[0], 'activate')
+        api.content.transition(self.messages[0], 'activate')
         # viewlet.render()
         viewlet_rendering = viewlet.context()
         self.assertIn(self.messages[0].text.output, viewlet_rendering)
@@ -196,8 +191,8 @@ class MessageIntegrationTest(unittest.TestCase):
         # saves the hidden uid before it changes because of the workflow
         # modifications
         hidden_uid = self.messages[0].hidden_uid
-        self.wftool.doActionFor(self.messages[0], 'activate')
-        self.wftool.doActionFor(self.messages[0], 'deactivate')
+        api.content.transition(self.messages[0], 'activate')
+        api.content.transition(self.messages[0], 'deactivate')
         # checks if the hidden uid has whell changed.
         self.assertNotEqual(hidden_uid, self.messages[0])
 
@@ -220,7 +215,7 @@ class MessageIntegrationTest(unittest.TestCase):
         self.messages[0].use_local_roles = True
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 2)
-        self.messages[0].manage_setLocalRoles(TEST_USER_ID, ['Reader'])
+        api.user.grant_roles(username=TEST_USER_ID, roles=['Reader'])
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
 

@@ -20,7 +20,7 @@ def upgrade_to_1001(context):
         if step is not None:
             step['dependencies'] = value
     setup._p_changed = True
-    logger.info("Import step dependency corrected")
+    logger.info('Import step dependency corrected')
 
 
 def upgrade_to_2000(context):
@@ -29,7 +29,7 @@ def upgrade_to_2000(context):
     """
     catalog = api.portal.get_tool('portal_catalog')
     brains = catalog(portal_type='Message')
-    logger.info("Found %d messages" % len(brains))
+    logger.info('Found {0} messages'.format(len(brains)))
     count = 0
     for brain in brains:
         obj = brain.getObject()
@@ -45,4 +45,4 @@ def upgrade_to_2000(context):
         # reindex entire object to avoid datetime with/without TZ comparison
         # that breaks metadata update
         obj.reindexObject()
-    logger.info("Corrected %d messages" % count)
+    logger.info('Corrected {0} messages'.format(count))

@@ -34,21 +34,15 @@ COLLECTIVE_MESSAGESVIEWLET_FIXTURE = CollectiveMessagesviewletLayer()
 
 COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING = IntegrationTesting(
     bases=(COLLECTIVE_MESSAGESVIEWLET_FIXTURE,),
-    name='CollectiveMessagesviewletLayer:IntegrationTesting'
-)
-
+    name='CollectiveMessagesviewletLayer:IntegrationTesting')
 
 COLLECTIVE_MESSAGESVIEWLET_FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(COLLECTIVE_MESSAGESVIEWLET_FIXTURE,),
-    name='CollectiveMessagesviewletLayer:FunctionalTesting'
-)
-
+    name='CollectiveMessagesviewletLayer:FunctionalTesting')
 
 COLLECTIVE_MESSAGESVIEWLET_ACCEPTANCE_TESTING = FunctionalTesting(
     bases=(
         COLLECTIVE_MESSAGESVIEWLET_FIXTURE,
         REMOTE_LIBRARY_BUNDLE_FIXTURE,
-        z2.ZSERVER_FIXTURE
-    ),
-    name='CollectiveMessagesviewletLayer:AcceptanceTesting'
-)
+        z2.ZSERVER_FIXTURE),
+    name='CollectiveMessagesviewletLayer:AcceptanceTesting')

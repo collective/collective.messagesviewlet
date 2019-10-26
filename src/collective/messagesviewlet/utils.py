@@ -36,7 +36,7 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
             end: default empty, or use pattern YYYYMMDD-HHSS
             location: fullsite, homepage
     """
-    site = api.portal.getSite()
+    site = api.portal.get()
     config = site['messages-config']
     # We pass if id already exists
     if id in config:

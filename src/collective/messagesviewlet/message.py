@@ -30,9 +30,9 @@ if not HAS_PLONE_5:
 
 def msg_types(context):
     terms = []
-    terms.append(SimpleTerm("info", title=_("info")))
-    terms.append(SimpleTerm("significant", title=_("significant")))
-    terms.append(SimpleTerm("warning", title=_("warning")))
+    terms.append(SimpleTerm('info', title=_('info')))
+    terms.append(SimpleTerm('significant', title=_('significant')))
+    terms.append(SimpleTerm('warning', title=_('warning')))
     return SimpleVocabulary(terms)
 
 
@@ -41,8 +41,8 @@ alsoProvides(msg_types, schema.interfaces.IContextSourceBinder)
 
 def location(context):
     terms = []
-    terms.append(SimpleTerm("fullsite", title=_("Full site")))
-    terms.append(SimpleTerm("homepage", title=_("Homepage")))
+    terms.append(SimpleTerm('fullsite', title=_('Full site')))
+    terms.append(SimpleTerm('homepage', title=_('Homepage')))
     return SimpleVocabulary(terms)
 
 
@@ -61,34 +61,34 @@ def default_start():
 class IMessage(model.Schema):
 
     title = schema.TextLine(
-        title=_(u"Title"),
+        title=_(u'Title'),
         required=True,
     )
 
     text = RichText(
-        title=_(u"Text"),
+        title=_(u'Text'),
         required=True,
-        description=_(u"Message text"),
+        description=_(u'Message text'),
     )
 
     msg_type = schema.Choice(
-        title=_(u"Message type"),
+        title=_(u'Message type'),
         required=True,
         source=msg_types,
-        description=_(u"Following the type, the color will be different"),
+        description=_(u'Following the type, the color will be different'),
     )
 
     form.widget('can_hide', RadioFieldWidget)
     can_hide = schema.Bool(
-        title=_(u"Can be marked as read"),
-        description=_(u"If checked, the user can hide the message"),
-        default=False
+        title=_(u'Can be marked as read'),
+        description=_(u'If checked, the user can hide the message'),
+        default=False,
     )
 
     start = schema.Datetime(
-        title=_(u"Start date"),
+        title=_(u'Start date'),
         required=False,
-        description=_(u"Specify start date message appearance"),
+        description=_(u'Specify start date message appearance'),
         defaultFactory=default_start,
     )
     if HAS_PLONE_5:
@@ -97,10 +97,10 @@ class IMessage(model.Schema):
         form.widget('start', dtfw4)
 
     end = schema.Datetime(
-        title=_(u"End date"),
+        title=_(u'End date'),
         required=False,
-        description=_(u"Specify end date message appearance. If nothing specified, this is infinite. "
-                      "If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"),
+        description=_(u'Specify end date message appearance. If nothing specified, this is infinite. '
+                      u'If you pick a date, <span class=warning-formHelp>dont\'t forget hours !</span>'),
     )
     if HAS_PLONE_5:
         form.widget('end', dtfw5, default_timezone=default_timezone)
@@ -117,19 +117,19 @@ class IMessage(model.Schema):
 
     form.widget('use_local_roles', RadioFieldWidget)
     use_local_roles = schema.Bool(
-        title=_(u"Use Reader local role"),
-        description=_(u"If checked, the message will be shown only to users having message local role 'Reader'"),
+        title=_(u'Use Reader local role'),
+        description=_(u'If checked, the message will be shown only to users having message local role \'Reader\''),
         default=False,
     )
 
     location = schema.Choice(
-        title=_(u"Location"),
+        title=_(u'Location'),
         required=True,
         source=location,
     )
 
     hidden_uid = schema.TextLine(
-        title=u"Generated uid",
+        title=u'Generated uid',
         defaultFactory=generate_uid,
     )
     form.mode(hidden_uid='hidden')
@@ -138,7 +138,7 @@ class IMessage(model.Schema):
     def validateStartEnd(data):
         if data.start is not None and data.end is not None:
             if data.start > data.end:
-                raise Invalid(_(u"The start date must precede the end date."))
+                raise Invalid(_(u'The start date must precede the end date.'))
 
 
 def add_timezone(dt, force=False):
@@ -173,10 +173,10 @@ class PseudoMessage(object):
     """
 
     # Provide the minimal fields, needed in viewlet templates:
-    msg_type = FieldProperty(IMessage["msg_type"])
-    text = FieldProperty(IMessage["text"])
-    can_hide = FieldProperty(IMessage["can_hide"])
-    hidden_uid = FieldProperty(IMessage["hidden_uid"])
+    msg_type = FieldProperty(IMessage['msg_type'])
+    text = FieldProperty(IMessage['text'])
+    can_hide = FieldProperty(IMessage['can_hide'])
+    hidden_uid = FieldProperty(IMessage['hidden_uid'])
 
     def __init__(self, **kwargs):
         for key, value in kwargs.items():

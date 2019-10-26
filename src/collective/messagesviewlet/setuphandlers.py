@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from collective.messagesviewlet import HAS_PLONE_5
+from plone import api
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFPlone import interfaces as Plone
 from Products.CMFPlone.utils import _createObjectByType
@@ -9,15 +10,14 @@ from utils import add_message
 from zope.interface import implementer
 
 
-FOLDER = "messages-config"
+FOLDER = 'messages-config'
 
 
 def post_install(context):
     """Post install script."""
     if context.readDataFile('collectivemessagesviewlet_default.txt') is None:
         return
-    site = context.getSite()
-
+    site = api.portal.get()
     if not site.get(FOLDER):
         container = _createObjectByType(
             'MessagesConfig',
@@ -45,7 +45,7 @@ def add_default_messages(context):
     resource = 'resource'
     if HAS_PLONE_5:
         resource = 'plone'
-    site = context.getSite()
+    site = api.portal.get()
     add_message('maintenance-soon', _('maintenance_soon_tit', context=site), _('maintenance_soon_txt', context=site),
                 msg_type='significant', can_hide=True, req_roles=['Authenticated'])
     add_message('maintenance-now', _('maintenance_now_tit', context=site), _('maintenance_now_txt', context=site),
