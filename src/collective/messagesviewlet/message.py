@@ -12,7 +12,7 @@ from z3c.form.browser.checkbox import CheckBoxFieldWidget
 from z3c.form.browser.radio import RadioFieldWidget
 from zope import schema
 from zope.interface import alsoProvides
-from zope.interface import implements
+from zope.interface import implementer
 from zope.interface import Invalid
 from zope.interface import invariant
 from zope.schema.fieldproperty import FieldProperty
@@ -164,13 +164,12 @@ def end_index(obj):
         return add_timezone(obj.end)
 
 
+@implementer(IMessage)
 class PseudoMessage(object):
     """
         This is not the class used with dexterity !
         This class is intended to be used in another context to instantiate messages that can be used in viewlet.
     """
-
-    implements(IMessage)
 
     # Provide the minimal fields, needed in viewlet templates:
     msg_type = FieldProperty(IMessage["msg_type"])
