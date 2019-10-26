@@ -29,6 +29,7 @@ matrix:
 install:
   - sed -ie "s#5#$PLONE_VERSION#" buildout.cfg
   - sed -ie "s#collective.messagesviewlet[test]#$TEST_EGG#" buildout.cfg
+  - cat buildout.cfg
   - pip install -r requirements.txt
   - python bootstrap-buildout.py
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate
