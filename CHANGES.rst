@@ -5,6 +5,8 @@ Changelog
 0.22 (unreleased)
 -----------------
 
+- Fix bug when message configuration don't permit to hide this message (close button stayed).
+  [boulch]
 - Adapted code for Plone5.2/Py3.
   [gbastien]
 

@@ -10,6 +10,7 @@ from plone import api
 from plone.app.layout.navigation.defaultpage import isDefaultPage
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.textfield.value import RichTextValue
+from six import text_type
 from zope.annotation import IAnnotations
 from zope.component import queryUtility
 from zope.globalrequest import getRequest
@@ -23,7 +24,7 @@ def _(msgid, context, domain='collective.messagesviewlet', mapping=None):
 
 def _richtextval(text):
     """ Return a RichTextValue """
-    if not isinstance(text, unicode):
+    if not isinstance(text, text_type):
         text = text.decode('utf8')
     return RichTextValue(raw=text, mimeType='text/html', outputMimeType='text/html', encoding='utf-8')
 
