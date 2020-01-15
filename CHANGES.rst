@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.22 (unreleased)
+0.22 (2020-01-15)
 -----------------
 
 - Fix bug when message configuration don't permit to hide this message (close button stayed).
