@@ -19,6 +19,8 @@ from zope.schema.fieldproperty import FieldProperty
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
 
+import six
+
 
 if HAS_PAE:
     from plone.app.event.base import default_timezone
@@ -50,7 +52,7 @@ alsoProvides(location, schema.interfaces.IContextSourceBinder)
 
 
 def generate_uid():
-    return unicode(DateTime().millis())
+    return six.text_type(DateTime().millis())
 
 
 def default_start():
