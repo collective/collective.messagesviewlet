@@ -42,7 +42,7 @@ before_script:
   - firefox -v
 
 script:
-  - bin/test
+  - bin/test --all
 
 after_success:
   - bin/createcoverage --output-dir htmlcov
