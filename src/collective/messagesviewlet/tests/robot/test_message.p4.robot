@@ -3,7 +3,7 @@ Input RichText
   Select frame  id=form.widgets.text_ifr
   Input text  id=content  ${input}
   Unselect Frame
-  
+
 # ============================================================================
 # DEXTERITY ROBOT TESTS
 # ============================================================================
@@ -71,7 +71,7 @@ Scenario: Create docs with screenshots
 
    I create a message 'My Message title2' 'Hi there, I\'m a significant message. You can use me to inform people about things they must take into consideration. (e.g. "Don\'t forget the leaving pot of Cedric Friday at 3 PM. Free Belgian beers for E-V-E-R-Y-B-O-D-Y !!!").' 'significant' 'fullsite'
    and I change the workflow to 'activate' for 'my-message-title2'
-   Then a viewlet with message 'I\'m a significant message.' is visible   
+   Then a viewlet with message 'I\'m a significant message.' is visible
 
    I create a message 'My Message title' 'I\'m an information message. I contain junks that nobody cares about. I\'m used to hold texts like "Don\'t forget to clock out" or "The toilets of the third floor are out of order".' 'info' 'fullsite'
    and I change the workflow to 'activate' for 'my-message-title'
@@ -79,7 +79,7 @@ Scenario: Create docs with screenshots
 
    Sleep  0.5
    Update element style  css=#visual-portal-wrapper  height  465px
-   Update element style  css=#visual-portal-wrapper  overflow  visible  
+   Update element style  css=#visual-portal-wrapper  overflow  visible
    Update element style  css=#visual-portal-wrapper  border-color  black
    Update element style  css=#visual-portal-wrapper  border-style  solid
    Update element style  css=#visual-portal-wrapper  border-width  5px
@@ -101,7 +101,7 @@ I create a message '${title}' '${text}' '${msg_type}' '${location}'
    and I type '${text}' into the richtext
    and I select '${msg_type}' into 'form-widgets-msg_type' selectbox
    and I select '${location}' into 'form-widgets-location' selectbox
-   and I check 'form-widgets-can_hide-0'
+   and I check 'form.widgets.can_hide'
    and I submit the form
 
 I create a message '${title}' '${text}' '${msg_type}' '${location}' with end date precede start date
@@ -110,21 +110,21 @@ I create a message '${title}' '${text}' '${msg_type}' '${location}' with end dat
    and I type '${text}' into the richtext
    and I select '${msg_type}' into 'form-widgets-msg_type' selectbox
    and I select '${location}' into 'form-widgets-location' selectbox
-   and I check 'form-widgets-can_hide-0'
-   
+   and I check 'form.widgets.can_hide'
+   Pause
    and I select '12' into 'form-widgets-start-day' selectbox
    and I select '12' into 'form-widgets-start-month' selectbox
    and I select '2012' into 'form-widgets-start-year' selectbox
    and I select '12' into 'form-widgets-start-hour' selectbox
    and I select '12' into 'form-widgets-start-minute' selectbox
-   
+
    and I select '11' into 'form-widgets-end-day' selectbox
    and I select '11' into 'form-widgets-end-month' selectbox
    and I select '2011' into 'form-widgets-end-year' selectbox
    and I select '11' into 'form-widgets-end-hour' selectbox
-   and I select '11' into 'form-widgets-end-minute' selectbox   
+   and I select '11' into 'form-widgets-end-minute' selectbox
    and I submit the form
-   
+
 
 # --- Given ------------------------------------------------------------------
 
@@ -141,16 +141,16 @@ I type '${title}' into the title field
   Input Text  name=form.widgets.title  ${title}
 
 I type '${input}' into the richtext
-  Select frame  id=form.widgets.text_ifr
-  Input text  id=content  ${input}
+  Select Frame  css=.mce-edit-area iframe
+  Input text  css=.mce-content-body  ${input}
   Unselect Frame
 
 I select '${select}' into '${id}' selectbox
   Select from list by value  id=${id}  ${select}
-  
-I check '${id}'
-  Select checkbox  id=${id}
-  
+
+I check '${name}'
+  Select Radio Button  ${name}  true
+
 I submit the form
   Click Button  Save
 
@@ -161,7 +161,7 @@ a message '${title}' has been created
   Wait until page contains  Site Map
   Page should contain  ${title}
   Page should contain  Item created
-  
+
 I change the workflow to '${state}' for '${message_id}'
   ${UID} =  Path to uid  /${PLONE_SITE_ID}/messages-config/${message_id}
   Fire transition  ${UID}  ${state}
@@ -172,12 +172,12 @@ a viewlet with message '${msg}' is visible
   Page should contain  ${msg}
 
 I mark the message as read
-  Click Element  css=img.close-button
-  
+  Click Element  css=span.close-button
+
 viewlet message with message '${msg}' is invisible
   Go To  ${PLONE_URL}
   Page should not contain  ${msg}
-  
+
 reactivate message '${message_id}'
   I change the workflow to 'deactivate' for '${message_id}'
   I change the workflow to 'activate' for '${message_id}'
