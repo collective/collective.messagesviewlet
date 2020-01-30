@@ -26,6 +26,9 @@ matrix:
   sudo: true
   fast_finish: true
 
+before_install:
+  - sudo apt-get install -y firefox-geckodriver
+
 install:
   - echo $PLONE_VERSION
   - echo $TEST_EGG
@@ -39,6 +42,9 @@ install:
   - cat bin/test
 
 before_script:
+  - 'export DISPLAY=:99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - sleep 3
   - firefox -v
 
 script:
