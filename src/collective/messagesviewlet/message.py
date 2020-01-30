@@ -139,7 +139,9 @@ class IMessage(model.Schema):
     @invariant
     def validateStartEnd(data):
         if data.start is not None and data.end is not None:
-            if data.start > data.end:
+            data_start = add_timezone(data.start)
+            data_end = add_timezone(data.end)
+            if data_start > data_end:
                 raise Invalid(_(u'The start date must precede the end date.'))
 
 
