@@ -111,7 +111,6 @@ I create a message '${title}' '${text}' '${msg_type}' '${location}' with end dat
    and I select '${msg_type}' into 'form-widgets-msg_type' selectbox
    and I select '${location}' into 'form-widgets-location' selectbox
    and I check 'form.widgets.can_hide'
-   Pause
    and I select '12' into 'form-widgets-start-day' selectbox
    and I select '12' into 'form-widgets-start-month' selectbox
    and I select '2012' into 'form-widgets-start-year' selectbox
