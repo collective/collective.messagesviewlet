@@ -140,8 +140,8 @@ I type '${title}' into the title field
   Input Text  name=form.widgets.title  ${title}
 
 I type '${input}' into the richtext
-  Select Frame  css=.mce-edit-area iframe
-  Input text  css=.mce-content-body  ${input}
+  Select Frame  css=#formfield-form-widgets-text iframe
+  Input text  css=.mceContentBody  ${input}
   Unselect Frame
 
 I select '${select}' into '${id}' selectbox
