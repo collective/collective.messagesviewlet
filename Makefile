@@ -11,10 +11,9 @@ profile=collective.messagesviewlet:base
 
 all: run
 
-.PHONY: bootstrap
-bootstrap:
+.PHONY: virtualenv
+virtualenv:
 	virtualenv-2.7 .
-	./bin/python bootstrap-buildout.py
 
 .PHONY: setup
 setup:
