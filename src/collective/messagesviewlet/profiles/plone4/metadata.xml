@@ -4,5 +4,6 @@
   <dependencies>
     <dependency>profile-collective.messagesviewlet:install-base</dependency>
     <dependency>profile-plone.app.dexterity:default</dependency>
+    <dependency>profile-plone.formwidget.datetime:default</dependency>
   </dependencies>
 </metadata>

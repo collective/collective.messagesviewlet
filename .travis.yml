@@ -29,6 +29,7 @@ matrix:
 
 before_install:
   - sudo apt-get install -y firefox-geckodriver
+  - virtualenv -p `which python` .
 
 install:
   - echo $PLONE_VERSION
@@ -36,16 +37,12 @@ install:
   - sed -ie "s#5#$PLONE_VERSION#" buildout.cfg
   - sed -ie "s#collective.messagesviewlet\[test\]#$TEST_EGG#" buildout.cfg
   - cat buildout.cfg
-  - pip install -r requirements.txt
-  - python bootstrap-buildout.py
+  - bin/pip install -r requirements.txt
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True
   - cat bin/test
 
 before_script:
-  - wget "https://github.com/mozilla/geckodriver/releases/download/v0.24.0/geckodriver-v0.24.0-linux64.tar.gz"
-  - tar xfz geckodriver-v0.24.0-linux64.tar.gz
-  - sudo mv geckodriver /usr/local/bin
   - 'export DISPLAY=:99.0'
   - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - sleep 3
@@ -56,8 +53,8 @@ script:
 
 after_success:
   - bin/createcoverage --output-dir htmlcov
-  - pip install coveralls==0.5
-  - coveralls
+  - bin/pip install coveralls==0.5
+  - bin/coveralls
 
 notifications:
   email:

@@ -111,7 +111,6 @@ I create a message '${title}' '${text}' '${msg_type}' '${location}' with end dat
    and I select '${msg_type}' into 'form-widgets-msg_type' selectbox
    and I select '${location}' into 'form-widgets-location' selectbox
    and I check 'form.widgets.can_hide'
-   Pause
    and I select '12' into 'form-widgets-start-day' selectbox
    and I select '12' into 'form-widgets-start-month' selectbox
    and I select '2012' into 'form-widgets-start-year' selectbox
@@ -141,8 +140,8 @@ I type '${title}' into the title field
   Input Text  name=form.widgets.title  ${title}
 
 I type '${input}' into the richtext
-  Select Frame  css=.mce-edit-area iframe
-  Input text  css=.mce-content-body  ${input}
+  Select Frame  css=#formfield-form-widgets-text iframe
+  Input text  css=.mceContentBody  ${input}
   Unselect Frame
 
 I select '${select}' into '${id}' selectbox

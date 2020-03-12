@@ -19,7 +19,7 @@ class CollectiveMessagesviewletLayer(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     def setUpZope(self, app, configurationContext):
-        self.loadZCML(package=collective.messagesviewlet)
+        self.loadZCML(package=collective.messagesviewlet, name='testing.zcml')
 
     def setUpPloneSite(self, portal):
         installer = portal['portal_quickinstaller']
