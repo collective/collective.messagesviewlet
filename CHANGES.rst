@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-0.23 (unreleased)
+0.23 (2020-04-17)
 -----------------
 - Fix tests & travis build (#8)
   [laulaz]
