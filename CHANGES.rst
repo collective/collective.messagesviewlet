@@ -2,6 +2,12 @@ Changelog
 =========
 
 
+0.24 (unreleased)
+-----------------
+
+- Nothing changed yet.
+
+
 0.23 (2020-04-17)
 -----------------
 - Fix tests & travis build (#8)
