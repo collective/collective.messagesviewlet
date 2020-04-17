@@ -4,8 +4,10 @@ Changelog
 
 0.23 (unreleased)
 -----------------
-
-- Nothing changed yet.
+- Fix tests & travis build (#8)
+  [laulaz]
+- Prevent a bug when compare 2 dates with different timezone format.
+  [boulch]
 
 
 0.22 (2020-01-15)
