@@ -30,12 +30,12 @@ matrix:
 before_install:
   - sudo apt-get install -y firefox-geckodriver
   - virtualenv -p `which python` .
+  - cp plone-$PLONE_VERSION.x.cfg buildout.cfg  
 
 install:
   - echo $PLONE_VERSION
   - echo $TEST_EGG
-  - sed -ie "s#5#$PLONE_VERSION#" buildout.cfg
-  - sed -ie "s#collective.messagesviewlet\[test\]#$TEST_EGG#" buildout.cfg
+  - sed -ie "s#collective.messagesviewlet\[test\]#$TEST_EGG#" base.cfg
   - cat buildout.cfg
   - bin/pip install -r requirements.txt
   - bin/buildout -N buildout:download-cache=downloads code-analysis:return-status-codes=True annotate
