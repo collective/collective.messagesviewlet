@@ -35,7 +35,7 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
         Add a message in the configuration folder
             msg_type: info, significant, warning
             start: default now
-            end: default empty, or use pattern YYYYMMDD-HHSS
+            end: default empty, or use pattern YYYYMMDD-HHMM
             location: fullsite, homepage
     """
     site = api.portal.get()
