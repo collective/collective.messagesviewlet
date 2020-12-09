@@ -139,8 +139,13 @@ class MessageIntegrationTest(unittest.TestCase):
 
     def test_adding(self):
         for i, message_type in enumerate(self.message_types):
-            message = 'message{0}'.format(i + 1)
-            self.assertTrue(IMessage.providedBy(self.message_config_folder[message]))
+            message = "message{}".format(i + 1)
+            if i < (len(self.message_types) - 1):
+                self.assertTrue(
+                    IMessage.providedBy(self.message_config_folder[message])
+                )
+            else:
+                self.assertTrue(IMessage.providedBy(self.portal["myfolder"][message]))
 
     def test_getAllMessages_wf(self):
         viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
