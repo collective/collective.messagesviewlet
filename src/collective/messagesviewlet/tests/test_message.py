@@ -21,8 +21,11 @@ from plone.app.testing import TEST_USER_ID
 from plone.dexterity.interfaces import IDexterityFTI
 from zope.annotation import IAnnotations
 from zope.component import createObject
+from zope.component import getMultiAdapter
 from zope.component import queryUtility
 from zope.interface import alsoProvides
+from zope.viewlet.interfaces import IViewletManager
+from Products.Five.browser import BrowserView
 
 import unittest
 
