@@ -44,8 +44,11 @@ class MessageIntegrationTest(unittest.TestCase):
 
     def _clean_cache(self):
         # utils.get_messages_to_show is cached, remove infos in request annotation
-        cache_keys = [k for k in IAnnotations(self.request)
-                      if k.startswith('messagesviewlet-utils-get_messages_to_show-')]
+        cache_keys = [
+            k
+            for k in IAnnotations(self.request)
+            if k.startswith("messagesviewlet-utils-get_messages_to_show-")
+        ]
         for cache_key in cache_keys:
             del IAnnotations(self.request)[cache_key]
 
@@ -153,15 +156,15 @@ class MessageIntegrationTest(unittest.TestCase):
         # no message in viewlet because all messages are in "inactive" state
         self.assertEqual(len(viewlet.getAllMessages()), 0)
         # activate for required roles the first message
-        api.content.transition(self.messages[0], 'activate')
+        api.content.transition(self.messages[0], "activate")
         # viewlet contain one message
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
-        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0], )))
+        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0],)))
         logout()
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
-        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0], )))
+        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0],)))
 
     def test_getAllGlobalMessages_date(self):
         viewlet = self.get_global_viewlet(self.portal)
@@ -175,7 +178,9 @@ class MessageIntegrationTest(unittest.TestCase):
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 2)
         # test if printed messages are 1 and 2 without message 0
-        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2])))
+        self.assertSetEqual(
+            set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2]))
+        )
         message = self.messages[1]
         message.end = DateTime() - 2
         # reindex object for catalog...
@@ -183,7 +188,7 @@ class MessageIntegrationTest(unittest.TestCase):
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
         # test if printed message is 2 without messages 0 and 1
-        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[2], )))
+        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[2],)))
 
         # tests if message with date set to None is still available
         message = self.messages[2]
@@ -199,10 +204,10 @@ class MessageIntegrationTest(unittest.TestCase):
         # len -1 because we've got 1 local message.
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types) - 1)
         message = self.messages[2]
-        message.tal_condition = 'python:False'
+        message.tal_condition = "python:False"
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 2)
-        message.tal_condition = 'python:context==portal'
+        message.tal_condition = "python:context==portal"
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
 
@@ -247,8 +252,8 @@ class MessageIntegrationTest(unittest.TestCase):
         # saves the hidden uid before it changes because of the workflow
         # modifications
         hidden_uid = self.messages[0].hidden_uid
-        api.content.transition(self.messages[0], 'activate')
-        api.content.transition(self.messages[0], 'deactivate')
+        api.content.transition(self.messages[0], "activate")
+        api.content.transition(self.messages[0], "deactivate")
         # checks if the hidden uid has whell changed.
         self.assertNotEqual(hidden_uid, self.messages[0])
 
@@ -257,7 +262,7 @@ class MessageIntegrationTest(unittest.TestCase):
         # len -1 because we've got 1 local message.
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types) - 1)
         # Sets the required role to 'Authenticated' to message 1
-        self.messages[0].required_roles = set(['Authenticated'])
+        self.messages[0].required_roles = set(["Authenticated"])
         # Checks that we still see all messages as we are authenticated
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
