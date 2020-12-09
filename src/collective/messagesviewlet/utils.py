@@ -52,7 +52,7 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
         end_date = add_timezone(end_date, force=True)
     except ValueError:
         end_date = None
-    message = api.content.create(container=config, type='Message', id=id, title=title,
+    message = api.content.create(container=container, type='Message', id=id, title=title,
                                  **{'msg_type': msg_type, 'text': rich_text, 'can_hide': can_hide,
                                     'start': start, 'end': end_date, 'required_roles': req_roles,
                                     'location': location, 'hidden_uid': generate_uid(),
@@ -120,12 +120,9 @@ def get_messages_to_show(context, caching=True):
             if not ITALCondition(message).evaluate(extra_expr_ctx={'context': context}):
                 continue
             # We check the local roles
-            if message.use_local_roles and \
-               not api.user.is_anonymous() and \
-               'Reader' not in api.user.get_roles(obj=message):
+            if message.use_local_roles and not api.user.is_anonymous() and 'Reader' not in api.user.get_roles(obj=message):
                 continue
             messages.append(message)
-
         if caching:
             cache[key] = messages
 
