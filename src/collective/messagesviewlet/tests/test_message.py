@@ -5,7 +5,9 @@ from collective.messagesviewlet.message import add_timezone
 from collective.messagesviewlet.message import IMessage
 from collective.messagesviewlet.message import location
 from collective.messagesviewlet.message import msg_types
-from collective.messagesviewlet.testing import COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING  # noqa
+from collective.messagesviewlet.testing import (
+    COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING,
+)  # noqa
 from collective.messagesviewlet.testing import IS_PLONE_5
 from collective.messagesviewlet.utils import add_message
 from datetime import datetime
@@ -53,9 +55,9 @@ class MessageIntegrationTest(unittest.TestCase):
     def setUp(self):
         """Custom shared utility setup for tests."""
         self.isHidden = [True, True, False]
-        self.portal = self.layer['portal']
-        self.request = self.portal.REQUEST
         self.message_types = [term.token for term in msg_types(self.portal)._terms]
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
         # The products build the "special" folder "messages-config" to store messages.
         self.message_config_folder = self.portal['messages-config']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
@@ -76,16 +78,16 @@ class MessageIntegrationTest(unittest.TestCase):
             self.messages.append(message)
 
     def test_schema(self):
-        fti = queryUtility(IDexterityFTI, name='Message')
+        fti = queryUtility(IDexterityFTI, name="Message")
         schema = fti.lookupSchema()
         self.assertEqual(IMessage, schema)
 
     def test_fti(self):
-        fti = queryUtility(IDexterityFTI, name='Message')
+        fti = queryUtility(IDexterityFTI, name="Message")
         self.assertTrue(fti)
 
     def test_factory(self):
-        fti = queryUtility(IDexterityFTI, name='Message')
+        fti = queryUtility(IDexterityFTI, name="Message")
         factory = fti.factory
         obj = createObject(factory)
         self.assertTrue(IMessage.providedBy(obj))
@@ -158,7 +160,7 @@ class MessageIntegrationTest(unittest.TestCase):
         locations = [term.token for term in location(self.portal)._terms]
         self.assertEqual(locations, ['fullsite', 'homepage'])
         message = self.messages[2]
-        message.location = 'homepage'
+        message.location = "homepage"
         message.reindexObject()
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
