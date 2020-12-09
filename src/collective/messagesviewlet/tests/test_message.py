@@ -29,6 +29,8 @@ from Products.Five.browser import BrowserView
 
 import unittest
 
+NUMBER_OF_PORTAL_TYPE_MESSAGE = 9
+
 
 class MessageIntegrationTest(unittest.TestCase):
 
@@ -269,3 +271,11 @@ class MessageIntegrationTest(unittest.TestCase):
         self.portal.portal_setup.runImportStepFromProfile('profile-collective.messagesviewlet:messages',
                                                           'collective-messagesviewlet-messages')
         self.assertEqual(len(self.portal.portal_catalog(portal_type='Message')), 8)
+        self.portal.portal_setup.runImportStepFromProfile(
+            "profile-collective.messagesviewlet:messages",
+            "collective-messagesviewlet-messages",
+        )
+        self.assertEqual(
+            len(self.portal.portal_catalog(portal_type="Message")),
+            NUMBER_OF_PORTAL_TYPE_MESSAGE,
+        )
