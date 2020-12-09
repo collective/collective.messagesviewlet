@@ -113,6 +113,13 @@ class MessageIntegrationTest(unittest.TestCase):
     def activate_messages(self):
         for i, message_type in enumerate(self.message_types):
             api.content.transition(self.messages[i], "activate")
+
+    def _create_folder(self, container, name):
+        folder = api.content.create(
+            container=container, type="Folder", id=name, title=name
+        )
+        return folder
+
     def test_schema(self):
         fti = queryUtility(IDexterityFTI, name="Message")
         schema = fti.lookupSchema()
