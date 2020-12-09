@@ -54,27 +54,45 @@ class MessageIntegrationTest(unittest.TestCase):
 
     def setUp(self):
         """Custom shared utility setup for tests."""
-        self.isHidden = [True, True, False]
-        self.message_types = [term.token for term in msg_types(self.portal)._terms]
+        self.isHidden = [True, True, False, False]
         self.portal = self.layer["portal"]
         self.request = self.layer["request"]
+        tokens = [term.token for term in msg_types(self.portal)._terms]
+        self.message_types = tokens + [tokens[0]]
         # The products build the "special" folder "messages-config" to store messages.
-        self.message_config_folder = self.portal['messages-config']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
-        self.installer = api.portal.get_tool('portal_quickinstaller')
+        self.message_config_folder = self.portal["messages-config"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
+        self.installer = api.portal.get_tool("portal_quickinstaller")
         self.wftool = self.portal.portal_workflow
         self.messages = []
         # Create some messages
         for i, message_type in enumerate(self.message_types):
-            title = 'message{0}'.format(i + 1)
-            text = '<p>This is test message number {0}...</p>' \
-                   '<p>self-destruction programmed at the end of this test.</p>'.format(i + 1)
-            message = add_message(id=title,
-                                  title=title,
-                                  text=text,
-                                  start=add_timezone(datetime(2019, 10, 26, 12, 0)),
-                                  msg_type=self.message_types[i],
-                                  can_hide=self.isHidden[i])
+            title = "message%d" % (i + 1)
+            text = (
+                "<p>This is test message number %d...</p>"
+                "<p>self-destruction programmed at the end of this test.</p>" % (i + 1)
+            )
+            if i < (len(self.message_types) - 1):
+                message = add_message(
+                    id=title,
+                    title=title,
+                    text=text,
+                    start=add_timezone(datetime(2019, 10, 26, 12, 0)),
+                    msg_type=self.message_types[i],
+                    can_hide=self.isHidden[i],
+                )
+            else:
+                another_folder = self._create_folder(self.portal, "myfolder")
+                # Create some messages in others "local" folders.
+                message = add_message(
+                    id=title,
+                    title=title,
+                    text="This message isn't in default folder.It's in another folder!",
+                    location="justhere",
+                    msg_type=self.message_types[i],
+                    can_hide=self.isHidden[i],
+                    container=another_folder,
+                )
             self.messages.append(message)
 
     def test_schema(self):
