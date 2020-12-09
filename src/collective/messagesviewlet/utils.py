@@ -29,7 +29,7 @@ def _richtextval(text):
 
 
 def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime.now(), end='', req_roles=[],
-                location='fullsite', tal_condition='', roles_byp_talcond=[], use_local_roles=False, activate=False):
+                location='fullsite', tal_condition='', roles_byp_talcond=[], use_local_roles=False, activate=False, container='default'):
     """
         Add a message in the configuration folder
             msg_type: info, significant, warning
@@ -38,9 +38,10 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
             location: fullsite, homepage
     """
     site = api.portal.get()
-    config = site['messages-config']
+    if container == 'default':
+        container = site['messages-config']
     # We pass if id already exists
-    if id in config:
+    if id in container:
         return None
     rich_text = _richtextval(text)
     # Add TZ when using Plone5
