@@ -65,6 +65,14 @@
       handler="collective.messagesviewlet.upgrades.upgrade_to_2000"
       profile="collective.messagesviewlet:default" />
 
+  <genericsetup:upgradeStep
+      title="Add field authorize_local_message to registry"
+      description="Add field authorize_local_message to registry"
+      source="2000"
+      destination="2001"
+      handler="collective.messagesviewlet.upgrades.add_authorize_local_message_to_registry"
+      profile="collective.messagesviewlet:default" />
+
   <utility factory=".setuphandlers.HiddenProfiles" name="collective.messagesviewlet" />
 
 </configure>

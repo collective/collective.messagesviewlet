@@ -1,6 +1,10 @@
 # -*- coding: utf-8 -*-
+from collective.messagesviewlet import _
 from plone import api
 from plone.indexer.wrapper import IndexableObjectWrapper
+from plone.registry import field, Record
+from plone.registry.interfaces import IRegistry
+from zope.component import getUtility
 
 import logging
 
@@ -55,3 +59,35 @@ def upgrade_to_2000(context):
         # that breaks metadata update
         obj.reindexObject()
     logger.info("Corrected {0} messages".format(count))
+
+
+def add_authorize_local_message_to_registry(context):
+    portal_setup = api.portal.get_tool("portal_setup")
+    portal_setup.runAllImportStepsFromProfile(
+        "profile-collective.messagesviewlet:default"
+    )
+    registry = getUtility(IRegistry)
+    records = registry.records
+    if (
+        "messagesviewlet.authorize_local_message"
+        in records
+    ):  # noqa
+        return
+
+    logger.info(
+        "Adding collective.messagesviewlet.browser.controlpanel.IMessagesviewletSettings.authorize_local_message to registry"  # noqa
+    )  # noqa
+    record = Record(
+        field.Bool(
+            title=_(u"Authorize local message"),
+            description=_(
+                u"Local message are store in folder. Can be print just on this folder or on the folder and these children"  # noqa
+            ),
+            required=False,
+            default=False,
+        ),
+        value=False,
+    )
+    records[
+        "messagesviewlet.authorize_local_message"
+    ] = record  # noqa
