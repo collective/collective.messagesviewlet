@@ -35,7 +35,6 @@ class MessageIntegrationTest(unittest.TestCase):
         logout()
         login(self.portal, loginName)
         self.member = api.user.get_current()
-        self.request['AUTHENTICATED_USER'] = self.member
 
     def _set_viewlet(self):
         viewlet = MessagesViewlet(self.portal, self.request, None, None)
@@ -44,6 +43,7 @@ class MessageIntegrationTest(unittest.TestCase):
         for i, message_type in enumerate(self.message_types):
             api.content.transition(self.messages[i], 'activate')
         return viewlet
+        self.request["AUTHENTICATED_USER"] = self.member
 
     def _clean_cache(self):
         # utils.get_messages_to_show is cached, remove infos in request annotation
