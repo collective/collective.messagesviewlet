@@ -158,9 +158,10 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertEqual(len(viewlet.getAllMessages()), 1)
         self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0], )))
 
-    def test_getAllMessages_date(self):
-        viewlet = self._set_viewlet()
-        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
+    def test_getAllGlobalMessages_date(self):
+        viewlet = self.get_global_viewlet(self.portal)
+        # len -1 because we've got 1 local message.
+        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types) - 1)
         # set message as message 0 and change date to ignore it.
         message = self.messages[0]
         message.start = DateTime() + 1
