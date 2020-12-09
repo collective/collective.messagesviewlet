@@ -195,8 +195,9 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertEqual(len(viewlet.getAllMessages()), 1)
 
     def test_getAllMessages_tal_condition(self):
-        viewlet = self._set_viewlet()
-        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
+        viewlet = self.get_global_viewlet(self.portal)
+        # len -1 because we've got 1 local message.
+        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types) - 1)
         message = self.messages[2]
         message.tal_condition = 'python:False'
         self._clean_cache()
@@ -206,10 +207,13 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertEqual(len(viewlet.getAllMessages()), 3)
 
     def test_getAllMessages_location(self):
-        viewlet = self._set_viewlet()
-        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
+        viewlet = self.get_global_viewlet(self.portal)
+        # len -1 because we've got 1 local message.
+        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types) - 1)
         locations = [term.token for term in location(self.portal)._terms]
-        self.assertEqual(locations, ['fullsite', 'homepage'])
+        self.assertTrue(
+            set(locations).issubset(["fullsite", "homepage", "justhere", "fromhere"])
+        )
         message = self.messages[2]
         message.location = "homepage"
         message.reindexObject()
@@ -227,19 +231,17 @@ class MessageIntegrationTest(unittest.TestCase):
         """
         Test if viewlet rendering is ok (text and css class)
         """
-        viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
-        viewlet.update()
-        # activate one message.
-        api.content.transition(self.messages[0], 'activate')
-        # viewlet.render()
-        viewlet_rendering = viewlet.context()
-        self.assertIn(self.messages[0].text.output, viewlet_rendering)
+        viewlet = self.get_global_viewlet(self.portal)
+        self.assertIn(self.messages[0].text.output, viewlet.render())
         if not IS_PLONE_5:
-            self.assertIn('messagesviewlet-info', viewlet_rendering)
+            self.assertIn("messagesviewlet-info", viewlet.render())
         else:
-            self.assertIn('portalMessage info', viewlet_rendering)
-        self.assertNotIn(self.messages[1].text.output, viewlet_rendering)
-        self.assertNotIn(self.messages[2].text.output, viewlet_rendering)
+            self.assertIn("portalMessage info", viewlet.render())
+        self.assertIn(self.messages[2].text.output, viewlet.render())
+        # self.wftool.doActionFor(self.messages[2], "deactivate")
+        api.content.transition(self.messages[2], "deactivate")
+        self._clean_cache()
+        self.assertNotIn(self.messages[2].text.output, viewlet.render())
 
     def test_hidden_uid_when_workflow_changes(self):
         # saves the hidden uid before it changes because of the workflow
@@ -251,8 +253,9 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertNotEqual(hidden_uid, self.messages[0])
 
     def test_required_roles_permissions(self):
-        viewlet = self._set_viewlet()
-        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
+        viewlet = self.get_global_viewlet(self.portal)
+        # len -1 because we've got 1 local message.
+        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types) - 1)
         # Sets the required role to 'Authenticated' to message 1
         self.messages[0].required_roles = set(['Authenticated'])
         # Checks that we still see all messages as we are authenticated
@@ -261,22 +264,22 @@ class MessageIntegrationTest(unittest.TestCase):
         logout()
         # Checks that an anonymous user can't see anymore the restricted one.
         self._clean_cache()
-        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2])))
+        self.assertSetEqual(
+            set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2]))
+        )
 
-    def test_getAllMessages_local_roles(self):
-        viewlet = self._set_viewlet()
-        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types))
+    def test_getAllGlobalMessages_local_roles(self):
+        viewlet = self.get_global_viewlet(self.portal)
+        # len -1 because we've got 1 local message.
+        self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types) - 1)
         self.messages[0].use_local_roles = True
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 2)
-        api.user.grant_roles(username=TEST_USER_ID, roles=['Reader'])
+        self.messages[0].manage_setLocalRoles(TEST_USER_ID, ["Reader"])
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
 
     def test_examples_profile(self):
-        self.portal.portal_setup.runImportStepFromProfile('profile-collective.messagesviewlet:messages',
-                                                          'collective-messagesviewlet-messages')
-        self.assertEqual(len(self.portal.portal_catalog(portal_type='Message')), 8)
         self.portal.portal_setup.runImportStepFromProfile(
             "profile-collective.messagesviewlet:messages",
             "collective-messagesviewlet-messages",
