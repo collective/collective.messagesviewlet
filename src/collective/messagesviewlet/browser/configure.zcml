@@ -29,4 +29,10 @@
         permission="zope2.View"
         />
 
+    <browser:page
+        name="messagesviewlet-controlpanel"
+        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+        class=".controlpanel.MessagesviewletControlPanelView"
+        permission="cmf.ManagePortal"
+        />
 </configure>
