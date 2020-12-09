@@ -288,3 +288,56 @@ class MessageIntegrationTest(unittest.TestCase):
             len(self.portal.portal_catalog(portal_type="Message")),
             NUMBER_OF_PORTAL_TYPE_MESSAGE,
         )
+
+    def test_getAllMessages_with_justhere_local_message_in_folder(self):
+        context = self.portal["myfolder"]
+        viewlet = self.get_local_viewlet(context=context)
+        self.assertEqual(len(viewlet.getAllMessages()), 4)
+
+    def test_getAllMessages_and_play_with_local_messages(self):
+        context = self.portal["myfolder"]
+        container = self._create_folder(context, "mysubfolder")
+        message = add_message(
+            id="message5",
+            title="message5",
+            text="This message isn't in default folder.It's in another folder!",
+            location="fromhere",
+            msg_type=self.message_types[0],
+            can_hide=self.isHidden[0],
+            container=container,
+        )
+        api.content.transition(message, "activate")
+        self.messages.append(message)
+        viewlet = self.get_local_viewlet(context=context)
+        self._clean_cache()
+        self.assertEqual(len(viewlet.getAllMessages()), 4)
+        viewlet = self.get_local_viewlet(context=container)
+        self._clean_cache()
+        self.assertEqual(len(viewlet.getAllMessages()), 4)
+        container2 = self._create_folder(container, "mysubfolder2")
+        viewlet = self.get_local_viewlet(context=container2)
+        self._clean_cache()
+        self.assertEqual(len(viewlet.getAllMessages()), 4)
+        message = self.messages[3]
+        message.location = "fromhere"
+        message.reindexObject()
+        self._clean_cache()
+        viewlet = self.get_local_viewlet(context=container2)
+        self._clean_cache()
+        self.assertEqual(len(viewlet.getAllMessages()), 5)
+
+    def test_local_messages_location(self):
+        # To get this location message (justhere), we must be in a folder
+        context = self.portal["myfolder"]
+        locations = [term.token for term in location(context)._terms]
+        self.assertEquals(locations, ["justhere", "fromhere"])
+
+    def test_local_messages_viewlet_render(self):
+        api.portal.set_registry_record("messagesviewlet.authorize_local_message", True)
+        context = self.portal["myfolder"]
+        viewlet = self.get_local_viewlet(context=context)
+        self.assertIn("localmessagesviewlet", viewlet.render())
+        api.portal.set_registry_record("messagesviewlet.authorize_local_message", False)
+        context = self.portal["myfolder"]
+        viewlet = self.get_local_viewlet(context=context)
+        self.assertIn("", viewlet.render())
