@@ -5,7 +5,6 @@ from collective.messagesviewlet import HAS_PLONE_5
 from collective.messagesviewlet.message import add_timezone
 from collective.messagesviewlet.message import generate_uid
 from datetime import datetime
-from DateTime import DateTime
 from plone import api
 from plone.app.layout.navigation.defaultpage import isDefaultPage
 from plone.app.layout.navigation.interfaces import INavigationRoot
@@ -87,18 +86,25 @@ def get_messages_to_show(context, caching=True):
             mb_roles = set(['Anonymous'])
         else:
             mb_roles = set(api.user.get_roles(obj=context))
-        now = DateTime()
+        now = datetime.now()
         brains = catalog.unrestrictedSearchResults(portal_type=['Message'],
                                                    start={'query': now, 'range': 'max'},
                                                    end={'query': now, 'range': 'min'},
                                                    review_state=('activated'),
                                                    sort_on='getObjPositionInParent')
+
         for brain in brains:
             message = brain._unrestrictedGetObject()
             if message.location == 'homepage':
                 # Test if context is PloneSite or its default page
                 if not INavigationRoot.providedBy(context) and \
                         not isDefaultPage(portal, context):
+                    continue
+            elif message.location == 'justhere':
+                if context.absolute_url() != message.absolute_url() and context.absolute_url() != message.aq_parent.absolute_url():
+                    continue
+            elif message.location == 'fromhere':
+                if '/'.join(message.absolute_url().split('/')[:-1]) not in context.absolute_url():
                     continue
             # check in the cookie if message is marked as read
             if message.can_hide:
