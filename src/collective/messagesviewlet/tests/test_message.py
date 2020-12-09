@@ -38,14 +38,6 @@ class MessageIntegrationTest(unittest.TestCase):
         logout()
         login(self.portal, loginName)
         self.member = api.user.get_current()
-
-    def _set_viewlet(self):
-        viewlet = MessagesViewlet(self.portal, self.request, None, None)
-        viewlet.update()
-        # activate all messages.
-        for i, message_type in enumerate(self.message_types):
-            api.content.transition(self.messages[i], 'activate')
-        return viewlet
         self.request["AUTHENTICATED_USER"] = self.member
 
     def _clean_cache(self):
@@ -98,6 +90,29 @@ class MessageIntegrationTest(unittest.TestCase):
                 )
             self.messages.append(message)
 
+    def get_viewlet_manager(self, context, name):
+        request = self.request
+        view = BrowserView(context, request)
+        manager = getMultiAdapter((context, request, view), IViewletManager, name)
+        return manager
+
+    def get_global_viewlet(self, context):
+        return self.get_viewlet(context, "plone.portalheader")
+
+    def get_local_viewlet(self, context):
+        return self.get_viewlet(context, "plone.abovecontent")
+
+    def get_viewlet(self, context, manager):
+        self.activate_messages()
+        manager = self.get_viewlet_manager(context, manager)
+        manager.update()
+        viewlet = [v for v in manager.viewlets if v.__name__ == "message-viewlet"]
+        assert len(viewlet) == 1  # nosec
+        return viewlet[0]
+
+    def activate_messages(self):
+        for i, message_type in enumerate(self.message_types):
+            api.content.transition(self.messages[i], "activate")
     def test_schema(self):
         fti = queryUtility(IDexterityFTI, name="Message")
         schema = fti.lookupSchema()
