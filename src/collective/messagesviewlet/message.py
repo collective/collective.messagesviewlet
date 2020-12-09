@@ -42,10 +42,24 @@ alsoProvides(msg_types, schema.interfaces.IContextSourceBinder)
 
 
 def location(context):
+    site = api.portal.getSite()
+    config = site["messages-config"]
     terms = []
-    terms.append(SimpleTerm('fullsite', title=_('Full site')))
-    terms.append(SimpleTerm('homepage', title=_('Homepage')))
-    return SimpleVocabulary(terms)
+    terms.append(SimpleTerm("fullsite", title=_("Full site")))
+    terms.append(SimpleTerm("homepage", title=_("Homepage")))
+    terms.append(SimpleTerm("justhere", title=_("Just on this page")))
+    terms.append(SimpleTerm("fromhere", title=_("From this page")))
+
+    if IMessage.providedBy(context):
+        # edit : context is the message.
+        container = context.aq_parent
+    else:
+        # add : context is the folder (not yet the message).
+        container = context
+    if INavigationRoot.providedBy(container) or container == config:
+        return SimpleVocabulary(terms[0:2])
+    else:
+        return SimpleVocabulary(terms[2:])
 
 
 alsoProvides(location, schema.interfaces.IContextSourceBinder)
