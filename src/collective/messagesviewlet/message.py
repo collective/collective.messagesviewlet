@@ -151,10 +151,6 @@ class IMessage(model.Schema):
                 raise Invalid(_(u'The start date must precede the end date.'))
 
 
-if not HAS_PLONE_5:
-    TZ = default_timezone(as_tzinfo=True)
-
-
 def add_timezone(dt, force=False):
     if HAS_PAE:
         TZ = default_timezone(as_tzinfo=True)
