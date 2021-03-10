@@ -93,7 +93,6 @@ def get_messages_to_show(context, caching=True):
                                                    end={'query': now, 'range': 'min'},
                                                    review_state=('activated'),
                                                    sort_on='getObjPositionInParent')
-
         for brain in brains:
             message = brain._unrestrictedGetObject()
             if message.location == 'homepage':
@@ -102,10 +101,13 @@ def get_messages_to_show(context, caching=True):
                         not isDefaultPage(portal, context):
                     continue
             elif message.location == 'justhere':
-                if context.absolute_url() != message.absolute_url() and context.absolute_url() != message.aq_parent.absolute_url():
+                abs_url = context.absolute_url()
+                if not INavigationRoot.providedBy(context) and getattr(context.aq_parent, "deault_page", False) and context.aq_parent.default_page == context.id:
+                    abs_url = context.aq_parent.absolute_url()
+                if abs_url != message.aq_parent.absolute_url():
                     continue
             elif message.location == 'fromhere':
-                if '/'.join(message.absolute_url().split('/')[:-1]) not in context.absolute_url():
+                if message.aq_parent.absolute_url() not in context.absolute_url():
                     continue
             # check in the cookie if message is marked as read
             if message.can_hide:
