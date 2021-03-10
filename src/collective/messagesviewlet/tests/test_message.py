@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from collective.messagesviewlet.browser.messagesviewlet import MessagesViewlet
+from collective.messagesviewlet.browser.messagesviewlet import GlobalMessagesViewlet
 from collective.messagesviewlet.message import add_timezone
 from collective.messagesviewlet.message import IMessage
 from collective.messagesviewlet.message import location
@@ -10,8 +10,9 @@ from collective.messagesviewlet.testing import (
 )  # noqa
 from collective.messagesviewlet.testing import IS_PLONE_5
 from collective.messagesviewlet.utils import add_message
+from dateutil.relativedelta import relativedelta
 from datetime import datetime
-from DateTime import DateTime
+# from DateTime import DateTime
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.testing import login
@@ -82,18 +83,43 @@ class MessageIntegrationTest(unittest.TestCase):
                     can_hide=self.isHidden[i],
                 )
             else:
-                another_folder = self._create_folder(self.portal, "myfolder")
+                self.another_folder = self._create_folder(self.portal, "myfolder")
                 # Create some messages in others "local" folders.
-                message = add_message(
-                    id=title,
-                    title=title,
-                    text="This message isn't in default folder.It's in another folder!",
-                    location="justhere",
-                    msg_type=self.message_types[i],
-                    can_hide=self.isHidden[i],
-                    container=another_folder,
-                )
+                message = None
+                try:
+                    message = add_message(
+                        id=title,
+                        title=title,
+                        text="This message isn't in default folder.It's in another folder!",
+                        location="justhere",
+                        # msg_type=self.message_types[i],
+                        msg_type=self.message_types[0],
+                        can_hide=self.isHidden[i],
+                        container=self.another_folder,
+                    )
+                except:
+                    assert message == None
+                    lpf = api.portal.get_tool("portal_types")["Message"]
+                    lpf.global_allow = True
+                    message = add_message(
+                        id=title,
+                        title=title,
+                        text="This message isn't in default folder.It's in another folder!",
+                        location="justhere",
+                        msg_type=self.message_types[i],
+                        can_hide=self.isHidden[i],
+                        container=self.another_folder,
+                    )
             self.messages.append(message)
+
+    def tearDown(self):
+        self._changeUser("admin")
+        api.content.delete(obj=self.another_folder)
+        messages = api.content.find(
+            context=self.message_config_folder, portal_type="Message"
+        )
+        datas = [m.getObject() for m in messages]
+        api.content.delete(objects=datas)
 
     def get_viewlet_manager(self, context, name):
         request = self.request
@@ -111,7 +137,7 @@ class MessageIntegrationTest(unittest.TestCase):
         self.activate_messages()
         manager = self.get_viewlet_manager(context, manager)
         manager.update()
-        viewlet = [v for v in manager.viewlets if v.__name__ == "message-viewlet"]
+        viewlet = [v for v in manager.viewlets if "message-viewlet" in v.__name__]
         assert len(viewlet) == 1  # nosec
         return viewlet[0]
 
@@ -151,7 +177,7 @@ class MessageIntegrationTest(unittest.TestCase):
                 self.assertTrue(IMessage.providedBy(self.portal["myfolder"][message]))
 
     def test_getAllMessages_wf(self):
-        viewlet = MessagesViewlet(self.portal, self.portal.REQUEST, None, None)
+        viewlet = GlobalMessagesViewlet(self.portal, self.portal.REQUEST, None, None)
         viewlet.update()
         # no message in viewlet because all messages are in "inactive" state
         self.assertEqual(len(viewlet.getAllMessages()), 0)
@@ -172,7 +198,7 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types) - 1)
         # set message as message 0 and change date to ignore it.
         message = self.messages[0]
-        message.start = DateTime() + 1
+        message.start = datetime.now() + relativedelta(days=+1)
         # reindex object for catalog...
         message.reindexObject()
         self._clean_cache()
@@ -182,7 +208,7 @@ class MessageIntegrationTest(unittest.TestCase):
             set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2]))
         )
         message = self.messages[1]
-        message.end = DateTime() - 2
+        message.end = datetime.now() + relativedelta(days=-2)
         # reindex object for catalog...
         message.reindexObject()
         self._clean_cache()
@@ -297,7 +323,7 @@ class MessageIntegrationTest(unittest.TestCase):
     def test_getAllMessages_with_justhere_local_message_in_folder(self):
         context = self.portal["myfolder"]
         viewlet = self.get_local_viewlet(context=context)
-        self.assertEqual(len(viewlet.getAllMessages()), 4)
+        self.assertEqual(len(viewlet.getAllMessages()), 1)
 
     def test_getAllMessages_and_play_with_local_messages(self):
         context = self.portal["myfolder"]
@@ -313,23 +339,26 @@ class MessageIntegrationTest(unittest.TestCase):
         )
         api.content.transition(message, "activate")
         self.messages.append(message)
+        # context = context
         viewlet = self.get_local_viewlet(context=context)
         self._clean_cache()
-        self.assertEqual(len(viewlet.getAllMessages()), 4)
+        self.assertEqual(len(viewlet.getAllMessages()), 1)
+        # context = container
         viewlet = self.get_local_viewlet(context=container)
         self._clean_cache()
-        self.assertEqual(len(viewlet.getAllMessages()), 4)
+        self.assertEqual(len(viewlet.getAllMessages()), 1)
         container2 = self._create_folder(container, "mysubfolder2")
+        # context = container2 (and message in container contains a "fromhere" message)
         viewlet = self.get_local_viewlet(context=container2)
         self._clean_cache()
-        self.assertEqual(len(viewlet.getAllMessages()), 4)
+        self.assertEqual(len(viewlet.getAllMessages()), 1)
         message = self.messages[3]
         message.location = "fromhere"
         message.reindexObject()
         self._clean_cache()
         viewlet = self.get_local_viewlet(context=container2)
         self._clean_cache()
-        self.assertEqual(len(viewlet.getAllMessages()), 5)
+        self.assertEqual(len(viewlet.getAllMessages()), 2)
 
     def test_local_messages_location(self):
         # To get this location message (justhere), we must be in a folder
