@@ -25,7 +25,7 @@
         layer="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer"
         name="message-viewlet"
         manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        class=".messagesviewlet.MessagesViewlet"
+        class=".messagesviewlet.GlobalMessagesViewlet"
         template="messagesviewlet.pt"
         permission="zope2.View"
         />
@@ -33,12 +33,13 @@
     <browser:viewlet
         for="*"
         layer="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer"
-        name="message-viewlet"
+        name="local-message-viewlet"
         manager="plone.app.layout.viewlets.interfaces.IAboveContent"
-        class=".messagesviewlet.MessagesViewlet"
-        template="localmessagesviewlet.pt"
+        class=".messagesviewlet.LocalMessagesViewlet"
+        template="messagesviewlet.pt"
         permission="zope2.View"
         />
+
     <browser:page
         name="messagesviewlet-controlpanel"
         for="Products.CMFPlone.interfaces.IPloneSiteRoot"
