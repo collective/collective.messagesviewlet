@@ -1,6 +1,7 @@
-<div id="messagesviewlet"
+<div id=""
+     tal:attributes="id view/id"
      tal:define="messages view/getAllMessages"
-     tal:condition= "messages"
+     tal:condition="messages"
      i18n:domain="collective.messagesviewlet">
 
   <tal:plone4 condition="python: not view.is_plone_5()">
