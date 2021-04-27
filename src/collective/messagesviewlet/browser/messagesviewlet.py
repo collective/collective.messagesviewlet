@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from collective.messagesviewlet import HAS_PLONE_5
+from collective.messagesviewlet import HAS_PLONE_5_AND_MORE
 from collective.messagesviewlet.utils import get_messages_to_show
 from plone.app.layout.viewlets import common
 from plone.registry.interfaces import IRegistry
@@ -12,7 +12,7 @@ class MessagesViewletBase(common.ViewletBase):
     location_filter = []
 
     def is_plone_5(self):
-        return HAS_PLONE_5
+        return HAS_PLONE_5_AND_MORE
 
     def getAllMessages(self):
         messages = get_messages_to_show(self.context)

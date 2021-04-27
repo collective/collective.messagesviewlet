@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from collective.messagesviewlet import HAS_PLONE_5_AND_MORE
 from collective.messagesviewlet.browser.messagesviewlet import GlobalMessagesViewlet
 from collective.messagesviewlet.message import add_timezone
 from collective.messagesviewlet.message import IMessage
@@ -8,7 +9,6 @@ from collective.messagesviewlet.message import msg_types
 from collective.messagesviewlet.testing import (
     COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING,
 )  # noqa
-from collective.messagesviewlet.testing import IS_PLONE_5
 from collective.messagesviewlet.utils import add_message
 from dateutil.relativedelta import relativedelta
 from datetime import datetime
@@ -63,7 +63,6 @@ class MessageIntegrationTest(unittest.TestCase):
         # The products build the "special" folder "messages-config" to store messages.
         self.message_config_folder = self.portal["messages-config"]
         setRoles(self.portal, TEST_USER_ID, ["Manager"])
-        self.installer = api.portal.get_tool("portal_quickinstaller")
         self.wftool = self.portal.portal_workflow
         self.messages = []
         # Create some messages
@@ -113,7 +112,7 @@ class MessageIntegrationTest(unittest.TestCase):
             self.messages.append(message)
 
     def tearDown(self):
-        self._changeUser("admin")
+        self._changeUser("test")
         api.content.delete(obj=self.another_folder)
         messages = api.content.find(
             context=self.message_config_folder, portal_type="Message"
@@ -264,7 +263,7 @@ class MessageIntegrationTest(unittest.TestCase):
         """
         viewlet = self.get_global_viewlet(self.portal)
         self.assertIn(self.messages[0].text.output, viewlet.render())
-        if not IS_PLONE_5:
+        if not HAS_PLONE_5_AND_MORE:
             self.assertIn("messagesviewlet-info", viewlet.render())
         else:
             self.assertIn("portalMessage info", viewlet.render())
@@ -364,7 +363,7 @@ class MessageIntegrationTest(unittest.TestCase):
         # To get this location message (justhere), we must be in a folder
         context = self.portal["myfolder"]
         locations = [term.token for term in location(context)._terms]
-        self.assertEquals(locations, ["justhere", "fromhere"])
+        self.assertEqual(locations, ["justhere", "fromhere"])
 
     def test_local_messages_viewlet_render(self):
         api.portal.set_registry_record("messagesviewlet.authorize_local_message", True)

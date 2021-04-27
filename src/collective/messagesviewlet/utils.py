@@ -1,12 +1,15 @@
 # -*- coding: utf-8 -*-
 
 from collective.behavior.talcondition.behavior import ITALCondition
-from collective.messagesviewlet import HAS_PLONE_5
+from collective.messagesviewlet import HAS_PLONE_5_AND_MORE
 from collective.messagesviewlet.message import add_timezone
 from collective.messagesviewlet.message import generate_uid
 from datetime import datetime
 from plone import api
-from plone.app.layout.navigation.defaultpage import isDefaultPage
+try:
+    from plone.app.layout.navigation.defaultpage import isDefaultPage
+except ImportError as error:
+    from Products.CMFPlone.defaultpage import is_default_page as isDefaultPage
 from plone.app.layout.navigation.interfaces import INavigationRoot
 from plone.app.textfield.value import RichTextValue
 from six import text_type
@@ -45,7 +48,7 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
         return None
     rich_text = _richtextval(text)
     # Add TZ when using Plone5
-    if HAS_PLONE_5:
+    if HAS_PLONE_5_AND_MORE:
         start = add_timezone(start, force=True)
     try:
         end_date = datetime.strptime(end, '%Y%m%d-%H%M')

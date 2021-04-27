@@ -1,17 +1,15 @@
 # -*- coding: utf-8 -*-
+from collective.messagesviewlet import HAS_PLONE_5_AND_MORE
 from plone import api
+from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import applyProfile
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
-from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.testing import PloneSandboxLayer
 from plone.testing import z2
 
 import collective.messagesviewlet
-
-
-IS_PLONE_5 = api.env.plone_version().startswith('5')
 
 
 class CollectiveMessagesviewletLayer(PloneSandboxLayer):
@@ -22,9 +20,11 @@ class CollectiveMessagesviewletLayer(PloneSandboxLayer):
         self.loadZCML(package=collective.messagesviewlet, name='testing.zcml')
 
     def setUpPloneSite(self, portal):
-        installer = portal['portal_quickinstaller']
-        installer.installProduct('collective.messagesviewlet')
-        applyProfile(portal, 'collective.messagesviewlet:default')
+        if not HAS_PLONE_5_AND_MORE:
+            installer = portal['portal_quickinstaller']
+            installer.installProduct('collective.messagesviewlet')
+        else:
+            applyProfile(portal, 'collective.messagesviewlet:testing')
         api.user.create(email='test@imio.be', username='test')
         api.user.grant_roles(username='test', roles=['Site Administrator'])
 

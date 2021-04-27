@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.messagesviewlet import _
 from collective.messagesviewlet import HAS_PAE
-from collective.messagesviewlet import HAS_PLONE_5
+from collective.messagesviewlet import HAS_PLONE_5_AND_MORE
 from DateTime import DateTime
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
@@ -28,7 +28,7 @@ if HAS_PAE:
     from plone.app.event.base import default_timezone
     from plone.app.event.base import localized_now
 
-if not HAS_PLONE_5:
+if not HAS_PLONE_5_AND_MORE:
     from plone.formwidget.datetime.z3cform.widget import DatetimeFieldWidget as dtfw4
 
 
@@ -102,7 +102,7 @@ class IMessage(model.Schema):
         description=_(u"Specify start date message appearance"),
         defaultFactory=default_start,
     )
-    if HAS_PLONE_5:
+    if HAS_PLONE_5_AND_MORE:
         form.widget("start", dtfw5, default_timezone=default_timezone)
     else:
         form.widget("start", dtfw4)
@@ -115,7 +115,7 @@ class IMessage(model.Schema):
             "If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"
         ),
     )
-    if HAS_PLONE_5:
+    if HAS_PLONE_5_AND_MORE:
         form.widget("end", dtfw5, default_timezone=default_timezone)
     else:
         form.widget("end", dtfw4)
@@ -154,7 +154,7 @@ class IMessage(model.Schema):
 def add_timezone(dt, force=False):
     if HAS_PAE:
         TZ = default_timezone(as_tzinfo=True)
-    if force or (not HAS_PLONE_5 and not dt.tzinfo):
+    if force or (not HAS_PLONE_5_AND_MORE and not dt.tzinfo):
         return TZ.localize(dt)
     return dt
 

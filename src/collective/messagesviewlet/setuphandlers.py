@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from collective.messagesviewlet import HAS_PLONE_5
+from collective.messagesviewlet import HAS_PLONE_5_AND_MORE
 from plone import api
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFPlone import interfaces as Plone
@@ -43,7 +43,7 @@ def add_default_messages(context):
     if context.readDataFile('collectivemessagesviewlet_messages.txt') is None:
         return
     resource = 'resource'
-    if HAS_PLONE_5:
+    if HAS_PLONE_5_AND_MORE:
         resource = 'plone'
     site = api.portal.get()
     add_message('maintenance-soon', _('maintenance_soon_tit', context=site), _('maintenance_soon_txt', context=site),
