@@ -25,9 +25,9 @@
   <genericsetup:registerProfile
       zcml:condition="have plone-5"
       name="default"
-      title="collective.messagesviewlet plone5 installation"
+      title="collective.messagesviewlet plone5 (and more) installation"
       directory="profiles/plone5"
-      description="Installs the collective.messagesviewlet add-on on Plone 5."
+      description="Installs the collective.messagesviewlet add-on on Plone 5 (and more)."
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
@@ -37,6 +37,15 @@
       title="collective.messagesviewlet plone4 installation"
       directory="profiles/plone4"
       description="Installs the collective.messagesviewlet add-on on Plone 4."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:registerProfile
+      zcml:condition="have plone-5"
+      name="testing"
+      title="collective.messagesviewlet (testing))"
+      directory="profiles/testing"
+      description="Install collective.messagesviewlet.testing profile"
       provides="Products.GenericSetup.interfaces.EXTENSION"
       />
 
