@@ -81,7 +81,7 @@ def add_authorize_local_message_to_registry(context):
         field.Bool(
             title=_(u"Authorize local message"),
             description=_(
-                u"Local message are store in folder. Can be print just on this folder or on the folder and these children"  # noqa
+                u"Local message should be stored in folderish. Can be print just on this folderish item or on the folderish and these children"  # noqa
             ),
             required=False,
             default=False,
