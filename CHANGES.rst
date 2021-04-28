@@ -5,7 +5,16 @@ Changelog
 0.24 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Update some translations
+  [boulch]
+- Update tests
+  [boulch]
+- Update less and js to support localMessagesViewlet
+  [boulch]
+- Update control panel with enable/disable local messages
+  [boulch]
+- Add LocalMessagesViewlet. These can be add in folderish content types.
+  [boulch]
 
 
 0.23 (2020-04-17)
