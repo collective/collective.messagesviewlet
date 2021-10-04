@@ -91,3 +91,35 @@ def add_authorize_local_message_to_registry(context):
     records[
         "messagesviewlet.authorize_local_message"
     ] = record  # noqa
+
+
+def add_show_local_message_to_registry(context):
+    portal_setup = api.portal.get_tool("portal_setup")
+    portal_setup.runAllImportStepsFromProfile(
+        "profile-collective.messagesviewlet:default"
+    )
+    registry = getUtility(IRegistry)
+    records = registry.records
+    if (
+        "messagesviewlet.show_local_message"
+        in records
+    ):  # noqa
+        return
+
+    logger.info(
+        "Adding collective.messagesviewlet.browser.controlpanel.IMessagesviewletSettings.show_local_message to registry"  # noqa
+    )  # noqa
+    record = Record(
+        field.Bool(
+            title=_(u"Show local message"),
+            description=_(
+                u"Check if you want to see local messages"  # noqa
+            ),
+            required=False,
+            default=False,
+        ),
+        value=False,
+    )
+    records[
+        "messagesviewlet.show_local_message"
+    ] = record  # noqa

@@ -82,6 +82,14 @@
       handler="collective.messagesviewlet.upgrades.add_authorize_local_message_to_registry"
       profile="collective.messagesviewlet:default" />
 
+  <genericsetup:upgradeStep
+      title="Add field show_local_message to registry"
+      description="Add field show_local_message to registry"
+      source="2001"
+      destination="2002"
+      handler="collective.messagesviewlet.upgrades.add_show_local_message_to_registry"
+      profile="collective.messagesviewlet:default" />
+
   <utility factory=".setuphandlers.HiddenProfiles" name="collective.messagesviewlet" />
 
 </configure>
