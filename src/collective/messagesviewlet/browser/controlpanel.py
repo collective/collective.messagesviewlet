@@ -17,7 +17,16 @@ class IMessagesviewletSettings(Interface):
     authorize_local_message = schema.Bool(
         title=_(u"Authorize local message"),
         description=_(
-            u"Local message should be stored in folderish. Can be print just on this folderish item or on the folderish and these children"
+            u"Check if message can be globally allow (Can haven't influence if Message is explicitly authorised on container). Also affecting visibility."
+        ),
+        required=False,
+        default=False,
+    )
+
+    show_local_message = schema.Bool(
+        title=_(u"Show local message"),
+        description=_(
+            u"Affecting only visibility. Check if you want to see local messages."
         ),
         required=False,
         default=False,

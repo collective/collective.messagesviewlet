@@ -8,6 +8,7 @@
     <records interface="collective.messagesviewlet.browser.controlpanel.IMessagesviewletSettings"
          prefix="messagesviewlet">
          <value key="authorize_local_message" i18n:translate="">False</value>
+         <value key="show_local_message" i18n:translate="">False</value>
     </records>
 
 </registry>
