@@ -366,11 +366,23 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertEqual(locations, ["justhere", "fromhere"])
 
     def test_local_messages_viewlet_render(self):
+        # Don't display any local messages
+        api.portal.set_registry_record("messagesviewlet.show_local_message", False)
         api.portal.set_registry_record("messagesviewlet.authorize_local_message", True)
         context = self.portal["myfolder"]
         viewlet = self.get_local_viewlet(context=context)
-        self.assertIn("localmessagesviewlet", viewlet.render())
+        self.assertIn("", viewlet.render())
+
+        # Don't display any local messages
+        api.portal.set_registry_record("messagesviewlet.show_local_message", True)
         api.portal.set_registry_record("messagesviewlet.authorize_local_message", False)
         context = self.portal["myfolder"]
         viewlet = self.get_local_viewlet(context=context)
         self.assertIn("", viewlet.render())
+
+        # Display local messages
+        api.portal.set_registry_record("messagesviewlet.show_local_message", True)
+        api.portal.set_registry_record("messagesviewlet.authorize_local_message", True)
+        context = self.portal["myfolder"]
+        viewlet = self.get_local_viewlet(context=context)
+        self.assertIn("localmessagesviewlet", viewlet.render())
