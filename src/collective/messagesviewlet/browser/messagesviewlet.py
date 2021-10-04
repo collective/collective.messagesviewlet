@@ -27,14 +27,24 @@ class MessagesViewletBase(common.ViewletBase):
         registry = getUtility(IRegistry)
         return registry.get('messagesviewlet.authorize_local_message')
 
+    def showMessage(self):
+        return True
+
 
 class GlobalMessagesViewlet(MessagesViewletBase):
     """Get global messages (homepage, messageconfig folder)"""
     id = "messagesviewlet"
     location_filter = ["fullsite", "homepage"]
 
+    def showMessage(self):
+        return True
+
 
 class LocalMessagesViewlet(MessagesViewletBase):
     """Get local messages (From folderish)"""
     id = "localmessagesviewlet"
     location_filter = ["justhere", "fromhere"]
+
+    def showMessage(self):
+        registry = getUtility(IRegistry)
+        return registry.get('messagesviewlet.show_local_message') and registry.get('messagesviewlet.authorize_local_message')
