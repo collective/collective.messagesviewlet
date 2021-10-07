@@ -8,9 +8,19 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: [2.7, 3.8, 3.7]
-        plone-version: [4.3.x, 5.1.x, 5.2.x, 6.x.x]
-
+        include:
+          - python-version: 2.7
+            plone-version: 4.3
+          - python-version: 2.7
+            plone-version: 5.1         
+          - python-version: 3.7
+            plone-version: 5.2
+          - python-version: 3.7
+            plone-version: 6.x                     
+          - python-version: 3.8
+            plone-version: 5.2
+          - python-version: 3.8
+            plone-version: 6.x
     steps:
       # git checkout
       - uses: actions/checkout@v2
