@@ -1,0 +1,46 @@
+name: Tests
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: [2.7, 3.8, 3.7]
+        plone-version: [4.3.x, 5.1.x, 5.2.x, 6.x.x]
+
+    steps:
+      # git checkout
+      - uses: actions/checkout@v2
+
+      # python setup
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # python cache
+      - uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      # python install
+      - name: pip install
+        run: pip install -r requirements.txt
+
+      # buildout
+      - name: buildout
+        run: buildout -t 10 -c plone-${{ matrix.plone-version }}.x.cfg code-analysis:return-status-codes=True
+
+      # code analysis
+      - name: code analysis
+        run: bin/code-analysis
+
+      # test
+      - name: test
+        run: bin/test
