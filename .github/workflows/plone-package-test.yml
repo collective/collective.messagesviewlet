@@ -12,11 +12,11 @@ jobs:
           - python-version: 2.7
             plone-version: 4.3
           - python-version: 2.7
-            plone-version: 5.1         
+            plone-version: 5.1
           - python-version: 3.7
             plone-version: 5.2
           - python-version: 3.7
-            plone-version: 6.x                     
+            plone-version: 6.x
           - python-version: 3.8
             plone-version: 5.2
           - python-version: 3.8
@@ -45,11 +45,7 @@ jobs:
 
       # buildout
       - name: buildout
-        run: buildout -t 10 -c plone-${{ matrix.plone-version }}.x.cfg code-analysis:return-status-codes=True
-
-      # code analysis
-      - name: code analysis
-        run: bin/code-analysis
+        run: buildout -t 10 -c plone-${{ matrix.plone-version }}.x.cfg
 
       # test
       - name: test
