@@ -59,7 +59,6 @@ setup(
             'plone.app.lockingbehavior',
             'plone.formwidget.datetime >= 1.2',
             'plone.app.event',
-            'plone.app.contenttypes',
         ],
     },
     entry_points="""
