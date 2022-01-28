@@ -28,6 +28,21 @@
         border-radius: 5px;
         margin-right: 1em;
     }
+    .portalMessage {
+        display: flex;
+        align-items: center;
+        p { margin:0; }
+    }
+    .portalMessage.info {
+        background-color: #ffffe3;
+    }
+    .portalMessage.error {
+        background-color: #fdc;
+    }
+    .portalMessage.warning {
+        background-color: #fd7;
+    }
+
     .portalMessage.info .messagesviewlet-type {
         background: #27789c;
     }
@@ -35,15 +50,16 @@
         background: #c06d01;
     }
     .portalMessage.error .messagesviewlet-type {
-        background: #ae2609;
+        background: #ae2609;`
     }
     .close-button {
-        position:absolute;
-        bottom:0.25em;
-        right:0.25em;
+        position: absolute;
+        bottom: 50%;
+        right: 0.25em;
+        transform: translateY(50%);
     }
     .close-button::after {
-        content: "×";
+        content: " \00D7";
         background: black;
         color: white;
         border-radius: 50%;
