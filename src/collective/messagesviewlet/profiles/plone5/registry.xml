@@ -3,10 +3,15 @@
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     i18n:domain="collective.messagesviewlet">
 
+  <records prefix="plone.resources/messagesviewletCookie"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'>
+    <value key="js">++plone++collective.messagesviewlet/js.cookie-2.0.3.min.js</value>
+  </records>
+
   <records prefix="plone.resources/messagesviewlet"
            interface='Products.CMFPlone.interfaces.IResourceRegistry'>
     <value key="js">++plone++collective.messagesviewlet/messagesviewlet.js</value>
-    <value key="deps">jquery.cookie</value>
+    <value key="deps">messagesviewletCookie</value>
     <value key="css">
       <element>++plone++collective.messagesviewlet/messagesviewlet.less</element>
     </value>
@@ -15,6 +20,7 @@
   <records prefix="plone.bundles/messagesviewlet"
            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
     <value key="resources" purge="false">
+      <element>messagesviewletCookie</element>
       <element>messagesviewlet</element>
     </value>
     <value key="enabled">True</value>
