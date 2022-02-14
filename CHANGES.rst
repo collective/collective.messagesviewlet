@@ -5,6 +5,8 @@ Changelog
 0.24 (unreleased)
 -----------------
 
+- Use JS to show/hide messages when closed, to avoid caching problems (#12)
+  [laulaz]
 - Update some translations
   [boulch]
 - Update tests

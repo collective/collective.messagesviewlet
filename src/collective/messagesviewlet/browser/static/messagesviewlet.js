@@ -9,4 +9,20 @@ jQuery(document).ready(function ($) {
     }
   $("#messagesviewlet .close-button").bind("click",{}, handler);
   $("#localmessagesviewlet .close-button").bind("click",{}, handler);
+
+  function show_unclosed_messages() {
+    var m_uids = Cookies.get('messagesviewlet');
+    if (typeof m_uids === "undefined") {
+      // no cookie set, so we show all messages
+      $("#messagesviewlet > div, #localmessagesviewlet > div").show();
+      return;
+    }
+
+    m_uids = m_uids.split("|");
+    $("#messagesviewlet > div, #localmessagesviewlet > div").each(function(){
+      // we show only messages that are not in cookie as "closed messages"
+      if ($.inArray($(this).attr('id'), m_uids) == -1) $(this).show();
+    });
+  }
+  show_unclosed_messages();
 });

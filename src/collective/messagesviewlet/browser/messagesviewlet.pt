@@ -29,7 +29,8 @@
       <tal:message5 repeat="message messages">
           <div tal:define="CSSClassName python:view.getCSSClassName(message.msg_type)"
                tal:attributes="class CSSClassName;
-               id message/hidden_uid">
+               id message/hidden_uid"
+               style="display: none">
               <span class="messagesviewlet-type"
                   i18n:translate="" tal:content="python:message.msg_type">Info</span>
               <span class="content"
