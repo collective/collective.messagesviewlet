@@ -38,12 +38,12 @@ plone5.1:
 .PHONY: plone5.2
 plone5.2:
 	make cleanall
-	make buildout python=2.7 cfg=plone-5.2.x.cfg
+	make buildout python=3.8 cfg=plone-5.2.x.cfg
 
 .PHONY: plone6.0
 plone6.0:
 	make cleanall
-	make buildout python=2.7 cfg=plone-6.0.x.cfg
+	make buildout python=3.8 cfg=plone-6.0.x.cfg
 
 .PHONY: run
 run:
