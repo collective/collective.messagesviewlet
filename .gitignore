@@ -25,3 +25,5 @@ output.xml
 share/
 local/
 pip-selfcheck.json
+.idea
+pyvenv.cfg
