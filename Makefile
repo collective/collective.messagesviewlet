@@ -17,13 +17,13 @@ virtualenv:
 
 .PHONY: setup
 setup:
-	if [ -f /usr/bin/virtualenv-2.7 ] ; then virtualenv-2.7 .;else virtualenv -p python2.7 .;fi
+	virtualenv -p python2 .
 	./bin/pip install --upgrade pip
 	./bin/pip install -r requirements.txt
 
 .PHONY: buildout
 buildout:
-	if ! test -f bin/buildout;then make setup;fi
+	make setup
 	bin/buildout
 
 .PHONY: run
@@ -33,4 +33,4 @@ run:
 
 .PHONY: cleanall
 cleanall:
-	rm -fr lib bin/buildout develop-eggs downloads eggs parts .installed.cfg
+	rm -fr lib bin develop-eggs downloads eggs parts .installed.cfg .mr.developer.cfg include
