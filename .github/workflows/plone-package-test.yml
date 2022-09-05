@@ -41,7 +41,7 @@ jobs:
 
       # python install
       - name: pip install
-        run: pip install -r requirements.txt
+        run: pip install -r requirements_plone-${{ matrix.plone-version }}.x.txt
 
       # buildout
       - name: buildout
