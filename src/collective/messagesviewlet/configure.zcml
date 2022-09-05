@@ -15,6 +15,7 @@
 
     <include package=".browser" />
     <include file="profiles.zcml" />
+    <include package=".upgrades" />
 
     <permission
     id="collective.messagesviewlet.addMessage"

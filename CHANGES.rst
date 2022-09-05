@@ -5,6 +5,8 @@ Changelog
 0.24 (unreleased)
 -----------------
 
+- Migrate to Plone 6.0.0b1 : remove dexteritytextindexer, use new simplified resources registry
+  [boulch]
 - Use JS to show/hide messages when closed, to avoid caching problems (#12)
   [laulaz]
 - Update some translations

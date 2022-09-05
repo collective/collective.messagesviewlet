@@ -18,7 +18,7 @@ def post_install(context):
     if context.readDataFile('collectivemessagesviewlet_default.txt') is None:
         return
     site = api.portal.get()
-    if not site.get(FOLDER):
+    if not getattr(site, FOLDER, None):
         container = _createObjectByType(
             'MessagesConfig',
             container=site,

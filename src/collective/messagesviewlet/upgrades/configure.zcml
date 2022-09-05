@@ -1,0 +1,56 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    i18n_domain="collective.messagesviewlet">
+
+  <genericsetup:registerProfile
+      name="upgrade_2002_to_2003"
+      title="Upgrade common from 2002 to 2003"
+      directory="profiles/2002_to_2003"
+      description="Migrate bundles / resources to simplified resources registry"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      />
+
+  <genericsetup:upgradeStep
+      title="Migration profile for collective.messagesviewlet to 1001"
+      description="Upgrade from 1000 to 1001"
+      source="1000"
+      destination="1001"
+      handler="collective.messagesviewlet.upgrades.upgrades.upgrade_to_1001"
+      profile="collective.messagesviewlet:default" />
+
+  <genericsetup:upgradeStep
+      title="Go to collective.messagesviewlet 2000"
+      description="Update message start and end dates to add site timezone"
+      source="*"
+      destination="2000"
+      handler="collective.messagesviewlet.upgrades.upgrades.upgrade_to_2000"
+      profile="collective.messagesviewlet:default" />
+
+  <genericsetup:upgradeStep
+      title="Add field authorize_local_message to registry"
+      description="Add field authorize_local_message to registry"
+      source="2000"
+      destination="2001"
+      handler="collective.messagesviewlet.upgrades.upgrades.add_authorize_local_message_to_registry"
+      profile="collective.messagesviewlet:default" />
+
+  <genericsetup:upgradeStep
+      title="Add field show_local_message to registry"
+      description="Add field show_local_message to registry"
+      source="2001"
+      destination="2002"
+      handler="collective.messagesviewlet.upgrades.upgrades.add_show_local_message_to_registry"
+      profile="collective.messagesviewlet:default" />
+
+  <genericsetup:upgradeSteps
+      source="2002"
+      destination="2003"
+      profile="collective.messagesviewlet:default">
+    <genericsetup:upgradeDepends
+        title="Migrate bundles / resources to simplified resources registry"
+        import_profile="collective.messagesviewlet.upgrades:upgrade_2002_to_2003"
+        />
+  </genericsetup:upgradeSteps>
+
+</configure>
