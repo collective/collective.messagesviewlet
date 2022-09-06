@@ -15,8 +15,6 @@ jobs:
             plone-version: 5.1
           - python-version: 3.7
             plone-version: 5.2
-          - python-version: 3.7
-            plone-version: "6.0"
           - python-version: 3.8
             plone-version: 5.2
           - python-version: 3.8
@@ -31,13 +29,14 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      # python cache
-      - uses: actions/cache@v2
+      # python eggs cache
+      - name: Cache eggs
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-eggs
         with:
-          path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          path: ./eggs
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.python-version }}-${{ matrix.plone-version }}
 
       # python install
       - name: pip install
