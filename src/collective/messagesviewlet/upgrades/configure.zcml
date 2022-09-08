@@ -1,9 +1,11 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     i18n_domain="collective.messagesviewlet">
 
   <genericsetup:registerProfile
+      zcml:condition="have plone-60"
       name="upgrade_2002_to_2003"
       title="Upgrade collective.messagesviewlet from 2002 to 2003"
       directory="profiles/2002_to_2003"
@@ -44,6 +46,7 @@
       profile="collective.messagesviewlet:default" />
 
   <genericsetup:upgradeSteps
+      zcml:condition="have plone-60"
       source="2002"
       destination="2003"
       profile="collective.messagesviewlet:default">
