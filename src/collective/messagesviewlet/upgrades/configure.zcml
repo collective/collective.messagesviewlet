@@ -5,7 +5,7 @@
 
   <genericsetup:registerProfile
       name="upgrade_2002_to_2003"
-      title="Upgrade common from 2002 to 2003"
+      title="Upgrade collective.messagesviewlet from 2002 to 2003"
       directory="profiles/2002_to_2003"
       description="Migrate bundles / resources to simplified resources registry"
       provides="Products.GenericSetup.interfaces.EXTENSION"
