@@ -309,6 +309,32 @@ class MessageIntegrationTest(unittest.TestCase):
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
 
+    def test_getAllGlobalMessages_navigation_root(self):
+        alsoProvides(self.another_folder, INavigationRoot)
+        message = add_message(
+            id="navroot-message",
+            title="navroot-message",
+            text="This message is on a navigation root!",
+            location="fullsite",
+            msg_type=self.message_types[0],
+            can_hide=self.isHidden[0],
+            container=self.another_folder,
+        )
+        api.content.transition(message, "activate")
+
+        other_messages_count = 3
+
+        viewlet = self.get_global_viewlet(self.portal)
+        self.assertEqual(len(viewlet.getAllMessages()), other_messages_count)
+
+        viewlet = self.get_global_viewlet(self.another_folder)
+        self.assertEqual(len(viewlet.getAllMessages()), other_messages_count + 1)
+
+        sub_folder = self._create_folder(self.another_folder, "mysubfolder")
+        alsoProvides(sub_folder, INavigationRoot)
+        viewlet = self.get_global_viewlet(sub_folder)
+        self.assertEqual(len(viewlet.getAllMessages()), other_messages_count + 1)
+
     def test_examples_profile(self):
         self.portal.portal_setup.runImportStepFromProfile(
             "profile-collective.messagesviewlet:messages",
