@@ -3,7 +3,6 @@
 from collective.messagesviewlet import _
 from plone.app.registry.browser import controlpanel
 from plone.z3cform import layout
-from Products.CMFCore.utils import getToolByName
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 from Products.statusmessages.interfaces import IStatusMessage
 from z3c.form import button
@@ -68,12 +67,6 @@ class MessagesviewletControlPanelFormWrapper(controlpanel.ControlPanelFormWrappe
     """
 
     index = ViewPageTemplateFile("templates/controlpanel_layout.pt")
-
-    def get_portal_url(self):
-        portal_url = getToolByName(self.context, "portal_url")
-        portal = portal_url.getPortalObject()
-        portalPath = portal.getPhysicalPath()
-        return "/".join(portalPath)
 
 
 MessagesviewletControlPanelView = layout.wrap_form(

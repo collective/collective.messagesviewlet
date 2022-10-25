@@ -15,7 +15,7 @@
     </div>
     <p>
         <a id="messages-config" class="messages-config"
-           tal:attributes="href python:'{}/{}'.format(view.get_portal_url(),'messages-config')"
+           tal:attributes="href string:${here/portal_url}/messages-config"
            i18n:translate="">
             Global messages folder
         </a>
