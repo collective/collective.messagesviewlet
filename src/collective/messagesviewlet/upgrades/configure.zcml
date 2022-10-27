@@ -56,4 +56,19 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      source="2003"
+      destination="2004"
+      profile="collective.messagesviewlet:default">
+    <genericsetup:upgradeDepends
+        title="Add protected messages-config folder workflow"
+        import_profile="collective.messagesviewlet:install-base"
+        import_steps="workflow"
+        />
+    <genericsetup:upgradeStep
+        title="Remap workflow of messages-config folder"
+        handler="collective.messagesviewlet.upgrades.upgrades.remap_messages_config_worflow"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>

@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <metadata>
-  <version>2002</version>
+  <version>2004</version>
   <dependencies>
     <dependency>profile-collective.messagesviewlet:install-base</dependency>
   </dependencies>

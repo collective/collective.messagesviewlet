@@ -23,7 +23,8 @@ def post_install(context):
             'MessagesConfig',
             container=site,
             id=FOLDER,
-            title=_('Messages viewlet settings', context=site))
+            title=_('Messages viewlet settings', context=site),
+            description=_('This folder contains messages and should be kept private', context=site))
         excl = IExcludeFromNavigation(container)
         excl.exclude_from_nav = True
 

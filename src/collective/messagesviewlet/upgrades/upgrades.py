@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.messagesviewlet import _
 from plone import api
+from plone.app.workflow.remap import remap_workflow
 from plone.indexer.wrapper import IndexableObjectWrapper
 from plone.registry import field, Record
 from plone.registry.interfaces import IRegistry
@@ -123,3 +124,11 @@ def add_show_local_message_to_registry(context):
     records[
         "messagesviewlet.show_local_message"
     ] = record  # noqa
+
+def remap_messages_config_worflow(context):
+    portal = api.portal.get()
+    remap_workflow(
+        portal,
+        type_ids=("MessagesConfig",),
+        chain=("messagesconfig_workflow",),
+    )

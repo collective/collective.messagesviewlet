@@ -5,6 +5,8 @@ Changelog
 0.24 (unreleased)
 -----------------
 
+- Add one-state private workflow to messages-config folder
+  [boulch]
 - Fix messages-config link in control panel
   [boulch]
 - Migrate to Plone 6.0.0b1 : remove dexteritytextindexer, use new simplified resources registry
