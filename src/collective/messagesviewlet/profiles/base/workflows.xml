@@ -7,8 +7,8 @@
     <type type_id="Message">
       <bound-workflow workflow_id="message_workflow"/>
     </type>
-    <type type_id="PrivateFolder">
-      <bound-workflow workflow_id="privatefolder_workflow"/>
+    <type type_id="MessagesConfig">
+      <bound-workflow workflow_id="messagesconfig_workflow"/>
     </type>
   </bindings>
 </object>
