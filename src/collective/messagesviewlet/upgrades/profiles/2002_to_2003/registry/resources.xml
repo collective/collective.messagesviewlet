@@ -24,7 +24,7 @@
            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
     <value key="depends">messagesviewletCookie</value>
     <value key="enabled">True</value>
-    <value key="csscompilation">++plone++collective.messagesviewlet/messagesviewlet.css</value>
+    <value key="csscompilation">++plone++collective.messagesviewlet/messagesviewlet-plone6.css</value>
     <value key="jscompilation">++plone++collective.messagesviewlet/messagesviewlet.js</value>
     <value key="load_async">False</value>
     <value key="load_defer">False</value>

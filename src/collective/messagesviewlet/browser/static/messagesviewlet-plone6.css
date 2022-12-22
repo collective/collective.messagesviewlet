@@ -1,0 +1,132 @@
+.warning-formHelp {
+    color: orange;
+}
+
+.portaltype-messagesconfig #contentview-folderContents,
+.portaltype-messagesconfig #contentview-edit,
+.portaltype-messagesconfig #contentview-local_roles {
+    display: none;
+}
+
+#messagesviewlet,
+#localmessagesviewlet {
+    float: left;
+    width: 100%;
+    padding-top: 0.5em;
+    line-height: initial;
+}
+
+#messagesviewlet :before,
+#localmessagesviewlet :before {
+    display: none;
+}
+
+#messagesviewlet .portalMessage p:first-of-type,
+#localmessagesviewlet .portalMessage p:first-of-type {
+    display: inline-block;
+}
+
+#messagesviewlet > div,
+#localmessagesviewlet > div {
+    margin-bottom: 0.5em;
+    padding: 0.5em;
+    padding-left: 0.25em;
+    position: relative;
+}
+
+#messagesviewlet .messagesviewlet-type,
+#localmessagesviewlet .messagesviewlet-type {
+    padding: 0.4em;
+    padding-left: 0.25em;
+    color: white;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+
+#messagesviewlet .portalMessage,
+#localmessagesviewlet .portalMessage {
+    display: flex;
+    align-items: center;
+    padding-right: 3em;
+}
+
+#messagesviewlet .portalMessage p,
+#localmessagesviewlet .portalMessage p {
+    margin: 0;
+}
+
+#messagesviewlet .portalMessage.info,
+#localmessagesviewlet .portalMessage.info {
+    background-color: #ffffe3;
+}
+
+#messagesviewlet .portalMessage.error,
+#localmessagesviewlet .portalMessage.error {
+    background-color: #fdc;
+}
+
+#messagesviewlet .portalMessage.warning,
+#localmessagesviewlet .portalMessage.warning {
+    background-color: #fd7;
+}
+
+#messagesviewlet .portalMessage.info .messagesviewlet-type,
+#localmessagesviewlet .portalMessage.info .messagesviewlet-type {
+    background: #27789c;
+}
+
+#messagesviewlet .portalMessage.warning .messagesviewlet-type,
+#localmessagesviewlet .portalMessage.warning .messagesviewlet-type {
+    background: #c06d01;
+}
+
+#messagesviewlet .portalMessage.error .messagesviewlet-type,
+#localmessagesviewlet .portalMessage.error .messagesviewlet-type {
+    background: #ae2609;
+}
+
+#messagesviewlet .close-button,
+#localmessagesviewlet .close-button {
+    position: absolute;
+    bottom: 50%;
+    right: 0.25em;
+    transform: translateY(50%);
+}
+
+#messagesviewlet .close-button::after,
+#localmessagesviewlet .close-button::after {
+    content: " \00D7";
+    background: black;
+    color: white;
+    border-radius: 50%;
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 20px;
+    display: table-cell;
+    border: 0px solid white;
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.portalMessage.error .messagesviewlet-type {
+    background: #d54a30;
+    padding: 0.4em;
+    color: white;
+    border-radius: 5px;
+    margin-right: 1em;
+}
+
+.state-inactive .review_state, .label-state-inactive {
+    color: #c4183c !important;
+}
+
+.label-state-activated {
+    color: #159fe0 !important;
+}
+
+#edit-zone .nav-link:hover .label-state-activated {
+    color: #004868 !important;
+}
