@@ -2,8 +2,7 @@
 <dc-workflow xmlns:i18n="http://xml.zope.org/namespaces/i18n"
              i18n:domain="plone"
              workflow_id="messagesconfig_workflow" title="Private messages-config folder Workflow"
-             state_variable="review_state" initial_state="private" manager_bypass="False"
-             i18n:attributes="title">
+             state_variable="review_state" initial_state="private" manager_bypass="False">
     <permission>Access contents information</permission>
     <permission>Modify portal content</permission>
     <permission>View</permission>

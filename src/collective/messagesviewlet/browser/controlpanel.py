@@ -35,7 +35,7 @@ class IMessagesviewletSettings(Interface):
 class MessagesviewletControlPanelForm(controlpanel.RegistryEditForm):
     schema = IMessagesviewletSettings
     schema_prefix = "messagesviewlet"
-    label = _(u"Messagesviewlet Settings")
+    label = _(u"Messages viewlet settings")
 
     @button.buttonAndHandler(_(u"Save"), name="save")
     def handleSave(self, action):

@@ -16,9 +16,8 @@
     <p>
         <a id="messages-config" class="messages-config"
            tal:attributes="href string:${here/portal_url}/messages-config"
-           i18n:translate="">
-            Global messages folder
-        </a>
+           i18n:domain="collective.messagesviewlet"
+           i18n:translate="">Global messages folder</a>
     </p>
     <div id="content-core">
         <div id="layout-contents">
