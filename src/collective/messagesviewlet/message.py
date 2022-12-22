@@ -49,8 +49,8 @@ def location(context):
     terms = []
     terms.append(SimpleTerm("fullsite", title=_("Full site")))
     terms.append(SimpleTerm("homepage", title=_("Homepage")))
-    terms.append(SimpleTerm("justhere", title=_("Just on this content")))
     terms.append(SimpleTerm("fromhere", title=_("From this content")))
+    terms.append(SimpleTerm("justhere", title=_("Just on this content")))
 
     if IMessage.providedBy(context):
         # edit : context is the message.

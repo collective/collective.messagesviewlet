@@ -242,7 +242,7 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types) - 1)
         locations = [term.token for term in location(self.portal)._terms]
         self.assertTrue(
-            set(locations).issubset(["fullsite", "homepage", "justhere", "fromhere"])
+            set(locations).issubset(["fullsite", "homepage", "fromhere", "justhere"])
         )
         message = self.messages[2]
         message.location = "homepage"
@@ -389,7 +389,7 @@ class MessageIntegrationTest(unittest.TestCase):
         # To get this location message (justhere), we must be in a folder
         context = self.portal["myfolder"]
         locations = [term.token for term in location(context)._terms]
-        self.assertEqual(locations, ["justhere", "fromhere"])
+        self.assertEqual(locations, ["fromhere", "justhere"])
 
     def test_local_messages_viewlet_render(self):
         # Don't display any local messages
