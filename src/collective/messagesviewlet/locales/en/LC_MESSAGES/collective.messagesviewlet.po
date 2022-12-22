@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-04-26 12:09+0000\n"
+"POT-Creation-Date: 2022-12-22 11:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,8 +18,13 @@ msgstr ""
 msgid "Add default messages for collective.messagesviewlet."
 msgstr "Add default messages for collective.messagesviewlet."
 
-#: ../browser/controlpanel.py:18
-#: ../upgrades.py:82
+#: ../browser/controlpanel.py:27
+#: ../upgrades/upgrades.py:116
+msgid "Affects only messages visibility. Check if you want to see local messages."
+msgstr ""
+
+#: ../browser/controlpanel.py:17
+#: ../upgrades/upgrades.py:83
 msgid "Authorize local messages"
 msgstr ""
 
@@ -27,12 +32,17 @@ msgstr ""
 msgid "Can be marked as read"
 msgstr "Can be marked as read"
 
-#: ../browser/controlpanel.py:48
+#: ../browser/controlpanel.py:56
 msgid "Cancel"
 msgstr ""
 
-#: ../browser/controlpanel.py:50
+#: ../browser/controlpanel.py:58
 msgid "Changes canceled."
+msgstr ""
+
+#: ../browser/controlpanel.py:18
+#: ../upgrades/upgrades.py:84
+msgid "Check if messages can be added everywhere on the site. This also affects visibility of existing local messages."
 msgstr ""
 
 #: ../message.py:125
@@ -45,6 +55,7 @@ msgstr "End date"
 
 #: ../profiles/plone4/registry.xml
 #: ../profiles/plone5/registry.xml
+#: ../profiles/plone6/registry.xml
 msgid "False"
 msgstr ""
 
@@ -60,6 +71,10 @@ msgstr ""
 msgid "Full site"
 msgstr "Full site"
 
+#: ../browser/templates/controlpanel_layout.pt:17
+msgid "Global messages folder"
+msgstr ""
+
 #: ../message.py:51
 msgid "Homepage"
 msgstr "Homepage"
@@ -72,12 +87,20 @@ msgstr "If checked, the message will be shown only to users having message local
 msgid "If checked, the user can hide the message"
 msgstr "If checked, the user can hide the message"
 
-#: ../profiles.zcml:41
+#: ../profiles.zcml:61
+msgid "Install collective.messagesviewlet.testing profile"
+msgstr ""
+
+#: ../profiles.zcml:32
 msgid "Installs the collective.messagesviewlet add-on on Plone 4."
 msgstr "Installs the collective.messagesviewlet add-on on Plone 4."
 
-#: ../profiles.zcml:32
-msgid "Installs the collective.messagesviewlet add-on on Plone 5 (and more)."
+#: ../profiles.zcml:42
+msgid "Installs the collective.messagesviewlet add-on on Plone 5."
+msgstr ""
+
+#: ../profiles.zcml:52
+msgid "Installs the collective.messagesviewlet add-on on Plone 6."
 msgstr ""
 
 #: ../profiles.zcml:15
@@ -86,11 +109,6 @@ msgstr "Installs the collective.messagesviewlet add-on."
 
 #: ../message.py:52
 msgid "Just on this content"
-msgstr ""
-
-#: ../browser/controlpanel.py:19
-#: ../upgrades.py:83
-msgid "local messages should be stored in containers. You can choose to display them only on this container item or also on its children"
 msgstr ""
 
 #: ../message.py:140
@@ -109,8 +127,9 @@ msgstr "Message text"
 msgid "Message type"
 msgstr "Message type"
 
+#: ../browser/controlpanel.py:38
 #: ../profiles/base/controlpanel.xml
-#: ../setuphandlers.py:26
+#: ../profiles/plone6/controlpanel.xml
 msgid "Messages viewlet settings"
 msgstr "Messages viewlet settings"
 
@@ -118,16 +137,21 @@ msgstr "Messages viewlet settings"
 msgid "MessagesConfig"
 msgstr "Messages Configuration"
 
-#: ../browser/controlpanel.py:30
-msgid "Messagesviewlet Settings"
+#: ../upgrades/configure.zcml:14
+msgid "Migrate bundles / resources to simplified resources registry"
 msgstr ""
 
 #: ../message.py:124
 msgid "Required roles"
 msgstr "Required roles"
 
-#: ../browser/controlpanel.py:32
+#: ../browser/controlpanel.py:40
 msgid "Save"
+msgstr ""
+
+#: ../browser/controlpanel.py:26
+#: ../upgrades/upgrades.py:115
+msgid "Show local messages"
 msgstr ""
 
 #: ../message.py:113
@@ -150,35 +174,43 @@ msgstr "Text"
 msgid "The start date must precede the end date."
 msgstr "The start date must precede the end date."
 
+#: ../setuphandlers.py:27
+msgid "This folder contains messages and should be kept private"
+msgstr ""
+
 #: ../message.py:81
 msgid "Title"
 msgstr "Title"
 
-#: ../profiles.zcml:50
+#: ../profiles.zcml:70
 msgid "Uninstall Messages Viewlet."
 msgstr "Uninstall Messages Viewlet."
 
-#: ../profiles.zcml:50
+#: ../profiles.zcml:70
 msgid "Uninstall Messagesviewlet"
 msgstr "Uninstall Messagesviewlet"
+
+#: ../upgrades/configure.zcml:14
+msgid "Upgrade collective.messagesviewlet from 2002 to 2003"
+msgstr ""
 
 #: ../message.py:133
 msgid "Use Reader local role"
 msgstr "Use Reader local role"
 
-#: ../setuphandlers.py:59
+#: ../setuphandlers.py:60
 msgid "bad_browser_ff_chrome_tit"
 msgstr "Bad browser (support Firefox and Chrome)"
 
-#: ../setuphandlers.py:60
+#: ../setuphandlers.py:61
 msgid "bad_browser_ff_chrome_txt ${resource}"
 msgstr "This application will run correctly when using browsers <a href=\"http://www.getfirefox.com\">Firefox <img src=\"../++${resource}++collective.messagesviewlet/firefox-24.png\" /></a> or <a href=\"https://www.google.fr/chrome\">Chrome <img src=\"../++${resource}++collective.messagesviewlet/chrome-24.png\" /></a>"
 
-#: ../setuphandlers.py:55
+#: ../setuphandlers.py:56
 msgid "bad_browser_tit"
 msgstr "Bad browser"
 
-#: ../setuphandlers.py:56
+#: ../setuphandlers.py:57
 msgid "bad_browser_txt ${resource}"
 msgstr "To use correctly this application, you have to use the browser <a href=\"http://www.getfirefox.com\">Firefox <img src=\"../++${resource}++collective.messagesviewlet/firefox-24.png\" /></a>"
 
@@ -190,9 +222,13 @@ msgstr "Green check"
 msgid "close_title"
 msgstr "Hide this message"
 
-#: ../utils.py:19
+#: ../utils.py:25
 msgid "collective.messagesviewlet"
 msgstr "collective.messagesviewlet"
+
+#: ../profiles.zcml:61
+msgid "collective.messagesviewlet (testing))"
+msgstr ""
 
 #: ../profiles.zcml:23
 msgid "collective.messagesviewlet examples"
@@ -202,31 +238,35 @@ msgstr "collective.messagesviewlet examples"
 msgid "collective.messagesviewlet installation"
 msgstr "collective.messagesviewlet installation"
 
-#: ../profiles.zcml:41
+#: ../profiles.zcml:32
 msgid "collective.messagesviewlet plone4 installation"
 msgstr "collective.messagesviewlet plone4 installation"
 
-#: ../profiles.zcml:32
-msgid "collective.messagesviewlet plone5 (and more) installation"
+#: ../profiles.zcml:42
+msgid "collective.messagesviewlet plone5 installation"
+msgstr ""
+
+#: ../profiles.zcml:52
+msgid "collective.messagesviewlet plone6 installation"
 msgstr ""
 
 #: ../message.py:37
 msgid "info"
 msgstr "Information"
 
-#: ../setuphandlers.py:51
+#: ../setuphandlers.py:52
 msgid "maintenance_now_tit"
 msgstr "Imminent maintenance"
 
-#: ../setuphandlers.py:51
+#: ../setuphandlers.py:52
 msgid "maintenance_now_txt"
 msgstr "From 1pm to 3pm : Site unavailable for maintenance !"
 
-#: ../setuphandlers.py:49
+#: ../setuphandlers.py:50
 msgid "maintenance_soon_tit"
 msgstr "Scheduled maintenance"
 
-#: ../setuphandlers.py:49
+#: ../setuphandlers.py:50
 msgid "maintenance_soon_txt"
 msgstr "Friday 25 september, from 1pm to 3pm : Site unavailable for maintenance."
 
@@ -234,11 +274,11 @@ msgstr "Friday 25 september, from 1pm to 3pm : Site unavailable for maintenance.
 msgid "significant"
 msgstr "Significant"
 
-#: ../setuphandlers.py:53
+#: ../setuphandlers.py:54
 msgid "test_site_tit"
 msgstr "Test site"
 
-#: ../setuphandlers.py:53
+#: ../setuphandlers.py:54
 msgid "test_site_txt"
 msgstr "THIS IS A TEST SITE. ALL ENCODED DATA WILL BE LOST !"
 

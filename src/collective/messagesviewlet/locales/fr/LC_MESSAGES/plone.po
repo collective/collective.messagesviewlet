@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2021-04-26 12:09+0000\n"
+"POT-Creation-Date: 2022-12-22 11:03+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -13,6 +13,10 @@ msgstr ""
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+
+#: ../profiles/base/workflows/messagesconfig_workflow/definition.xml
+msgid "Private"
+msgstr ""
 
 #: ../profiles/base/workflows/message_workflow/definition.xml
 msgid "activate"
