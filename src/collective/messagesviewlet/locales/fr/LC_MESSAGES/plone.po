@@ -16,7 +16,7 @@ msgstr ""
 
 #: ../profiles/base/workflows/messagesconfig_workflow/definition.xml
 msgid "Private"
-msgstr ""
+msgstr "Privé"
 
 #: ../profiles/base/workflows/message_workflow/definition.xml
 msgid "activate"

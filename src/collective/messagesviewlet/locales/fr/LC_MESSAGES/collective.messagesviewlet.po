@@ -16,12 +16,12 @@ msgstr ""
 
 #: ../profiles.zcml:23
 msgid "Add default messages for collective.messagesviewlet."
-msgstr "Add default messages for collective.messagesviewlet."
+msgstr ""
 
 #: ../browser/controlpanel.py:27
 #: ../upgrades/upgrades.py:116
 msgid "Affects only messages visibility. Check if you want to see local messages."
-msgstr ""
+msgstr "Affecte uniquement l'affichage. Cochez si vous souhaitez afficher les messages locaux."
 
 #: ../browser/controlpanel.py:17
 #: ../upgrades/upgrades.py:83
@@ -43,7 +43,7 @@ msgstr "Modifications annulées"
 #: ../browser/controlpanel.py:18
 #: ../upgrades/upgrades.py:84
 msgid "Check if messages can be added everywhere on the site. This also affects visibility of existing local messages."
-msgstr ""
+msgstr "Cochez si les messages peuvent être ajoutés partout dans le site. Cela affecte aussi la visibilité de messages locaux déjà existants."
 
 #: ../message.py:125
 msgid "Choose the roles for which the message will be displayed"
@@ -65,19 +65,19 @@ msgstr "Suivant le type, la couleur de la boîte sera différente."
 
 #: ../message.py:53
 msgid "From this content"
-msgstr "Où il est créé et dans les sous-éléments "
+msgstr "Là où il est ajouté et sur les contenus enfants"
 
 #: ../message.py:50
 msgid "Full site"
-msgstr "Tout le site"
+msgstr "Sur tout le site"
 
 #: ../browser/templates/controlpanel_layout.pt:17
 msgid "Global messages folder"
-msgstr ""
+msgstr "Dossier global de messages"
 
 #: ../message.py:51
 msgid "Homepage"
-msgstr "Page d'accueil"
+msgstr "En page d'accueil"
 
 #: ../message.py:134
 msgid "If checked, the message will be shown only to users having message local role 'Reader'"
@@ -93,7 +93,7 @@ msgstr ""
 
 #: ../profiles.zcml:32
 msgid "Installs the collective.messagesviewlet add-on on Plone 4."
-msgstr "Installs the collective.messagesviewlet add-on on Plone 4."
+msgstr ""
 
 #: ../profiles.zcml:42
 msgid "Installs the collective.messagesviewlet add-on on Plone 5."
@@ -105,11 +105,11 @@ msgstr ""
 
 #: ../profiles.zcml:15
 msgid "Installs the collective.messagesviewlet add-on."
-msgstr "Installs the collective.messagesviewlet add-on."
+msgstr ""
 
 #: ../message.py:52
 msgid "Just on this content"
-msgstr "Seulement où il est créé"
+msgstr "Seulement là où il est ajouté"
 
 #: ../message.py:140
 msgid "Location"
@@ -152,7 +152,7 @@ msgstr "Sauvegarder"
 #: ../browser/controlpanel.py:26
 #: ../upgrades/upgrades.py:115
 msgid "Show local messages"
-msgstr ""
+msgstr "Afficher les messages locaux"
 
 #: ../message.py:113
 msgid "Specify end date message appearance. If nothing specified, this is infinite. If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"
@@ -176,7 +176,7 @@ msgstr "La date de début doit précéder la date de fin."
 
 #: ../setuphandlers.py:27
 msgid "This folder contains messages and should be kept private"
-msgstr ""
+msgstr "Ce dossier contient des messages et doit être gardé privé"
 
 #: ../message.py:81
 msgid "Title"
@@ -184,11 +184,11 @@ msgstr "Intitulé"
 
 #: ../profiles.zcml:70
 msgid "Uninstall Messages Viewlet."
-msgstr "Uninstall Messages Viewlet."
+msgstr ""
 
 #: ../profiles.zcml:70
 msgid "Uninstall Messagesviewlet"
-msgstr "Uninstall Messagesviewlet"
+msgstr ""
 
 #: ../upgrades/configure.zcml:14
 msgid "Upgrade collective.messagesviewlet from 2002 to 2003"
@@ -224,7 +224,7 @@ msgstr "Cacher ce message"
 
 #: ../utils.py:25
 msgid "collective.messagesviewlet"
-msgstr "collective.messagesviewlet"
+msgstr ""
 
 #: ../profiles.zcml:61
 msgid "collective.messagesviewlet (testing))"
@@ -232,15 +232,15 @@ msgstr ""
 
 #: ../profiles.zcml:23
 msgid "collective.messagesviewlet examples"
-msgstr "collective.messagesviewlet examples"
+msgstr ""
 
 #: ../profiles.zcml:15
 msgid "collective.messagesviewlet installation"
-msgstr "collective.messagesviewlet installation"
+msgstr ""
 
 #: ../profiles.zcml:32
 msgid "collective.messagesviewlet plone4 installation"
-msgstr "collective.messagesviewlet plone4 installation"
+msgstr ""
 
 #: ../profiles.zcml:42
 msgid "collective.messagesviewlet plone5 installation"
