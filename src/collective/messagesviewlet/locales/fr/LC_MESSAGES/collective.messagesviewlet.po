@@ -20,7 +20,7 @@ msgstr "Add default messages for collective.messagesviewlet."
 
 #: ../browser/controlpanel.py:18
 #: ../upgrades.py:82
-msgid "Authorize local message"
+msgid "Authorize local messages"
 msgstr "Autoriser les messages locaux"
 
 #: ../message.py:94
@@ -53,7 +53,7 @@ msgid "Following the type, the color will be different"
 msgstr "Suivant le type, la couleur de la boîte sera différente."
 
 #: ../message.py:53
-msgid "From this page"
+msgid "From this content"
 msgstr "Où il est créé et dans les sous-éléments "
 
 #: ../message.py:50
@@ -85,12 +85,12 @@ msgid "Installs the collective.messagesviewlet add-on."
 msgstr "Installs the collective.messagesviewlet add-on."
 
 #: ../message.py:52
-msgid "Just on this page"
+msgid "Just on this content"
 msgstr "Seulement où il est créé"
 
 #: ../browser/controlpanel.py:19
 #: ../upgrades.py:83
-msgid "Local message should be stored in folderish. Can be print just on this folderish item or on the folderish and these children"
+msgid "local messages should be stored in containers. You can choose to display them only on this container item or also on its children"
 msgstr "Les messages locaux sont stoqués dans des conteneurs. Vous pouvez choisir d'afficher le message juste sur leconteneur ou sur le conteneur et ses enfants."
 
 #: ../message.py:140

@@ -14,18 +14,18 @@ from zope.interface import Interface
 class IMessagesviewletSettings(Interface):
 
     authorize_local_message = schema.Bool(
-        title=_(u"Authorize local message"),
+        title=_(u"Authorize local messages"),
         description=_(
-            u"Check if message can be globally allow (Can haven't influence if Message is explicitly authorised on container). Also affecting visibility."
+            u"Check if messages can be added everywhere on the site. This also affects visibility of existing local messages."
         ),
         required=False,
         default=False,
     )
 
     show_local_message = schema.Bool(
-        title=_(u"Show local message"),
+        title=_(u"Show local messages"),
         description=_(
-            u"Affecting only visibility. Check if you want to see local messages."
+            u"Affects only messages visibility. Check if you want to see local messages."
         ),
         required=False,
         default=False,

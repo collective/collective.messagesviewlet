@@ -80,9 +80,9 @@ def add_authorize_local_message_to_registry(context):
     )  # noqa
     record = Record(
         field.Bool(
-            title=_(u"Authorize local message"),
+            title=_(u"Authorize local messages"),
             description=_(
-                u"Local message should be stored in folderish. Can be print just on this folderish item or on the folderish and these children"  # noqa
+                u"Check if messages can be added everywhere on the site. This also affects visibility of existing local messages."  # noqa
             ),
             required=False,
             default=False,
@@ -112,9 +112,9 @@ def add_show_local_message_to_registry(context):
     )  # noqa
     record = Record(
         field.Bool(
-            title=_(u"Show local message"),
+            title=_(u"Show local messages"),
             description=_(
-                u"Check if you want to see local messages"  # noqa
+                u"Affects only messages visibility. Check if you want to see local messages."  # noqa
             ),
             required=False,
             default=False,
