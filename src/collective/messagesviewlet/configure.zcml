@@ -31,10 +31,11 @@
         handler=".subscribers.change_hidden_uid"
         />
 
-    <!--subscriber
+    <!-- TODO: handle local message authorization change made directly in registry
+    <subscriber
         for="collective.messagesviewlet.browser.controlpanel.IMessagesviewletSettings
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"
-        handler=".subscribers.handle_switch_authorize_local_message"
-        /-->
+        handler=".subscribers.handle_authorize_local_messages"
+        /> -->
 
 </configure>
