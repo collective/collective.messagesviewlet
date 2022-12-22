@@ -2,8 +2,8 @@ Changelog
 =========
 
 
-0.24 (unreleased)
------------------
+1.0b1 (2022-12-22)
+------------------
 
 - Migrate to Plone 6.0.0: remove dexteritytextindexer, use new simplified
   resources registry, fix styles, fix icons, ...
