@@ -38,6 +38,12 @@ class HiddenProfiles(object):
             u'collective.messagesviewlet:install-base',
         ]
 
+    def getNonInstallableProducts(self):
+        """Do not show on Plone's list of installable products."""
+        return [
+            'collective.messagesviewlet.upgrades',
+        ]
+
 
 def add_default_messages(context):
     """ Add maintenance messages that can be activated when necessary """
