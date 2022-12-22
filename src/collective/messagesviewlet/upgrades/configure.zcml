@@ -53,6 +53,17 @@
     <genericsetup:upgradeDepends
         title="Migrate bundles / resources to simplified resources registry"
         import_profile="collective.messagesviewlet.upgrades:upgrade_2002_to_2003"
+        import_steps="workflow"
+        />
+    <genericsetup:upgradeDepends
+        title="Migrate configlet icon"
+        import_profile="collective.messagesviewlet.upgrades:upgrade_2002_to_2003"
+        import_steps="controlpanel"
+        />
+    <genericsetup:upgradeDepends
+        title="Migrate content types icons"
+        import_profile="collective.messagesviewlet.upgrades:upgrade_2002_to_2003"
+        import_steps="typeinfo"
         />
   </genericsetup:upgradeSteps>
 
