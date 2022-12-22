@@ -5,24 +5,20 @@ Changelog
 0.24 (unreleased)
 -----------------
 
-- Add one-state private workflow to messages-config folder
+- Migrate to Plone 6.0.0: remove dexteritytextindexer, use new simplified
+  resources registry, fix styles, 
+  [boulch, laulaz]
+- Add local messages feature. Local messages can be added in any folderish
+  content types and you can choose if / on which levels they display.
   [boulch]
-- Fix messages-config link in control panel
+- Protect messages-config folder with one-state private workflow
   [boulch]
-- Migrate to Plone 6.0.0b1 : remove dexteritytextindexer, use new simplified resources registry
+- Add control panel (with messages-config folder link)
   [boulch]
 - Use JS to show/hide messages when closed, to avoid caching problems (#12)
   [laulaz]
-- Update some translations
-  [boulch]
-- Update tests
-  [boulch]
-- Update less and js to support localMessagesViewlet
-  [boulch]
-- Update control panel with enable/disable local messages
-  [boulch]
-- Add LocalMessagesViewlet. These can be add in folderish content types.
-  [boulch]
+- Update / improve translations
+  [boulch, laulaz]
 
 
 0.23 (2020-04-17)
