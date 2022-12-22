@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<object name="MessagesConfig" meta_type="Dexterity FTI" i18n:domain="collective.messagesviewlet"
+   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+
+  <property name="icon_expr">string:contenttype/folder</property>
+
+</object>

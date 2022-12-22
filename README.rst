@@ -37,6 +37,9 @@ A message contains the following configuration attributes:
 * use local roles : message displayed for users having Reader local role on message (optional)
 * location : full site or homepage only
 
+Local messages can also be authorized (through control panel) to be added in any
+folderish content types and you can then choose if / on which levels they display.
+
 The collective.behavior.talcondition is enabled, providing 2 attributes.
 
 * tal condition : optional tal expression evaluated on viewlet context
@@ -64,12 +67,26 @@ The optional 'messages' profile adds some usefull examples that can be activated
 
 There is also a PseudoMessage class that can be instantiated and used in viewlet templates.
 
+
+Limitations
+-----------
+
+This add-on has been developed on Plone 4.3, but works with Plone 5 and Plone 6 too.
+
+Current branch is tested on:
+
+* Python 2.7 / Plone 4.3.x & Plone 5.1.x
+* Python 3.7 / Plone 5.2.x
+* Python 3.8 / Plone 5.2.x & Plone 6.0.x
+
+
 Improvements
 ------------
 
 * Modify hidden_uid when some fields are changed: end when gone, can_hide (to unchecked), start when end is gone
 * Message definition from file system
 * Message definition from rss feed
+
 
 Translations
 ------------

@@ -24,13 +24,15 @@ matrix:
       env: PLONE_VERSION=5.2 TEST_EGG=collective.messagesviewlet[test]
     - python: "3.7"
       env: PLONE_VERSION=5.2 TEST_EGG=collective.messagesviewlet[test]
+    - python: "3.7"
+      env: PLONE_VERSION=6.x TEST_EGG=collective.messagesviewlet[test]
   sudo: true
   fast_finish: true
 
 before_install:
   - sudo apt-get install -y firefox-geckodriver
   - virtualenv -p `which python` .
-  - cp plone-$PLONE_VERSION.x.cfg buildout.cfg  
+  - cp plone-$PLONE_VERSION.x.cfg buildout.cfg
 
 install:
   - echo $PLONE_VERSION

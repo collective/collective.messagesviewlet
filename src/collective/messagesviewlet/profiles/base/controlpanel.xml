@@ -6,15 +6,15 @@
 
     <configlet
         title="Messages viewlet settings"
-        action_id="messagesviewlet.settings"
-        appId="messagesviewlet"
+        action_id="messagesviewlet-controlpanel"
+        appId="messagesviewlet-controlpanel"
         category="Products"
         condition_expr=""
-        url_expr="string:${portal_url}/messages-config"
         icon_expr="string:$portal_url/++resource++collective.messagesviewlet/message-icon.png"
-        visible="True"
-        i18n:attributes="title">
-        <permission>Content rules: Manage rules</permission>
+        url_expr="string:${portal_url}/@@messagesviewlet-controlpanel"
+        i18n:attributes="title"
+        visible="True">
+      <permission>Manage portal</permission>
     </configlet>
 
 </object>

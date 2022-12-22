@@ -6,11 +6,13 @@
 .project
 .pydevproject
 .settings/
+pyvenv.cfg
 bin/
 buildout-cache/
 develop-eggs/
 include/
 lib/
+lib64
 parts/
 src/*
 !src/collective

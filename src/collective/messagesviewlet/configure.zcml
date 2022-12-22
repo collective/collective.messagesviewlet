@@ -1,16 +1,21 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
     i18n_domain="collective.messagesviewlet">
 
-    <includeDependencies package="." />
-
     <i18n:registerTranslations directory="locales" />
+
+    <include package="Products.CMFCore" file="permissions.zcml" />
+    <include package="collective.behavior.talcondition" />
+    <include zcml:condition="not-have plone-5"
+             package="plone.formwidget.datetime" />
 
     <include package=".browser" />
     <include file="profiles.zcml" />
+    <include package=".upgrades" />
 
     <permission
     id="collective.messagesviewlet.addMessage"
@@ -26,6 +31,11 @@
         handler=".subscribers.change_hidden_uid"
         />
 
-
+    <!-- TODO: handle local message authorization change made directly in registry
+    <subscriber
+        for="collective.messagesviewlet.browser.controlpanel.IMessagesviewletSettings
+             zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+        handler=".subscribers.handle_authorize_local_messages"
+        /> -->
 
 </configure>

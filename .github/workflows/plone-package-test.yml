@@ -1,0 +1,51 @@
+name: Tests
+
+on: push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python-version: 2.7
+            plone-version: 4.3
+          - python-version: 2.7
+            plone-version: 5.1
+          - python-version: 3.7
+            plone-version: 5.2
+          - python-version: 3.8
+            plone-version: 5.2
+          - python-version: 3.8
+            plone-version: "6.0"
+    steps:
+      # git checkout
+      - uses: actions/checkout@v2
+
+      # python setup
+      - name: Set up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      # python eggs cache
+      - name: Cache eggs
+        uses: actions/cache@v2
+        env:
+          cache-name: cache-eggs
+        with:
+          path: ./eggs
+          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ matrix.python-version }}-${{ matrix.plone-version }}
+
+      # python install
+      - name: pip install
+        run: pip install -r requirements_plone-${{ matrix.plone-version }}.x.txt
+
+      # buildout
+      - name: buildout
+        run: buildout -t 10 -c plone-${{ matrix.plone-version }}.x.cfg
+
+      # test
+      - name: test
+        run: bin/test

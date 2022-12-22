@@ -1,6 +1,7 @@
-<div id="messagesviewlet"
+<div id=""
+     tal:attributes="id view/id"
      tal:define="messages view/getAllMessages"
-     tal:condition= "messages"
+     tal:condition="python:messages and view.showMessage()"
      i18n:domain="collective.messagesviewlet">
 
   <tal:plone4 condition="python: not view.is_plone_5()">
@@ -28,7 +29,8 @@
       <tal:message5 repeat="message messages">
           <div tal:define="CSSClassName python:view.getCSSClassName(message.msg_type)"
                tal:attributes="class CSSClassName;
-               id message/hidden_uid">
+               id message/hidden_uid"
+               style="display: none">
               <span class="messagesviewlet-type"
                   i18n:translate="" tal:content="python:message.msg_type">Info</span>
               <span class="content"

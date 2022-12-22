@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from collective.messagesviewlet import HAS_PLONE_5
+from collective.messagesviewlet import HAS_PLONE_5_AND_MORE
 from plone import api
 from plone.app.dexterity.behaviors.exclfromnav import IExcludeFromNavigation
 from Products.CMFPlone import interfaces as Plone
@@ -18,12 +18,13 @@ def post_install(context):
     if context.readDataFile('collectivemessagesviewlet_default.txt') is None:
         return
     site = api.portal.get()
-    if not site.get(FOLDER):
+    if not getattr(site, FOLDER, None):
         container = _createObjectByType(
             'MessagesConfig',
             container=site,
             id=FOLDER,
-            title=_('Messages viewlet settings', context=site))
+            title=_('Messages viewlet settings', context=site),
+            description=_('This folder contains messages and should be kept private', context=site))
         excl = IExcludeFromNavigation(container)
         excl.exclude_from_nav = True
 
@@ -37,13 +38,19 @@ class HiddenProfiles(object):
             u'collective.messagesviewlet:install-base',
         ]
 
+    def getNonInstallableProducts(self):
+        """Do not show on Plone's list of installable products."""
+        return [
+            'collective.messagesviewlet.upgrades',
+        ]
+
 
 def add_default_messages(context):
     """ Add maintenance messages that can be activated when necessary """
     if context.readDataFile('collectivemessagesviewlet_messages.txt') is None:
         return
     resource = 'resource'
-    if HAS_PLONE_5:
+    if HAS_PLONE_5_AND_MORE:
         resource = 'plone'
     site = api.portal.get()
     add_message('maintenance-soon', _('maintenance_soon_tit', context=site), _('maintenance_soon_txt', context=site),

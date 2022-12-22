@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<registry
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="collective.messagesviewlet">
+
+  <records prefix="plone.bundles/messagesviewletCookie"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="depends">plone</value>
+    <value key="enabled">True</value>
+    <value key="jscompilation">++plone++collective.messagesviewlet/js.cookie-2.0.3.min.js</value>
+    <value key="load_async">False</value>
+    <value key="load_defer">False</value>
+  </records>
+
+  <records prefix="plone.bundles/messagesviewlet"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'>
+    <value key="depends">messagesviewletCookie</value>
+    <value key="enabled">True</value>
+    <value key="csscompilation">++plone++collective.messagesviewlet/messagesviewlet-plone6.css</value>
+    <value key="jscompilation">++plone++collective.messagesviewlet/messagesviewlet.js</value>
+    <value key="load_async">False</value>
+    <value key="load_defer">False</value>
+  </records>
+
+  <records interface="collective.messagesviewlet.browser.controlpanel.IMessagesviewletSettings"
+       prefix="messagesviewlet">
+       <value key="authorize_local_message" i18n:translate="">False</value>
+       <value key="show_local_message" i18n:translate="">False</value>
+  </records>
+
+</registry>
