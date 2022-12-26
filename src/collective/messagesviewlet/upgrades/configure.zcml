@@ -53,7 +53,7 @@
     <genericsetup:upgradeDepends
         title="Migrate bundles / resources to simplified resources registry"
         import_profile="collective.messagesviewlet.upgrades:upgrade_2002_to_2003"
-        import_steps="workflow"
+        import_steps="plone.app.registry"
         />
     <genericsetup:upgradeDepends
         title="Migrate configlet icon"
