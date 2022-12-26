@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0b2 (unreleased)
+1.0b2 (2022-12-26)
 ------------------
 
 - Fix bundle registry upgrade step
