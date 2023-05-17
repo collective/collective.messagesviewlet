@@ -82,4 +82,15 @@
         />
   </genericsetup:upgradeSteps>
 
+  <genericsetup:upgradeSteps
+      source="2004"
+      destination="2005"
+      profile="collective.messagesviewlet:default">
+    <genericsetup:upgradeDepends
+        title="Re-apply controlpanel so link is updated"
+        import_profile="collective.messagesviewlet:install-base"
+        import_steps="controlpanel"
+        />
+  </genericsetup:upgradeSteps>
+
 </configure>
