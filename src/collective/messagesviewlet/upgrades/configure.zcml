@@ -87,9 +87,22 @@
       destination="2005"
       profile="collective.messagesviewlet:default">
     <genericsetup:upgradeDepends
+        zcml:condition="not-have plone-60"
         title="Re-apply controlpanel so link is updated"
         import_profile="collective.messagesviewlet:install-base"
         import_steps="controlpanel"
+        />
+    <genericsetup:upgradeDepends
+        zcml:condition="not-have plone-60"
+        title="Remove old control panel action"
+        import_profile="collective.messagesviewlet.upgrades:upgrade_2004_to_2005"
+        import_steps="controlpanel"
+        />
+    <!--Ensure Plone6 profile version follow others Plone profiles versions-->
+    <genericsetup:upgradeStep
+        zcml:condition="have plone-60"
+        title="Upgrade from 2004 to 2005"
+        handler="collective.messagesviewlet.upgrades.upgrades.fake_step"
         />
   </genericsetup:upgradeSteps>
 
