@@ -5,7 +5,8 @@ Changelog
 1.0b3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Improve uninstall product
+  [boulch, gbastien]
 
 
 1.0b2 (2022-12-26)
