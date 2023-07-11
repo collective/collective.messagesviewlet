@@ -10,8 +10,14 @@
       title="Upgrade collective.messagesviewlet from 2002 to 2003"
       directory="profiles/2002_to_2003"
       description="Migrate bundles / resources to simplified resources registry"
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      />
+      provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <genericsetup:registerProfile
+      name="upgrade_2004_to_2005"
+      title="Upgrade collective.messagesviewlet from 2004 to 2005"
+      directory="profiles/2004_to_2005"
+      description="Remove old controlpanel action"
+      provides="Products.GenericSetup.interfaces.EXTENSION" />
 
   <genericsetup:upgradeStep
       title="Migration profile for collective.messagesviewlet to 1001"

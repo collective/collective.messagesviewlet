@@ -5,7 +5,7 @@
     i18n:domain="collective.messagesviewlet">
 
     <configlet
-        action_id="messagesviewlet-settings"
+        action_id="messagesviewlet.settings"
         remove="True">
     </configlet>
 
