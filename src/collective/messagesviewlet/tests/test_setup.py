@@ -56,3 +56,7 @@ class TestUninstall(unittest.TestCase):
             self.assertFalse(self.installer.isProductInstalled('collective.messagesviewlet'))
         else:
             self.assertFalse(self.installer.is_product_installed('collective.messagesviewlet'))
+        self.assertNotIn(
+            "messagesviewlet-controlpanel",
+            [action.id for action in self.portal.portal_controlpanel.listActions()],
+        )

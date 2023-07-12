@@ -5,7 +5,11 @@ Changelog
 1.0b3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add upgrade step : Remove deprecated control panel action
+  [boulch]
+
+- Improve uninstall product
+  [boulch, gbastien]
 
 
 1.0b2 (2022-12-26)

@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <object name="portal_controlpanel">
-    <configlet action_id="messagesviewlet.settings" remove="True" />
+    <configlet action_id="messagesviewlet-controlpanel" remove="True" />
 </object>

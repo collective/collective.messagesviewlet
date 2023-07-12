@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<registry
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    i18n:domain="collective.messagesviewlet">
+
+  <records prefix="plone.resources/messagesviewletCookie"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'
+           remove="True">
+  </records>
+
+  <records prefix="plone.resources/messagesviewlet"
+           interface='Products.CMFPlone.interfaces.IResourceRegistry'
+           remove="True">
+  </records>
+
+  <records prefix="plone.bundles/messagesviewlet"
+           interface='Products.CMFPlone.interfaces.IBundleRegistry'
+           remove="True">
+  </records>
+
+  <records interface="collective.messagesviewlet.browser.controlpanel.IMessagesviewletSettings"
+           prefix="messagesviewlet"
+           remove="True">
+  </records>
+</registry>

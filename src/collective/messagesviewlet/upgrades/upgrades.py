@@ -132,3 +132,7 @@ def remap_messages_config_worflow(context):
         type_ids=("MessagesConfig",),
         chain=("messagesconfig_workflow",),
     )
+
+
+def fake_step(context):
+    pass
