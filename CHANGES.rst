@@ -5,6 +5,9 @@ Changelog
 1.0b3 (unreleased)
 ------------------
 
+- Add upgrade step : Remove deprecated control panel action
+  [boulch]
+
 - Improve uninstall product
   [boulch, gbastien]
 
