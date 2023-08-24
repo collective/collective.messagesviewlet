@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0b3 (unreleased)
+1.0b3 (2023-08-24)
 ------------------
 
 - Add upgrade step : Remove deprecated control panel action
