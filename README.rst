@@ -1,7 +1,12 @@
-.. image:: https://travis-ci.org/collective/collective.messagesviewlet.svg?branch=master
-    :target: https://travis-ci.org/collective/collective.messagesviewlet
+.. image:: https://github.com/collective/collective.messagesviewlet/actions/workflows/plone-package-test.yml/badge.svg?branch=master
+    :target: https://github.com/collective/collective.messagesviewlet/actions/workflows/plone-package-test.yml
+
 .. image:: https://coveralls.io/repos/collective/collective.messagesviewlet/badge.svg?branch=master
   :target: https://coveralls.io/github/collective/collective.messagesviewlet?branch=master
+
+.. image:: http://img.shields.io/pypi/v/collective.messagesviewlet.svg
+   :alt: PyPI badge
+   :target: https://pypi.org/project/collective.messagesviewlet
 
 
 .. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
