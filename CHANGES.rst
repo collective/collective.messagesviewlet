@@ -5,7 +5,8 @@ Changelog
 1.0b4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Add Plone 6.1 compatibility by replacing pkg_resources with importlib
+  [remdub]
 
 
 1.0b3 (2023-08-24)
