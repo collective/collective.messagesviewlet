@@ -4,7 +4,7 @@ on: push
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     strategy:
       fail-fast: false
       matrix:
@@ -23,20 +23,22 @@ jobs:
             plone-version: "6.0"
           - python-version: 3.10.6
             plone-version: "6.0"
+          - python-version: 3.13.1
+            plone-version: "6.1"
     steps:
       # git checkout
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       # python setup
       - name: Set up pyenv and Python ${{ matrix.python-version }}
-        uses: "gabrielfalcao/pyenv-action@v14"
+        uses: "gabrielfalcao/pyenv-action@v18"
         with:
           default: "${{ matrix.python-version }}"
           command: pyenv -v
 
       # python eggs cache
       - name: Cache eggs
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         env:
           cache-name: cache-eggs
         with:
