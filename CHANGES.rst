@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0b4 (unreleased)
+1.0b4 (2025-04-24)
 ------------------
 
 - Add Plone 6.1 compatibility by replacing pkg_resources with importlib
