@@ -13,6 +13,13 @@
       provides="Products.GenericSetup.interfaces.EXTENSION" />
 
   <genericsetup:registerProfile
+      name="upgrade_2005_to_2006"
+      title="Upgrade collective.messagesviewlet from 2005 to 2006"
+      directory="profiles/2005_to_2006"
+      description="Remove old controlpanel action"
+      provides="Products.GenericSetup.interfaces.EXTENSION" />
+
+  <genericsetup:registerProfile
       name="upgrade_2004_to_2005"
       title="Upgrade collective.messagesviewlet from 2004 to 2005"
       directory="profiles/2004_to_2005"
@@ -109,6 +116,17 @@
         zcml:condition="have plone-60"
         title="Upgrade from 2004 to 2005"
         handler="collective.messagesviewlet.upgrades.upgrades.fake_step"
+        />
+  </genericsetup:upgradeSteps>
+
+  <genericsetup:upgradeSteps
+      source="2005"
+      destination="2006"
+      profile="collective.messagesviewlet:default">
+    <genericsetup:upgradeDepends
+        title="Upgrade js.cookie"
+        import_profile="collective.messagesviewlet.upgrades:upgrade_2005_to_2006"
+        import_steps="plone.app.registry"
         />
   </genericsetup:upgradeSteps>
 
