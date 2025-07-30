@@ -5,7 +5,8 @@ Changelog
 1.0b5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Upgraded js.cookie from 2.0.3 to 3.0.5.
+  [chris-adam]
 
 
 1.0b4 (2025-04-24)

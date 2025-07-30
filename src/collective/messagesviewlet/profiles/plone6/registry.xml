@@ -7,7 +7,7 @@
            interface='Products.CMFPlone.interfaces.IBundleRegistry'>
     <value key="depends">plone</value>
     <value key="enabled">True</value>
-    <value key="jscompilation">++plone++collective.messagesviewlet/js.cookie-2.0.3.min.js</value>
+    <value key="jscompilation">++plone++collective.messagesviewlet/js.cookie-3.0.5.min.js</value>
     <value key="load_async">False</value>
     <value key="load_defer">False</value>
   </records>
