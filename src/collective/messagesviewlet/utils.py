@@ -4,6 +4,7 @@ from Acquisition import aq_parent
 from collective.behavior.talcondition.behavior import ITALCondition
 from collective.messagesviewlet import HAS_PLONE_5_AND_MORE
 from collective.messagesviewlet.message import add_timezone
+from collective.messagesviewlet.message import default_start
 from collective.messagesviewlet.message import generate_uid
 from collective.messagesviewlet.messagesconfig import MessagesConfig
 from datetime import datetime
@@ -21,6 +22,8 @@ from zope.component import queryUtility
 from zope.globalrequest import getRequest
 from zope.i18n.interfaces import ITranslationDomain
 
+import pytz
+
 
 def _(msgid, context, domain='collective.messagesviewlet', mapping=None):
     translation_domain = queryUtility(ITranslationDomain, domain)
@@ -34,7 +37,7 @@ def _richtextval(text):
     return RichTextValue(raw=text, mimeType='text/html', outputMimeType='text/html', encoding='utf-8')
 
 
-def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime.now(), end='', req_roles=[],
+def add_message(id, title, text, msg_type='info', can_hide=False, start=None, end='', req_roles=[],
                 location='fullsite', tal_condition='', roles_byp_talcond=[], use_local_roles=False, activate=False, container='default'):
     """
         Add a message in the configuration folder
@@ -50,8 +53,10 @@ def add_message(id, title, text, msg_type='info', can_hide=False, start=datetime
     if id in container:
         return None
     rich_text = _richtextval(text)
-    # Add TZ when using Plone5
-    if HAS_PLONE_5_AND_MORE:
+    if start is None:
+        start = default_start()
+    elif HAS_PLONE_5_AND_MORE:
+        # Add TZ when using Plone5
         start = add_timezone(start, force=True)
     try:
         end_date = datetime.strptime(end, '%Y%m%d-%H%M')
@@ -93,7 +98,7 @@ def get_messages_to_show(context, caching=True):
             mb_roles = set(['Anonymous'])
         else:
             mb_roles = set(api.user.get_roles(obj=context))
-        now = datetime.now()
+        now = datetime.now(pytz.utc)
         brains = catalog.unrestrictedSearchResults(portal_type=['Message'],
                                                    start={'query': now, 'range': 'max'},
                                                    end={'query': now, 'range': 'min'},
