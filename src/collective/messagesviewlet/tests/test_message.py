@@ -28,6 +28,9 @@ from zope.interface import alsoProvides
 from zope.viewlet.interfaces import IViewletManager
 from Products.Five.browser import BrowserView
 
+import os
+import pytz
+import time
 import unittest
 
 NUMBER_OF_PORTAL_TYPE_MESSAGE = 9
@@ -223,6 +226,33 @@ class MessageIntegrationTest(unittest.TestCase):
         # tests that the message is still visible.
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
+
+    def test_getAllGlobalMessages_date_timezone(self):
+        # dates must be compared to the right "now" when server isn't in UTC
+        old_tz = os.environ.get("TZ")
+        os.environ["TZ"] = "Europe/Brussels"
+        time.tzset()
+        try:
+            viewlet = self.get_global_viewlet(self.portal)
+            now = datetime.now(pytz.utc)
+            # message ending soon is still visible
+            message = self.messages[0]
+            message.end = now + relativedelta(minutes=+30)
+            message.reindexObject()
+            # message starting soon isn't visible yet
+            message = self.messages[1]
+            message.start = now + relativedelta(minutes=+30)
+            message.reindexObject()
+            self._clean_cache()
+            messages = viewlet.getAllMessages()
+            self.assertIn(self.messages[0], messages)
+            self.assertNotIn(self.messages[1], messages)
+        finally:
+            if old_tz is None:
+                del os.environ["TZ"]
+            else:
+                os.environ["TZ"] = old_tz
+            time.tzset()
 
     def test_getAllMessages_tal_condition(self):
         viewlet = self.get_global_viewlet(self.portal)

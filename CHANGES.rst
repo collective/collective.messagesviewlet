@@ -5,7 +5,13 @@ Changelog
 1.0b5 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix messages disappearing (or appearing) up to 2 hours too early when the
+  server isn't in UTC: the catalog was queried with a naive local "now",
+  which the `start`/`end` DateRecurringIndex reads as UTC
+  [remdub]
+- `add_message`: default `start` is now computed at call time, in the portal
+  timezone, instead of once at import time
+  [remdub]
 
 
 1.0b4 (2025-04-24)
