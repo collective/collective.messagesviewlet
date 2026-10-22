@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-1.0b5 (unreleased)
+1.0b5 (2026-10-22)
 ------------------
 
 - Fix messages disappearing (or appearing) up to 2 hours too early when the
