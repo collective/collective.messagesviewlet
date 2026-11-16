@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Installer for the collective.messagesviewlet package."""
 
-from setuptools import find_packages
+from setuptools import find_namespace_packages
 from setuptools import setup
 
 
@@ -22,15 +22,12 @@ setup(
     classifiers=[
         "Environment :: Web Environment",
         "Framework :: Plone",
-        "Framework :: Plone :: 4.3",
-        "Framework :: Plone :: 5.1",
         "Framework :: Plone :: 5.2",
         "Framework :: Plone :: 6.0",
         "Framework :: Plone :: 6.1",
+        "Framework :: Plone :: 6.2",
         "Framework :: Plone :: Addon",
         "Programming Language :: Python",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
@@ -45,8 +42,7 @@ setup(
     author_email='support@imio.be',
     url='http://pypi.python.org/pypi/collective.messagesviewlet',
     license='GPL version 2',
-    packages=find_packages('src', exclude=['ez_setup']),
-    namespace_packages=['collective'],
+    packages=find_namespace_packages('src', exclude=['ez_setup']),
     package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,

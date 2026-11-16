@@ -5,7 +5,10 @@ Changelog
 1.0b6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Breaking: migrate to PEP 420 native namespaces (setuptools 81 / Plone 6.2).
+  Drop Python 2 (Plone 4.3 and 5.1). Plone 5.2, 6.0 and 6.1 need
+  ``horse-with-no-namespace``.
+  [bsuttor]
 
 
 1.0b5 (2026-10-22)
