@@ -3,47 +3,48 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     xmlns:plone="http://namespaces.plone.org/plone"
     xmlns:zcml="http://namespaces.zope.org/zcml"
-    i18n_domain="collective.messagesviewlet">
+    i18n_domain="collective.messagesviewlet"
+    >
 
   <!-- Publish static files -->
   <plone:static
-      zcml:condition="have plone-5"
-      name="collective.messagesviewlet"
       directory="static"
+      name="collective.messagesviewlet"
       type="plone"
+      zcml:condition="have plone-5"
       />
 
   <browser:resourceDirectory
-      zcml:condition="not-have plone-5"
       name="collective.messagesviewlet"
       directory="static"
+      zcml:condition="not-have plone-5"
       />
   <!-- End publish static files -->
 
-    <browser:viewlet
-        for="*"
-        layer="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer"
-        name="message-viewlet"
-        manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
-        class=".messagesviewlet.GlobalMessagesViewlet"
-        template="messagesviewlet.pt"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="message-viewlet"
+      for="*"
+      manager="plone.app.layout.viewlets.interfaces.IPortalHeader"
+      class=".messagesviewlet.GlobalMessagesViewlet"
+      template="messagesviewlet.pt"
+      permission="zope2.View"
+      layer="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer"
+      />
 
-    <browser:viewlet
-        for="*"
-        layer="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer"
-        name="local-message-viewlet"
-        manager="plone.app.layout.viewlets.interfaces.IAboveContent"
-        class=".messagesviewlet.LocalMessagesViewlet"
-        template="messagesviewlet.pt"
-        permission="zope2.View"
-        />
+  <browser:viewlet
+      name="local-message-viewlet"
+      for="*"
+      manager="plone.app.layout.viewlets.interfaces.IAboveContent"
+      class=".messagesviewlet.LocalMessagesViewlet"
+      template="messagesviewlet.pt"
+      permission="zope2.View"
+      layer="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer"
+      />
 
-    <browser:page
-        name="messagesviewlet-controlpanel"
-        for="Products.CMFPlone.interfaces.IPloneSiteRoot"
-        class=".controlpanel.MessagesviewletControlPanelView"
-        permission="cmf.ManagePortal"
-        />
+  <browser:page
+      name="messagesviewlet-controlpanel"
+      for="plone.base.interfaces.IPloneSiteRoot"
+      class=".controlpanel.MessagesviewletControlPanelView"
+      permission="cmf.ManagePortal"
+      />
 </configure>
