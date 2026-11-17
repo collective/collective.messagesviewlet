@@ -6,8 +6,19 @@ Changelog
 ------------------
 
 - Breaking: migrate to PEP 420 native namespaces (setuptools 81 / Plone 6.2).
-  Drop Python 2 (Plone 4.3 and 5.1). Plone 5.2, 6.0 and 6.1 need
-  ``horse-with-no-namespace``.
+  Support Plone 6.1 and 6.2 on Python 3.10 to 3.13 only: Plone 4.3 to 6.0 are
+  dropped (use 1.0b5).
+  [bsuttor]
+
+- Move the package metadata from ``setup.py`` to ``pyproject.toml``, configure
+  the package with plone.meta (tox, GitHub Actions, pre-commit) and replace the
+  buildout development environment by a uv one on Plone 6.2.3. Remove the
+  Travis and buildout files, and the Selenium robot tests, which can't run on
+  plone.app.robotframework 3.
+  [bsuttor]
+
+- Import ``IPloneSiteRoot`` and ``INonInstallable`` from ``plone.base``, and
+  drop ``six``.
   [bsuttor]
 
 
@@ -85,7 +96,7 @@ Changelog
 0.21 (2019-10-14)
 -----------------
 
-- Bypass allowed content types contraint when (post)install messagesConfig container
+- Bypass allowed content types constraint when (post)install messagesConfig container
   [boulch]
 
 
