@@ -1,8 +1,0 @@
-packaging==24.2
-pip==25.0.1
-setuptools==75.8.2
-wheel==0.45.1
-zc.buildout==4.1.4
-# Bridge our PEP 420 namespace with pkg_resources-style namespace eggs.
-# Must be pip-installed into the virtualenv (not via buildout).
-horse-with-no-namespace
