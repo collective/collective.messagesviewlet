@@ -1,10 +1,9 @@
-# -*- coding: utf-8 -*-
 from plone.dexterity.content import Container
 
 
 class MessagesConfig(Container):
     """
-        MessagesConfig class
+    MessagesConfig class
     """
 
     # This method is used by index methods.

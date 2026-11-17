@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from collective.messagesviewlet import HAS_PLONE_5_AND_MORE
 from collective.messagesviewlet.utils import get_messages_to_show
 from plone.app.layout.viewlets import common
@@ -9,6 +7,7 @@ from zope.component import getUtility
 
 class MessagesViewletBase(common.ViewletBase):
     """This viewlet displays all messages from this product."""
+
     location_filter = []
 
     def is_plone_5(self):
@@ -20,12 +19,12 @@ class MessagesViewletBase(common.ViewletBase):
         return messages
 
     def getCSSClassName(self, msg_type):
-        mapping_type = {'info': 'info', 'significant': 'warning', 'warning': 'error'}
-        return 'portalMessage {0}'.format(mapping_type[msg_type])
+        mapping_type = {"info": "info", "significant": "warning", "warning": "error"}
+        return f"portalMessage {mapping_type[msg_type]}"
 
     def isLocalMessageAuthorized(self):
         registry = getUtility(IRegistry)
-        return registry.get('messagesviewlet.authorize_local_message')
+        return registry.get("messagesviewlet.authorize_local_message")
 
     def showMessage(self):
         return True
@@ -33,6 +32,7 @@ class MessagesViewletBase(common.ViewletBase):
 
 class GlobalMessagesViewlet(MessagesViewletBase):
     """Get global messages (homepage, messageconfig folder)"""
+
     id = "messagesviewlet"
     location_filter = ["fullsite", "homepage"]
 
@@ -42,9 +42,12 @@ class GlobalMessagesViewlet(MessagesViewletBase):
 
 class LocalMessagesViewlet(MessagesViewletBase):
     """Get local messages (From folderish)"""
+
     id = "localmessagesviewlet"
     location_filter = ["justhere", "fromhere"]
 
     def showMessage(self):
         registry = getUtility(IRegistry)
-        return registry.get('messagesviewlet.show_local_message') and registry.get('messagesviewlet.authorize_local_message')
+        return registry.get("messagesviewlet.show_local_message") and registry.get(
+            "messagesviewlet.authorize_local_message"
+        )

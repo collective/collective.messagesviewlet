@@ -1,11 +1,11 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <import-steps>
 
- <import-step
-    id="collective-messagesviewlet-messages"
-    handler="collective.messagesviewlet.setuphandlers.add_default_messages"
-    title="default messages for collective.messagesviewlet"
-    version="2015-09-09">
+  <import-step id="collective-messagesviewlet-messages"
+               handler="collective.messagesviewlet.setuphandlers.add_default_messages"
+               title="default messages for collective.messagesviewlet"
+               version="2015-09-09"
+  >
    default messages for collective.messagesviewlet
  </import-step>
 

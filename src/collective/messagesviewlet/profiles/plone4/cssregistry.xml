@@ -1,8 +1,19 @@
-<?xml version="1.0"?>
-<object name="portal_css" meta_type="Stylesheets Registry" autogroup="False">
- <stylesheet title="" cacheable="True" compression="safe"
-     conditionalcomment="" cookable="True" enabled="on"
-     expression="" id="++resource++collective.messagesviewlet/messagesviewlet.css"
-     media="screen" rel="stylesheet" rendering="import" />
+<?xml version="1.0" encoding="utf-8"?>
+<object autogroup="False"
+        meta_type="Stylesheets Registry"
+        name="portal_css"
+>
+  <stylesheet id="++resource++collective.messagesviewlet/messagesviewlet.css"
+              cacheable="True"
+              compression="safe"
+              conditionalcomment=""
+              cookable="True"
+              enabled="on"
+              expression=""
+              media="screen"
+              rel="stylesheet"
+              rendering="import"
+              title=""
+  />
 
 </object>

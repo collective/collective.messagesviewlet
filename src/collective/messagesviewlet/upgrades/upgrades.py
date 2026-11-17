@@ -1,31 +1,30 @@
-# -*- coding: utf-8 -*-
 from collective.messagesviewlet import _
 from plone import api
 from plone.app.workflow.remap import remap_workflow
 from plone.indexer.wrapper import IndexableObjectWrapper
-from plone.registry import field, Record
+from plone.registry import field
+from plone.registry import Record
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 
 import logging
 
-
 logger = logging.getLogger("collective.messagesviewlet: upgrade. ")
 
 
 def upgrade_to_1001(context):
-    """ Avoid warning about unresolved dependencies """
+    """Avoid warning about unresolved dependencies"""
     setup = api.portal.get_tool("portal_setup")
     registry = setup.getImportStepRegistry()
     config = {
         "collective-messagesviewlet-post-install": (
-            u"browserlayer",
-            u"controlpanel",
-            u"cssregistry",
-            u"propertiestool",
-            u"rolemap",
-            u"typeinfo",
-            u"workflow",
+            "browserlayer",
+            "controlpanel",
+            "cssregistry",
+            "propertiestool",
+            "rolemap",
+            "typeinfo",
+            "workflow",
         ),
         "collective-messagesviewlet-messages": (),
     }
@@ -39,11 +38,11 @@ def upgrade_to_1001(context):
 
 def upgrade_to_2000(context):
     """
-        Add timezone to start and end
+    Add timezone to start and end
     """
     catalog = api.portal.get_tool("portal_catalog")
     brains = catalog(portal_type="Message")
-    logger.info("Found {0} messages".format(len(brains)))
+    logger.info(f"Found {len(brains)} messages")
     count = 0
     for brain in brains:
         obj = brain.getObject()
@@ -59,7 +58,7 @@ def upgrade_to_2000(context):
         # reindex entire object to avoid datetime with/without TZ comparison
         # that breaks metadata update
         obj.reindexObject()
-    logger.info("Corrected {0} messages".format(count))
+    logger.info(f"Corrected {count} messages")
 
 
 def add_authorize_local_message_to_registry(context):
@@ -69,10 +68,7 @@ def add_authorize_local_message_to_registry(context):
     )
     registry = getUtility(IRegistry)
     records = registry.records
-    if (
-        "messagesviewlet.authorize_local_message"
-        in records
-    ):  # noqa
+    if "messagesviewlet.authorize_local_message" in records:  # noqa
         return
 
     logger.info(
@@ -80,18 +76,16 @@ def add_authorize_local_message_to_registry(context):
     )  # noqa
     record = Record(
         field.Bool(
-            title=_(u"Authorize local messages"),
+            title=_("Authorize local messages"),
             description=_(
-                u"Check if messages can be added everywhere on the site. This also affects visibility of existing local messages."  # noqa
+                "Check if messages can be added everywhere on the site. This also affects visibility of existing local messages."  # noqa
             ),
             required=False,
             default=False,
         ),
         value=False,
     )
-    records[
-        "messagesviewlet.authorize_local_message"
-    ] = record  # noqa
+    records["messagesviewlet.authorize_local_message"] = record  # noqa
 
 
 def add_show_local_message_to_registry(context):
@@ -101,10 +95,7 @@ def add_show_local_message_to_registry(context):
     )
     registry = getUtility(IRegistry)
     records = registry.records
-    if (
-        "messagesviewlet.show_local_message"
-        in records
-    ):  # noqa
+    if "messagesviewlet.show_local_message" in records:  # noqa
         return
 
     logger.info(
@@ -112,18 +103,17 @@ def add_show_local_message_to_registry(context):
     )  # noqa
     record = Record(
         field.Bool(
-            title=_(u"Show local messages"),
+            title=_("Show local messages"),
             description=_(
-                u"Affects only messages visibility. Check if you want to see local messages."  # noqa
+                "Affects only messages visibility. Check if you want to see local messages."  # noqa
             ),
             required=False,
             default=False,
         ),
         value=False,
     )
-    records[
-        "messagesviewlet.show_local_message"
-    ] = record  # noqa
+    records["messagesviewlet.show_local_message"] = record  # noqa
+
 
 def remap_messages_config_worflow(context):
     portal = api.portal.get()
