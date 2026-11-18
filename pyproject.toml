@@ -10,7 +10,7 @@ requires = ["setuptools>=68.2,<83", "wheel"]
 
 [project]
 name = "collective.messagesviewlet"
-version = "1.0b6.dev0"
+version = "2.0.0"
 description = "Add-on displaying manager defined messages in a viewlet"
 classifiers = [
     "Development Status :: 4 - Beta",

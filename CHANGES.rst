@@ -2,7 +2,7 @@ Changelog
 =========
 
 
-2.0.0 (unreleased)
+2.0.0 (2026-11-18)
 ------------------
 
 - Breaking: migrate to PEP 420 native namespaces (setuptools 81 / Plone 6.2).
