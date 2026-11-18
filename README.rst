@@ -76,8 +76,9 @@ There is also a PseudoMessage class that can be instantiated and used in viewlet
 Limitations
 -----------
 
-This add-on supports Plone 6.1 and 6.2 on Python 3.10 to 3.13, and is tested on
-each of them. Use version 1.0b5 for Plone 4.3 to 6.0.
+This add-on supports Plone 6.1 on Python 3.10 to 3.13, and Plone 6.2 on Python
+3.10 to 3.14, and is tested on each of them. Use version 1.0b5 for Plone 4.3 to
+6.0.
 
 
 Improvements
