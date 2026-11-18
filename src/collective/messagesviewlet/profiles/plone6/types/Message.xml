@@ -1,6 +1,9 @@
-<?xml version="1.0"?>
-<object name="Message" meta_type="Dexterity FTI" i18n:domain="collective.messagesviewlet"
-   xmlns:i18n="http://xml.zope.org/namespaces/i18n">
+<?xml version="1.0" encoding="utf-8"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        meta_type="Dexterity FTI"
+        name="Message"
+        i18n:domain="collective.messagesviewlet"
+>
 
   <property name="icon_expr">string:megaphone</property>
 

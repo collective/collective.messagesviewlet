@@ -1,91 +1,95 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
-    i18n_domain="collective.messagesviewlet">
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="collective.messagesviewlet"
+    >
 
   <genericsetup:registerProfile
       name="install-base"
       title="collective.messagesviewlet installation"
-      directory="profiles/base"
       description="Installs the collective.messagesviewlet add-on."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/base"
       />
 
   <genericsetup:registerProfile
       name="messages"
       title="collective.messagesviewlet examples"
-      directory="profiles/messages"
       description="Add default messages for collective.messagesviewlet."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/messages"
       />
 
   <genericsetup:registerProfile
-      zcml:condition="not-have plone-5"
       name="default"
       title="collective.messagesviewlet plone4 installation"
-      directory="profiles/plone4"
       description="Installs the collective.messagesviewlet add-on on Plone 4."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/plone4"
+      zcml:condition="not-have plone-5"
       />
 
   <configure zcml:condition="not-have plone-60">
     <genericsetup:registerProfile
-        zcml:condition="have plone-5"
         name="default"
         title="collective.messagesviewlet plone5 installation"
-        directory="profiles/plone5"
         description="Installs the collective.messagesviewlet add-on on Plone 5."
         provides="Products.GenericSetup.interfaces.EXTENSION"
+        directory="profiles/plone5"
+        zcml:condition="have plone-5"
         />
   </configure>
 
   <genericsetup:registerProfile
-      zcml:condition="have plone-60"
       name="default"
       title="collective.messagesviewlet plone6 installation"
-      directory="profiles/plone6"
       description="Installs the collective.messagesviewlet add-on on Plone 6."
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/plone6"
+      zcml:condition="have plone-60"
       />
 
   <genericsetup:registerProfile
-      zcml:condition="have plone-5"
       name="testing"
       title="collective.messagesviewlet (testing))"
-      directory="profiles/testing"
       description="Install collective.messagesviewlet.testing profile"
       provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/testing"
+      zcml:condition="have plone-5"
       />
 
   <genericsetup:registerProfile
-       name="uninstall"
-       title="Uninstall Messagesviewlet (base)"
-       directory="profiles/uninstall"
-       description="Uninstall Messages Viewlet."
-       provides="Products.GenericSetup.interfaces.EXTENSION"
-       />
+      name="uninstall"
+      title="Uninstall Messagesviewlet (base)"
+      description="Uninstall Messages Viewlet."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall"
+      />
 
   <genericsetup:registerProfile
-       zcml:condition="have plone-5"
-       name="uninstall (Plone5)"
-       title="collective.messagesviewlet : Uninstall Messagesviewlet"
-       directory="profiles/uninstall_plone5"
-       description="Uninstall Messages Viewlet."
-       provides="Products.GenericSetup.interfaces.EXTENSION"
-       />
+      name="uninstall (Plone5)"
+      title="collective.messagesviewlet : Uninstall Messagesviewlet"
+      description="Uninstall Messages Viewlet."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall_plone5"
+      zcml:condition="have plone-5"
+      />
 
   <genericsetup:registerProfile
-       zcml:condition="have plone-60"
-       name="uninstall (Plone6)"
-       title="collective.messagesviewlet : Uninstall Messagesviewlet"
-       directory="profiles/uninstall_plone6"
-       description="Uninstall Messages Viewlet."
-       provides="Products.GenericSetup.interfaces.EXTENSION"
-       />
+      name="uninstall (Plone6)"
+      title="collective.messagesviewlet : Uninstall Messagesviewlet"
+      description="Uninstall Messages Viewlet."
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      directory="profiles/uninstall_plone6"
+      zcml:condition="have plone-60"
+      />
 
-  <utility factory=".setuphandlers.HiddenProfiles" name="collective.messagesviewlet" />
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="collective.messagesviewlet"
+      />
 
 </configure>

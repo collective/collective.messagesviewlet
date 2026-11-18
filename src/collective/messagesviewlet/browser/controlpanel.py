@@ -1,5 +1,3 @@
-# -*- coding: utf-8 -*-
-
 from collective.messagesviewlet import _
 from plone.app.registry.browser import controlpanel
 from plone.z3cform import layout
@@ -14,18 +12,18 @@ from zope.interface import Interface
 class IMessagesviewletSettings(Interface):
 
     authorize_local_message = schema.Bool(
-        title=_(u"Authorize local messages"),
+        title=_("Authorize local messages"),
         description=_(
-            u"Check if messages can be added everywhere on the site. This also affects visibility of existing local messages."
+            "Check if messages can be added everywhere on the site. This also affects visibility of existing local messages."
         ),
         required=False,
         default=False,
     )
 
     show_local_message = schema.Bool(
-        title=_(u"Show local messages"),
+        title=_("Show local messages"),
         description=_(
-            u"Affects only messages visibility. Check if you want to see local messages."
+            "Affects only messages visibility. Check if you want to see local messages."
         ),
         required=False,
         default=False,
@@ -35,9 +33,9 @@ class IMessagesviewletSettings(Interface):
 class MessagesviewletControlPanelForm(controlpanel.RegistryEditForm):
     schema = IMessagesviewletSettings
     schema_prefix = "messagesviewlet"
-    label = _(u"Messages viewlet settings")
+    label = _("Messages viewlet settings")
 
-    @button.buttonAndHandler(_(u"Save"), name="save")
+    @button.buttonAndHandler(_("Save"), name="save")
     def handleSave(self, action):
         data, errors = self.extractData()
         portal_types = self.context.portal_types
@@ -50,14 +48,14 @@ class MessagesviewletControlPanelForm(controlpanel.RegistryEditForm):
             self.status = self.formErrorsMessage
             return
         self.applyChanges(data)
-        IStatusMessage(self.request).addStatusMessage((u"Changes saved."), "info")
+        IStatusMessage(self.request).addStatusMessage(("Changes saved."), "info")
         self.request.response.redirect(self.request.getURL())
 
-    @button.buttonAndHandler(_(u"Cancel"), name="cancel")
+    @button.buttonAndHandler(_("Cancel"), name="cancel")
     def handleCancel(self, action):
-        IStatusMessage(self.request).addStatusMessage(_(u"Changes canceled."), "info")
+        IStatusMessage(self.request).addStatusMessage(_("Changes canceled."), "info")
         self.request.response.redirect(
-            u"{0}/{1}".format(getSite().absolute_url(), self.control_panel_view)
+            f"{getSite().absolute_url()}/{self.control_panel_view}"
         )
 
 

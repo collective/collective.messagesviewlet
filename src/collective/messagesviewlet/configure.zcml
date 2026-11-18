@@ -1,37 +1,49 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:zcml="http://namespaces.zope.org/zcml"
     xmlns:five="http://namespaces.zope.org/five"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
-    i18n_domain="collective.messagesviewlet">
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    i18n_domain="collective.messagesviewlet"
+    >
 
-    <i18n:registerTranslations directory="locales" />
+  <i18n:registerTranslations directory="locales" />
 
-    <include package="Products.CMFCore" file="permissions.zcml" />
-    <include package="collective.behavior.talcondition" />
-    <include zcml:condition="not-have plone-5"
-             package="plone.formwidget.datetime" />
+  <include
+      package="Products.CMFCore"
+      file="permissions.zcml"
+      />
+  <include package="collective.behavior.talcondition" />
+  <include
+      package="plone.formwidget.datetime"
+      zcml:condition="not-have plone-5"
+      />
 
-    <include package=".browser" />
-    <include file="profiles.zcml" />
-    <include package=".upgrades" />
+  <include package=".browser" />
+  <include file="profiles.zcml" />
+  <include package=".upgrades" />
 
-    <permission
-    id="collective.messagesviewlet.addMessage"
-    title="collective.messagesviewlet: Add Message"
-    />
+  <permission
+      id="collective.messagesviewlet.addMessage"
+      title="collective.messagesviewlet: Add Message"
+      />
 
-    <adapter name="start" factory=".message.start_index" />
-    <adapter name="end" factory=".message.end_index" />
+  <adapter
+      factory=".message.start_index"
+      name="start"
+      />
+  <adapter
+      factory=".message.end_index"
+      name="end"
+      />
 
-    <subscriber
-        for="collective.messagesviewlet.message.IMessage
-             Products.CMFCore.interfaces.IActionSucceededEvent"
-        handler=".subscribers.change_hidden_uid"
-        />
+  <subscriber
+      for="collective.messagesviewlet.message.IMessage
+           Products.CMFCore.interfaces.IActionSucceededEvent"
+      handler=".subscribers.change_hidden_uid"
+      />
 
-    <!-- TODO: handle local message authorization change made directly in registry
+  <!-- TODO: handle local message authorization change made directly in registry
     <subscriber
         for="collective.messagesviewlet.browser.controlpanel.IMessagesviewletSettings
              zope.lifecycleevent.interfaces.IObjectModifiedEvent"

@@ -1,17 +1,16 @@
-# -*- coding: utf-8 -*-
-
 from collective.messagesviewlet import HAS_PLONE_5_AND_MORE
 from collective.messagesviewlet.browser.messagesviewlet import GlobalMessagesViewlet
 from collective.messagesviewlet.message import add_timezone
 from collective.messagesviewlet.message import IMessage
 from collective.messagesviewlet.message import location
 from collective.messagesviewlet.message import msg_types
-from collective.messagesviewlet.testing import (
+from collective.messagesviewlet.testing import (  # noqa
     COLLECTIVE_MESSAGESVIEWLET_INTEGRATION_TESTING,
-)  # noqa
+)
 from collective.messagesviewlet.utils import add_message
-from dateutil.relativedelta import relativedelta
 from datetime import datetime
+from dateutil.relativedelta import relativedelta
+
 # from DateTime import DateTime
 from plone import api
 from plone.app.layout.navigation.interfaces import INavigationRoot
@@ -20,13 +19,13 @@ from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
 from plone.dexterity.interfaces import IDexterityFTI
+from Products.Five.browser import BrowserView
 from zope.annotation import IAnnotations
 from zope.component import createObject
 from zope.component import getMultiAdapter
 from zope.component import queryUtility
 from zope.interface import alsoProvides
 from zope.viewlet.interfaces import IViewletManager
-from Products.Five.browser import BrowserView
 
 import os
 import pytz
@@ -99,8 +98,8 @@ class MessageIntegrationTest(unittest.TestCase):
                         can_hide=self.isHidden[i],
                         container=self.another_folder,
                     )
-                except:
-                    assert message == None
+                except Exception:
+                    assert message is None
                     lpf = api.portal.get_tool("portal_types")["Message"]
                     lpf.global_allow = True
                     message = add_message(
@@ -120,8 +119,8 @@ class MessageIntegrationTest(unittest.TestCase):
         messages = api.content.find(
             context=self.message_config_folder, portal_type="Message"
         )
-        datas = [m.getObject() for m in messages]
-        api.content.delete(objects=datas)
+        objects = [m.getObject() for m in messages]
+        api.content.delete(objects=objects)
 
     def get_viewlet_manager(self, context, name):
         request = self.request
@@ -170,7 +169,7 @@ class MessageIntegrationTest(unittest.TestCase):
 
     def test_adding(self):
         for i, message_type in enumerate(self.message_types):
-            message = "message{}".format(i + 1)
+            message = f"message{i + 1}"
             if i < (len(self.message_types) - 1):
                 self.assertTrue(
                     IMessage.providedBy(self.message_config_folder[message])
@@ -188,11 +187,11 @@ class MessageIntegrationTest(unittest.TestCase):
         # viewlet contain one message
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
-        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0],)))
+        self.assertSetEqual(set(viewlet.getAllMessages()), {self.messages[0]})
         logout()
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
-        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[0],)))
+        self.assertSetEqual(set(viewlet.getAllMessages()), {self.messages[0]})
 
     def test_getAllGlobalMessages_date(self):
         viewlet = self.get_global_viewlet(self.portal)
@@ -207,7 +206,7 @@ class MessageIntegrationTest(unittest.TestCase):
         self.assertEqual(len(viewlet.getAllMessages()), 2)
         # test if printed messages are 1 and 2 without message 0
         self.assertSetEqual(
-            set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2]))
+            set(viewlet.getAllMessages()), {self.messages[1], self.messages[2]}
         )
         message = self.messages[1]
         message.end = datetime.now() + relativedelta(days=-2)
@@ -216,7 +215,7 @@ class MessageIntegrationTest(unittest.TestCase):
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 1)
         # test if printed message is 2 without messages 0 and 1
-        self.assertSetEqual(set(viewlet.getAllMessages()), set((self.messages[2],)))
+        self.assertSetEqual(set(viewlet.getAllMessages()), {self.messages[2]})
 
         # tests if message with date set to None is still available
         message = self.messages[2]
@@ -309,7 +308,7 @@ class MessageIntegrationTest(unittest.TestCase):
         hidden_uid = self.messages[0].hidden_uid
         api.content.transition(self.messages[0], "activate")
         api.content.transition(self.messages[0], "deactivate")
-        # checks if the hidden uid has whell changed.
+        # checks if the hidden uid has well changed.
         self.assertNotEqual(hidden_uid, self.messages[0])
 
     def test_required_roles_permissions(self):
@@ -317,7 +316,7 @@ class MessageIntegrationTest(unittest.TestCase):
         # len -1 because we've got 1 local message.
         self.assertEqual(len(viewlet.getAllMessages()), len(self.message_types) - 1)
         # Sets the required role to 'Authenticated' to message 1
-        self.messages[0].required_roles = set(["Authenticated"])
+        self.messages[0].required_roles = {"Authenticated"}
         # Checks that we still see all messages as we are authenticated
         self._clean_cache()
         self.assertEqual(len(viewlet.getAllMessages()), 3)
@@ -325,7 +324,7 @@ class MessageIntegrationTest(unittest.TestCase):
         # Checks that an anonymous user can't see anymore the restricted one.
         self._clean_cache()
         self.assertSetEqual(
-            set(viewlet.getAllMessages()), set((self.messages[1], self.messages[2]))
+            set(viewlet.getAllMessages()), {self.messages[1], self.messages[2]}
         )
 
     def test_getAllGlobalMessages_local_roles(self):

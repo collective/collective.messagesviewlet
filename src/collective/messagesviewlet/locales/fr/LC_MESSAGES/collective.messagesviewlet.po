@@ -155,7 +155,7 @@ msgid "Show local messages"
 msgstr "Afficher les messages locaux"
 
 #: ../message.py:113
-msgid "Specify end date message appearance. If nothing specified, this is infinite. If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"
+msgid "Specify end date message appearance. If nothing specified, this is infinite. If you pick a date, <span class=warning-formHelp>don't forget hours !</span>"
 msgstr "Spécifiez une date de fin d'apparition du message. Si rien n'est défini, c'est infini. Si vous sélectionnez une date, <span class=warning-formHelp>n'oubliez pas les heures !</span>"
 
 #: ../message.py:102

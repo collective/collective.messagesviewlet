@@ -1,0 +1,230 @@
+# Generated from:
+# https://github.com/plone/meta/tree/2.x/src/plone/meta/default
+# See the inline comments on how to expand/tweak this configuration file
+[build-system]
+requires = ["setuptools>=68.2,<83", "wheel"]
+
+# START-MARKER-MANUAL-CONFIG
+# Anything from here until END-MARKER-MANUAL-CONFIG
+# will be kept by plone.meta
+
+[project]
+name = "collective.messagesviewlet"
+version = "1.0b6.dev0"
+description = "Add-on displaying manager defined messages in a viewlet"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Web Environment",
+    "Framework :: Plone",
+    "Framework :: Plone :: 6.1",
+    "Framework :: Plone :: 6.2",
+    "Framework :: Plone :: Addon",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+]
+license = "GPL-2.0-only"
+requires-python = ">=3.10"
+authors = [
+    {name = "IMIO Team", email = "support@imio.be"},
+]
+keywords = ["Python", "Plone"]
+dynamic = ["readme"]
+dependencies = [
+    "collective.behavior.talcondition",
+    "plone.api",
+    "plone.app.dexterity",
+    "plone.app.event",
+    "plone.app.layout",
+    "plone.app.registry",
+    "plone.app.textfield",
+    "plone.app.workflow",
+    "plone.app.z3cform",
+    "plone.autoform",
+    "plone.base",
+    "plone.dexterity",
+    "plone.indexer",
+    "plone.registry",
+    "plone.supermodel",
+    "plone.z3cform",
+    "Products.CMFCore",
+    "Products.CMFPlone",
+    "Products.GenericSetup",
+    "Products.statusmessages",
+    "pytz",
+    "z3c.form",
+    "Zope",
+    "zope.annotation",
+    "zope.component",
+    "zope.globalrequest",
+    "zope.i18n",
+    "zope.i18nmessageid",
+    "zope.interface",
+    "zope.publisher",
+    "zope.schema",
+]
+
+[project.entry-points."plone.autoinclude.plugin"]
+target = "plone"
+
+[project.optional-dependencies]
+test = [
+    "plone.app.contenttypes[test]",
+    "plone.app.testing",
+    "plone.browserlayer",
+    "plone.classicui",
+    "python-dateutil",
+    "zope.viewlet",
+]
+
+[project.urls]
+PyPI = "https://pypi.org/project/collective.messagesviewlet"
+Source = "https://github.com/collective/collective.messagesviewlet"
+Issues = "https://github.com/collective/collective.messagesviewlet/issues"
+Changelog = "https://github.com/collective/collective.messagesviewlet/blob/master/CHANGES.rst"
+
+[tool.setuptools.dynamic]
+readme = {file = ["README.rst", "CONTRIBUTORS.rst", "CHANGES.rst"]}
+# END-MARKER-MANUAL-CONFIG
+
+##
+# Add extra configuration options in .meta.toml:
+#  [pyproject]
+#  towncrier_extra_lines = """
+#  extra_configuration
+#  """
+##
+
+[tool.isort]
+profile = "plone"
+
+##
+# Add extra configuration options in .meta.toml:
+#  [pyproject]
+#  isort_extra_lines = """
+#  extra_configuration
+#  """
+##
+
+[tool.black]
+target-version = ["py310"]
+
+##
+# Add extra configuration options in .meta.toml:
+#  [pyproject]
+#  black_extra_lines = """
+#  extra_configuration
+#  """
+##
+
+[tool.codespell]
+ignore-words-list = "discreet,assertin,thet,"
+skip = "*.po,"
+##
+# Add extra configuration options in .meta.toml:
+#  [pyproject]
+#  codespell_ignores = "foo,bar"
+#  codespell_skip = "*.po,*.map,package-lock.json"
+##
+
+[tool.dependencychecker]
+Zope = [
+  # Zope own provided namespaces
+  'App', 'OFS', 'Products.Five', 'Products.OFSP', 'Products.PageTemplates',
+  'Products.SiteAccess', 'Shared', 'Testing', 'ZPublisher', 'ZTUtils',
+  'Zope2', 'webdav', 'zmi',
+  # ExtensionClass own provided namespaces
+  'ExtensionClass', 'ComputedAttribute', 'MethodObject',
+  # Zope dependencies
+  'AccessControl', 'Acquisition', 'AuthEncoding', 'beautifulsoup4', 'BTrees',
+  'cffi', 'Chameleon', 'DateTime', 'DocumentTemplate',
+  'MultiMapping', 'multipart', 'PasteDeploy', 'Persistence', 'persistent',
+  'pycparser', 'python-gettext', 'pytz', 'RestrictedPython', 'roman',
+  'soupsieve', 'transaction', 'waitress', 'WebOb', 'WebTest', 'WSGIProxy2',
+  'z3c.pt', 'zc.lockfile', 'ZConfig', 'zExceptions', 'ZODB', 'zodbpickle',
+  'zope.annotation', 'zope.browser', 'zope.browsermenu', 'zope.browserpage',
+  'zope.browserresource', 'zope.cachedescriptors', 'zope.component',
+  'zope.configuration', 'zope.container', 'zope.contentprovider',
+  'zope.contenttype', 'zope.datetime', 'zope.deferredimport',
+  'zope.deprecation', 'zope.dottedname', 'zope.event', 'zope.exceptions',
+  'zope.filerepresentation', 'zope.globalrequest', 'zope.hookable',
+  'zope.i18n', 'zope.i18nmessageid', 'zope.interface', 'zope.lifecycleevent',
+  'zope.location', 'zope.pagetemplate', 'zope.processlifetime', 'zope.proxy',
+  'zope.ptresource', 'zope.publisher', 'zope.schema', 'zope.security',
+  'zope.sequencesort', 'zope.site', 'zope.size', 'zope.structuredtext',
+  'zope.tal', 'zope.tales', 'zope.testbrowser', 'zope.testing',
+  'zope.traversing', 'zope.viewlet'
+]
+'Products.CMFCore' = [
+  'docutils', 'five.localsitemanager', 'Missing', 'Products.BTreeFolder2',
+  'Products.GenericSetup', 'Products.MailHost', 'Products.PythonScripts',
+  'Products.StandardCacheManagers', 'Products.ZCatalog', 'Record',
+  'zope.sendmail', 'Zope'
+]
+'plone.base' = [
+  'plone.batching', 'plone.registry', 'plone.schema','plone.z3cform',
+  'Products.CMFCore', 'Products.CMFDynamicViewFTI',
+]
+python-dateutil = ['dateutil']
+pytest-plone = ['pytest', 'zope.pytestlayer', 'plone.testing', 'plone.app.testing']
+ignore-packages = ['plone.classicui', 'plone.formwidget.datetime']
+
+##
+# Add extra configuration options in .meta.toml:
+#  [pyproject]
+#  dependencies_ignores = "['zestreleaser.towncrier']"
+#  dependencies_mappings = [
+#    "gitpython = ['git']",
+#    "pygithub = ['github']",
+#  ]
+#
+# The Zope and Plone mappings above are included by default. For a package
+# used outside the Zope world they are noise, and can be turned off with:
+#  [pyproject]
+#  plone_mappings = false
+##
+
+[tool.check-manifest]
+ignore = [
+    ".editorconfig",
+    ".flake8",
+    ".meta.toml",
+    ".pre-commit-config.yaml",
+    "dependabot.yml",
+    "mx.ini",
+    "tox.ini",
+    ".gitattributes",
+    "Makefile",
+    "instance.yaml",
+    "scripts/*",
+
+]
+
+##
+# Add extra configuration options in .meta.toml:
+#  [pyproject]
+#  check_manifest_ignores = """
+#      "*.map.js",
+#      "*.pyc",
+#  """
+#  check_manifest_extra_lines = """
+#  ignore-bad-ideas = [
+#      "some/test/file/PKG-INFO",
+#  ]
+#  """
+##
+
+
+##
+# Add extra configuration options in .meta.toml:
+#  [pyproject]
+#  extra_lines = """
+#  _your own configuration lines_
+#  """
+##

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.messagesviewlet import _
 from collective.messagesviewlet import HAS_PAE
 from collective.messagesviewlet import HAS_PLONE_5_AND_MORE
@@ -20,9 +19,6 @@ from zope.interface import invariant
 from zope.schema.fieldproperty import FieldProperty
 from zope.schema.vocabulary import SimpleTerm
 from zope.schema.vocabulary import SimpleVocabulary
-
-import six
-
 
 if HAS_PAE:
     from plone.app.event.base import default_timezone
@@ -68,7 +64,7 @@ alsoProvides(location, schema.interfaces.IContextSourceBinder)
 
 
 def generate_uid():
-    return six.text_type(DateTime().millis())
+    return str(DateTime().millis())
 
 
 def default_start():
@@ -78,28 +74,35 @@ def default_start():
 
 class IMessage(model.Schema):
 
-    title = schema.TextLine(title=_(u"Title"), required=True,)
+    title = schema.TextLine(
+        title=_("Title"),
+        required=True,
+    )
 
-    text = RichText(title=_(u"Text"), required=True, description=_(u"Message text"),)
+    text = RichText(
+        title=_("Text"),
+        required=True,
+        description=_("Message text"),
+    )
 
     msg_type = schema.Choice(
-        title=_(u"Message type"),
+        title=_("Message type"),
         required=True,
         source=msg_types,
-        description=_(u"Following the type, the color will be different"),
+        description=_("Following the type, the color will be different"),
     )
 
     form.widget("can_hide", RadioFieldWidget)
     can_hide = schema.Bool(
-        title=_(u"Can be marked as read"),
-        description=_(u"If checked, the user can hide the message"),
+        title=_("Can be marked as read"),
+        description=_("If checked, the user can hide the message"),
         default=False,
     )
 
     start = schema.Datetime(
-        title=_(u"Start date"),
+        title=_("Start date"),
         required=False,
-        description=_(u"Specify start date message appearance"),
+        description=_("Specify start date message appearance"),
         defaultFactory=default_start,
     )
     if HAS_PLONE_5_AND_MORE:
@@ -108,11 +111,11 @@ class IMessage(model.Schema):
         form.widget("start", dtfw4)
 
     end = schema.Datetime(
-        title=_(u"End date"),
+        title=_("End date"),
         required=False,
         description=_(
-            u"Specify end date message appearance. If nothing specified, this is infinite. "
-            "If you pick a date, <span class=warning-formHelp>dont't forget hours !</span>"
+            "Specify end date message appearance. If nothing specified, this is infinite. "
+            "If you pick a date, <span class=warning-formHelp>don't forget hours !</span>"
         ),
     )
     if HAS_PLONE_5_AND_MORE:
@@ -121,8 +124,8 @@ class IMessage(model.Schema):
         form.widget("end", dtfw4)
 
     required_roles = schema.Set(
-        title=_(u"Required roles"),
-        description=_(u"Choose the roles for which the message will be displayed"),
+        title=_("Required roles"),
+        description=_("Choose the roles for which the message will be displayed"),
         required=False,
         value_type=schema.Choice(vocabulary="plone.app.vocabularies.Roles"),
     )
@@ -130,16 +133,23 @@ class IMessage(model.Schema):
 
     form.widget("use_local_roles", RadioFieldWidget)
     use_local_roles = schema.Bool(
-        title=_(u"Use Reader local role"),
+        title=_("Use Reader local role"),
         description=_(
-            u"If checked, the message will be shown only to users having message local role 'Reader'"
+            "If checked, the message will be shown only to users having message local role 'Reader'"
         ),
         default=False,
     )
 
-    location = schema.Choice(title=_(u"Location"), required=True, source=location,)
+    location = schema.Choice(
+        title=_("Location"),
+        required=True,
+        source=location,
+    )
 
-    hidden_uid = schema.TextLine(title=u"Generated uid", defaultFactory=generate_uid,)
+    hidden_uid = schema.TextLine(
+        title="Generated uid",
+        defaultFactory=generate_uid,
+    )
     form.mode(hidden_uid="hidden")
 
     @invariant
@@ -148,7 +158,7 @@ class IMessage(model.Schema):
             data_start = add_timezone(data.start)
             data_end = add_timezone(data.end)
             if data_start > data_end:
-                raise Invalid(_(u'The start date must precede the end date.'))
+                raise Invalid(_("The start date must precede the end date."))
 
 
 def add_timezone(dt, force=False):
@@ -170,16 +180,16 @@ def start_index(obj):
 @indexer(IMessage)
 def end_index(obj):
     if obj.end is None:
-        return DateTime('2099/01/01')
+        return DateTime("2099/01/01")
     else:
         return add_timezone(obj.end)
 
 
 @implementer(IMessage)
-class PseudoMessage(object):
+class PseudoMessage:
     """
-        This is not the class used with dexterity !
-        This class is intended to be used in another context to instantiate messages that can be used in viewlet.
+    This is not the class used with dexterity !
+    This class is intended to be used in another context to instantiate messages that can be used in viewlet.
     """
 
     # Provide the minimal fields, needed in viewlet templates:

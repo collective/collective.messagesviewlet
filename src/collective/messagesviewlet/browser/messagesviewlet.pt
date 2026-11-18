@@ -1,46 +1,74 @@
 <div id=""
-     tal:attributes="id view/id"
-     tal:define="messages view/getAllMessages"
+     tal:define="
+       messages view/getAllMessages;
+     "
      tal:condition="python:messages and view.showMessage()"
-     i18n:domain="collective.messagesviewlet">
+     tal:attributes="
+       id view/id;
+     "
+     i18n:domain="collective.messagesviewlet"
+>
 
   <tal:plone4 condition="python: not view.is_plone_5()">
-    <script tal:attributes="src string:${view/portal_url}/++resource++collective.messagesviewlet/js.cookie-2.0.3.min.js"></script>
-    <script tal:attributes="src string:${view/portal_url}/++resource++collective.messagesviewlet/hidemessageviewlet.js"></script>
+    <script tal:attributes="
+              src string:${view/portal_url}/++resource++collective.messagesviewlet/js.cookie-2.0.3.min.js;
+            "></script>
+    <script tal:attributes="
+              src string:${view/portal_url}/++resource++collective.messagesviewlet/hidemessageviewlet.js;
+            "></script>
     <tal:message repeat="message messages">
-        <dl tal:attributes="class python:'messagesviewlet-' + message.msg_type;
-                        id message/hidden_uid">
-            <dt i18n:translate="" tal:content="python: message.msg_type"></dt>
-            <dd>
-                <tal tal:replace="structure python: message.text.output"></tal>
-            </dd>
-            <span tal:condition="message/can_hide" class="close-button" i18n:attributes='title close_title'>
-              <img
-           tal:attributes="src string:${view/portal_url}/pb_close.png"
-           i18n:attributes='alt close_alt;
-                    title close_title'
-            />
-            </span>
-        </dl>
+      <dl tal:attributes="
+            class python:'messagesviewlet-' + message.msg_type;
+            id message/hidden_uid;
+          ">
+        <dt tal:content="python: message.msg_type"
+            i18n:translate=""
+        ></dt>
+        <dd>
+          <tal tal:replace="structure python: message.text.output"></tal>
+        </dd>
+        <span class="close-button"
+              tal:condition="message/can_hide"
+              i18n:attributes="title close_title"
+        >
+          <img tal:attributes="
+                 src string:${view/portal_url}/pb_close.png;
+               "
+               i18n:attributes="alt close_alt;
+                    title close_title"
+          />
+        </span>
+      </dl>
     </tal:message>
   </tal:plone4>
 
   <tal:plone5 condition="python: view.is_plone_5()">
-      <tal:message5 repeat="message messages">
-          <div tal:define="CSSClassName python:view.getCSSClassName(message.msg_type)"
-               tal:attributes="class CSSClassName;
-               id message/hidden_uid"
-               style="display: none">
-              <span class="messagesviewlet-type"
-                  i18n:translate="" tal:content="python:message.msg_type">Info</span>
-              <span class="content"
-                 tal:replace="structure python: message.text.output">
+    <tal:message5 repeat="message messages">
+      <div style="display: none"
+           tal:define="
+             CSSClassName python:view.getCSSClassName(message.msg_type);
+           "
+           tal:attributes="
+             class CSSClassName;
+             id message/hidden_uid;
+           "
+      >
+        <span class="messagesviewlet-type"
+              tal:content="python:message.msg_type"
+              i18n:translate=""
+        >Info</span>
+        <span class="content"
+              tal:replace="structure python: message.text.output"
+        >
                 The status message.
-              </span>
-              <span class="close-button" i18n:attributes='title close_title' tal:condition="message/can_hide">
-              </span>
-          </div>
-      </tal:message5>
+        </span>
+        <span class="close-button"
+              tal:condition="message/can_hide"
+              i18n:attributes="title close_title"
+        >
+        </span>
+      </div>
+    </tal:message5>
   </tal:plone5>
 
 </div>

@@ -1,6 +1,7 @@
-<?xml version="1.0"?>
+<?xml version="1.0" encoding="utf-8"?>
 <layers>
-  <layer
-      name="collective.messagesviewlet"
-      interface="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer" remove="True" />
+  <layer interface="collective.messagesviewlet.interfaces.ICollectiveMessagesviewletLayer"
+         name="collective.messagesviewlet"
+         remove="True"
+  />
 </layers>
